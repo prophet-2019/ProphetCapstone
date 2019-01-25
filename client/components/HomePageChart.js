@@ -14,6 +14,7 @@ import {
 import {getStockPrice} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
+import AssetAllocation from './AssetAllocation'
 
 class HomePageChart extends Component {
   constructor(props) {
@@ -34,9 +35,12 @@ class HomePageChart extends Component {
     }, [])
     console.log('chartData', chartData)
     return (
-      <XYPlot width={500} height={500} getX={d => d[0]} getY={d => d[1]}>
-        <LineSeries color="red" data={chartData} />
-      </XYPlot>
+      <div>
+        <XYPlot width={500} height={500} getX={d => d[0]} getY={d => d[1]}>
+          <LineSeries color="red" data={chartData} />
+        </XYPlot>
+        <AssetAllocation />
+      </div>
     )
   }
 }
