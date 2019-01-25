@@ -10,11 +10,10 @@ const Stock = require('./stock')
  *    BlogPost.belongsTo(User)
  */
 
-User.hasMany(Portfolio)
 Portfolio.belongsTo(User)
+User.hasMany(Portfolio)
 Portfolio.belongsTo(Cash)
 Portfolio.belongsTo(Stock)
-//  Cash.hasOne(Portfolio) ** this would set
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
