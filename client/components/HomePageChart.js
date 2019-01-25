@@ -4,8 +4,12 @@ import {
   VerticalGridLines,
   HorizontalGridLines,
   LineSeries,
+  FlexibleXYPlot,
+  BarSeries,
   XAxis,
-  YAxis
+  YAxis,
+  RectSeries,
+  VerticalBarSeries
 } from 'react-vis'
 import {getStockPrice} from '../store/chart'
 import {connect} from 'react-redux'
@@ -14,15 +18,24 @@ import {withRouter} from 'react-router'
 class HomePageChart extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      historicalPrices: []
+    }
   }
   async componentDidMount() {
     await this.props.getStockPrice()
+    this.setState({historicalPrices: this.props.historicalPrices})
   }
   render() {
-    console.log('PROPS', this.props)
+    const histPrices = this.state.historicalPrices
+    const chartData = histPrices.reduce((accum, val, idx) => {
+      accum.push([idx, val.close])
+      return accum
+    }, [])
+    console.log('chartData', chartData)
     return (
-      <XYPlot width={300} height={300} getX={d => d[0]} getY={d => d[1]}>
-        <LineSeries color="red" data={[[1, 0], [2, 1], [3, 2]]} />
+      <XYPlot width={500} height={500} getX={d => d[0]} getY={d => d[1]}>
+        <LineSeries color="red" data={chartData} />
       </XYPlot>
     )
   }
