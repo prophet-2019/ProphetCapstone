@@ -12,7 +12,8 @@ const Stock = require('./stock')
 
 Portfolio.belongsTo(User)
 User.hasMany(Portfolio)
-Portfolio.belongsTo(Cash)
+User.hasMany(Stock)
+Cash.belongsTo(Portfolio)
 Portfolio.belongsTo(Stock)
 
 /**

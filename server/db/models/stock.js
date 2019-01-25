@@ -5,7 +5,13 @@ const Stock = db.define('stock', {
   name: {
     type: Sequelize.STRING
   },
-  quantity: {
+  stockQuantity: {
+    type: Sequelize.INTEGER
+  },
+  priceBoughtAt: {
+    type: Sequelize.INTEGER
+  },
+  currentMarketPrice: {
     type: Sequelize.INTEGER
   }
 })
