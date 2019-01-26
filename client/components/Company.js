@@ -7,12 +7,13 @@ import CompanyData from './CompanyData'
 class Company extends Component {
   constructor(props) {
     super(props)
+    this.handleSubmitBuy = this.handleSubmitBuy.bind(this)
   }
 
   componentDidMount() {}
 
   // arrow function should auto bind "this"
-  handleSubmitBuy = e => {
+  handleSubmitBuy(e) {
     e.preventDefault()
     this.props.buyStock()
   }
@@ -28,10 +29,10 @@ class Company extends Component {
         <h3>Apple</h3>
         <HomePageChart />
         <CompanyData />
-        <button type="submit" onSubmit={this.handleSubmitBuy}>
+        <button type="submit" onClick={this.handleSubmitBuy}>
           Buy
         </button>
-        <button type="submit" onSubmit={this.handleSubmitSell}>
+        <button type="submit" onClick={this.handleSubmitSell}>
           Sell
         </button>
       </div>
