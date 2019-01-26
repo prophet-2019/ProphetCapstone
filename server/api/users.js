@@ -19,64 +19,40 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// router.put('/:userId/portfolio/:portfolioId', async (req, res, next) => {
-//   try {
-//     const updatedPortfolio = await Portfolio.update({
-//       where: {
-//         userId: req.params.userId,
-//         portfolioId: req.params.portfolioId
-//       },
-//       include: [{model: Cash}, {model: Stock}]
-//     })
-//     res.status(202).json(updatedPortfolio)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-// router.get('/:userId/portfolio', async (req, res, next) => {
-//   try {
-//     const portfolios = await Portfolio.findAll({where: {
-//       userId: req.params.userId,
-//     }},{
-//       include: [{ model: Cash }]
-//     } )
-//     console.log("portfolios: ", portfolios)
-//     // let oldAmount = cash.quantity
-//     // const updatedCash = await cash.update(
-//     // {
-//     //   quantity:
-//     //     oldAmount - 100
-//     // },
-//     // {
-//     //   where: {
-//     //     id: portfolios.dataValues.cashId
-//     //   }
-//     // })
-//     res.status(202).send(portfolios)
-//   } catch (err) {
-//     next (err)
-//   }
-// })
-
-router.put('/:userId/portfolio/:portfolioId', async (req, res, next) => {
-  console.log('REQ\n\n\n\n\n\n\n\n', req.params)
+router.get('/:userId/:portfolioId/cash', async (req, res, next) => {
   try {
-    const portfolios = await Portfolio.findById(req.params.portfolioId)
-    const portWithCash = await portfolios.findAll({include: [{model: Cash}]})
-    console.log('portfolios: \n\n\n\n\n\n\n', portWithCash)
-    let oldAmount = Cash.quantity
-    const updatedCash = await Cash.update(
+    const cash = await Cash.findAll({
+      where: {
+        portfolioId: req.params.portfolioId
+      }
+    })
+    res.status(202).send(cash)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/:userId/:portfolioId/cash', async (req, res, next) => {
+  try {
+    const [cash] = await Cash.findAll({
+      where: {
+        portfolioId: req.params.portfolioId
+      }
+    })
+    let oldAmount = cash.dataValues.quantity
+    const [numberOfRowsAffected, updatedCashInstance] = await Cash.update(
       {
-        quantity: oldAmount - 100
+        quantity: oldAmount - 1000
       },
       {
         where: {
-          id: portfolios.dataValues.cashId
-        }
+          portfolioId: req.params.portfolioId
+        },
+        returning: true,
+        plain: true
       }
     )
-    res.status(202).send(updatedCash)
+    res.status(202).send(updatedCashInstance)
   } catch (err) {
     next(err)
   }
