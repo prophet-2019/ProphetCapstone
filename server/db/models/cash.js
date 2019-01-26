@@ -4,7 +4,10 @@ const db = require('../db')
 const Cash = db.define('cash', {
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 100000
+    defaultValue: 100000,
+    validate: {
+      min: 0
+    }
   }
 })
 

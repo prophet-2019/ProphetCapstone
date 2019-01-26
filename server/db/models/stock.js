@@ -5,7 +5,17 @@ const Stock = db.define('stock', {
   name: {
     type: Sequelize.STRING
   },
-  quantity: {
+  stockQuantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
+  },
+  priceBoughtAt: {
+    type: Sequelize.INTEGER
+  },
+  currentMarketPrice: {
     type: Sequelize.INTEGER
   }
 })
