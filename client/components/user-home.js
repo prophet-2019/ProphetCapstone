@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import HomePageChart from './HomePageChart'
@@ -20,13 +20,13 @@ export const UserHome = props => {
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapStateToProps = state => {
   return {
     email: state.user.email
   }
 }
 
-export default connect(mapState)(UserHome)
+export default connect(mapStateToProps)(UserHome)
 
 /**
  * PROP TYPES

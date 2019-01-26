@@ -12,9 +12,18 @@ const Stock = require('./stock')
 
 Portfolio.belongsTo(User)
 User.hasMany(Portfolio)
-Portfolio.belongsTo(Cash)
-Portfolio.belongsTo(Stock)
 
+Stock.belongsTo(User)
+User.hasMany(Stock)
+
+Cash.belongsTo(User)
+User.hasMany(Cash)
+
+Cash.belongsTo(Portfolio)
+Portfolio.hasMany(Cash)
+
+Stock.belongsTo(Portfolio)
+Portfolio.hasMany(Stock)
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
