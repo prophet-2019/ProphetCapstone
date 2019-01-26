@@ -30,6 +30,7 @@ router.post('/signup', async (req, res, next) => {
       userId: user.dataValues.id
     })
     const cash = await Cash.create({
+      userId: user.dataValues.id,
       portfolioId: portfolio.dataValues.id
     })
     const stock = await Stock.create({

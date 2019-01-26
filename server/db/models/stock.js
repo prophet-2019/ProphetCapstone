@@ -7,7 +7,10 @@ const Stock = db.define('stock', {
   },
   stockQuantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
   },
   priceBoughtAt: {
     type: Sequelize.INTEGER
