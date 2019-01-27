@@ -8,6 +8,7 @@ class Company extends Component {
   constructor(props) {
     super(props)
     this.handleSubmitBuy = this.handleSubmitBuy.bind(this)
+    this.handleSubmitSell = this.handleSubmitSell.bind(this)
   }
 
   componentDidMount() {}
@@ -20,10 +21,9 @@ class Company extends Component {
 
   handleSubmitSell = e => {
     e.preventDefault()
-    this.props.buyStock()
+    this.props.sellStock()
   }
   render() {
-    console.log('props are: \n\n\n', this.props)
     return (
       <div>
         <h3>Apple</h3>

@@ -25,6 +25,8 @@ router.get('/:userId/:portfolioId', async (req, res, next) => {
 })
 
 router.put('/:userId/:portfolioId/buy', async (req, res, next) => {
+  let stockTicker = req.body.symbol
+  let realTimeQuote = req.body.latestPrice
   try {
     const [cash] = await Cash.findAll({
       where: {
@@ -56,7 +58,9 @@ router.put('/:userId/:portfolioId/buy', async (req, res, next) => {
       updatedStockInstance
     ] = await Stock.update(
       {
-        stockQuantity: oldStockAmount + 100
+        stockQuantity: oldStockAmount + 100,
+        name: stockTicker,
+        priceBoughtAt: realTimeQuote
       },
       {
         where: {
@@ -77,6 +81,8 @@ router.put('/:userId/:portfolioId/buy', async (req, res, next) => {
 })
 
 router.put('/:userId/:portfolioId/sell', async (req, res, next) => {
+  let stockTicker = req.body.symbol
+  let realTimeQuote = req.body.latestPrice
   try {
     const [cash] = await Cash.findAll({
       where: {
@@ -108,7 +114,9 @@ router.put('/:userId/:portfolioId/sell', async (req, res, next) => {
       updatedStockInstance
     ] = await Stock.update(
       {
-        stockQuantity: oldStockAmount - 100
+        stockQuantity: oldStockAmount - 100,
+        name: stockTicker,
+        priceBoughtAt: realTimeQuote
       },
       {
         where: {
