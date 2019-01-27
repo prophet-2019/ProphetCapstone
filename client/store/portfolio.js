@@ -28,11 +28,14 @@ const soldStock = updatedPortfolio => ({
 export const getStockPriceToBuy = () => {
   return async dispatch => {
     try {
-      const {data: price} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/aapl/price`
+      const {data: iexRealTimeQuote} = await axios.get(
+        `https://api.iextrading.com/1.0/stock/aapl/quote`
       )
       // eventually we will pass the price and stock quantity with the axios call
-      const updatedPortfolio = await axios.put(`/api/users/1/1/buy`)
+      const updatedPortfolio = await axios.put(
+        `/api/users/1/1/buy`,
+        iexRealTimeQuote
+      )
       dispatch(boughtStock(updatedPortfolio))
     } catch (err) {
       console.error('There are no stocks shown', err.message)
@@ -43,11 +46,14 @@ export const getStockPriceToBuy = () => {
 export const getStockPriceToSell = () => {
   return async dispatch => {
     try {
-      const {data: price} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/aapl/price`
+      const {data: iexRealTimeQuote} = await axios.get(
+        `https://api.iextrading.com/1.0/stock/aapl/quote`
       )
       // eventually we will pass the price and stock quantity with the axios call
-      const updatedPortfolio = await axios.put(`/api/users/1/1/sell`)
+      const updatedPortfolio = await axios.put(
+        `/api/users/1/1/sell`,
+        iexRealTimeQuote
+      )
       dispatch(soldStock(updatedPortfolio))
     } catch (err) {
       console.error('There are no stocks shown', err.message)
