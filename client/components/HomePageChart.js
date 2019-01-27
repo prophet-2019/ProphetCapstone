@@ -14,18 +14,24 @@ import {
 import {getStockPrice} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
+import {getPortfolio} from '../store/assetallocation'
 import AssetAllocation from './AssetAllocation'
 
 class HomePageChart extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      historicalPrices: []
+      historicalPrices: [],
+      portfolio: {}
     }
   }
   async componentDidMount() {
     await this.props.getStockPrice()
-    this.setState({historicalPrices: this.props.historicalPrices})
+    await this.props.getPortfolio()
+    this.setState({
+      historicalPrices: this.props.historicalPrices,
+      portfolio: this.props.portfolio
+    })
   }
   render() {
     const histPrices = this.state.historicalPrices
@@ -33,13 +39,12 @@ class HomePageChart extends Component {
       accum.push([idx, val.close])
       return accum
     }, [])
-    console.log('chartData', chartData)
     return (
       <div>
         <XYPlot width={500} height={500} getX={d => d[0]} getY={d => d[1]}>
           <LineSeries color="red" data={chartData} />
         </XYPlot>
-        <AssetAllocation />
+        <AssetAllocation portfolioData={this.state.portfolio} />
       </div>
     )
   }
@@ -47,13 +52,15 @@ class HomePageChart extends Component {
 
 const mapStateToProps = state => {
   return {
-    historicalPrices: state.chart.historicalPrices
+    historicalPrices: state.chart.historicalPrices,
+    portfolio: state.assetallocation.portfolio
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getStockPrice: () => dispatch(getStockPrice())
+    getStockPrice: () => dispatch(getStockPrice()),
+    getPortfolio: () => dispatch(getPortfolio())
   }
 }
 
