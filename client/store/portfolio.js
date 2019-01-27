@@ -8,15 +8,15 @@ const SELL_STOCK = 'SELL_STOCK'
 
 const initialState = {
   portfolio: {
-    stocks: 0,
-    cash: 100000
+    cash: 0,
+    stocks: 0
   }
 }
 
 //action creator
-const boughtStock = updatedPortfolio => ({
+const boughtStock = boughtStock => ({
   type: BUY_STOCK,
-  updatedPortfolio
+  boughtStock
 })
 
 const soldStock = updatedPortfolio => ({
@@ -67,7 +67,11 @@ export default function(state = initialState, action) {
     case BUY_STOCK:
       return {
         ...state,
-        portfolio: action.updatedPortfolio
+        portfolio: {
+          //bought stock reducer
+          cash: action.boughtStock.data.cash[0].quantity,
+          stocks: action.boughtStock.data.stocks[0].quantity
+        }
       }
     case SELL_STOCK:
       return {

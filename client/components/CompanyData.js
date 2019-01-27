@@ -17,7 +17,6 @@ class CompanyData extends Component {
 
   render() {
     const financials = this.state.financials.financials || []
-    console.log('DATA STATE', financials)
     return (
       <div>
         <table>
@@ -27,7 +26,6 @@ class CompanyData extends Component {
             </tr>
             <tbody>
               {financials.map((val, idx) => {
-                console.log('val', val)
                 return (
                   <tr key={idx}>
                     <td>{val.reportDate}</td>
