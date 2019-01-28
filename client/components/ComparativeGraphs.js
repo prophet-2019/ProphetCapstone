@@ -21,6 +21,10 @@ const lines = [
   [{x: 1, y: 7}, {x: 2, y: 11}, {x: 3, y: 9}, {x: 4, y: 2}]
 ].map((p, i) => p.map(d => ({...d, line: i})))
 const nodes = lines.reduce((acc, d) => [...acc, ...d], [])
+// const pgChartData = lines.reduce((accum, val, idx) => {
+//   accum.push({x: idx, y: val.close})
+//   return accum
+// }, [])
 
 const getDomain = (data, key) => {
   const {min, max} = data.reduce(
@@ -35,7 +39,7 @@ const getDomain = (data, key) => {
 const xDomain = getDomain(nodes, 'x')
 const yDomain = getDomain(nodes, 'y')
 
-class ComparativeGraphs extends React.Component {
+class ComparativeGraphs extends Component {
   constructor(props) {
     super(props)
     this.state = {
