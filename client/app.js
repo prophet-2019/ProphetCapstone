@@ -1,6 +1,5 @@
 import React from 'react'
-
-import {Navbar, HomePageChart} from './components'
+import {Navbar} from './components'
 import Routes from './routes'
 
 const App = () => {
