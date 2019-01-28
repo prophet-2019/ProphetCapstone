@@ -17,6 +17,9 @@ import {withRouter} from 'react-router'
 import {getPortfolio} from '../store/assetallocation'
 import AssetAllocation from './AssetAllocation'
 
+// /Users/jaybhagat/Projects/capstone/node_modules/react-vis/dist/style.css
+// /Users/jaybhagat/Projects/capstone/client/components/HomePageChart.js
+
 class HomePageChart extends Component {
   constructor(props) {
     super(props)
