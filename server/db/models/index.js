@@ -1,6 +1,5 @@
 const User = require('./user')
-const Portfolio = require('./portfolio')
-const Cash = require('./cash')
+const Transaction = require('./transaction')
 const Stock = require('./stock')
 
 /**
@@ -10,20 +9,12 @@ const Stock = require('./stock')
  *    BlogPost.belongsTo(User)
  */
 
-Portfolio.belongsTo(User)
-User.hasMany(Portfolio)
+Transaction.belongsTo(User)
+User.hasMany(Transaction)
 
-Stock.belongsTo(User)
-User.hasMany(Stock)
+// Transaction.belongsTo(Stock)
+// Stock.hasMany(Transaction)
 
-Cash.belongsTo(User)
-User.hasMany(Cash)
-
-Cash.belongsTo(Portfolio)
-Portfolio.hasMany(Cash)
-
-Stock.belongsTo(Portfolio)
-Portfolio.hasMany(Stock)
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -32,7 +23,6 @@ Portfolio.hasMany(Stock)
  */
 module.exports = {
   User,
-  Portfolio,
-  Cash,
+  Transaction,
   Stock
 }
