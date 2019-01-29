@@ -50,10 +50,10 @@ User.prototype.correctPassword = function(candidatePwd) {
  */
 
 //can't reference cash --> can only reference original model//
-User.cashUpdate = function(userId, cashChange) {
+User.prototype.cashUpdate = function(userId, cashChange) {
   userId = Number(userId)
   cashChange = Number(cashChange)
-  console.log('this.cash', cash)
+  console.log('this')
   this.cash = Number(this.cash)
   return User.update(
     {

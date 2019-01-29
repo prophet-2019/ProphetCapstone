@@ -74,18 +74,7 @@ router.put('/:userId/buy', async (req, res, next) => {
     } else {
       throw new Error('Not enough $$')
     }
-    const oldCash = user.dataValues.cash
-    // await User.update(
-    //   {
-    //     cash: oldCash - cashValue
-    //   },
-    //   {
-    //     where: {
-    //       id: req.params.userId
-    //     }
-    //   }
-    // )
-    await User.cashUpdate(req.params.userId, cashValue)
+    await user.cashUpdate(req.params.userId, cashValue)
   } catch (err) {
     next(err)
   }
@@ -97,7 +86,7 @@ router.put('/:userId/sell', async (req, res, next) => {
   let realTimeQuote = 50
   let shares = 2
   let quantity = shares * realTimeQuote
-  let cashValue = realTimeQuote * quantity
+  let cashValue = realTimeQuote * quantity * -1
   try {
     const ownsIt = await Transaction.findByUserAndStock(
       req.params.userId,
@@ -127,17 +116,8 @@ router.put('/:userId/sell', async (req, res, next) => {
         req.params.userId
       )
       const findUser = await User.findById(req.params.userId)
-      const oldCash = findUser.dataValues.cash
-      await User.update(
-        {
-          cash: oldCash + cashValue
-        },
-        {
-          where: {
-            id: req.params.userId
-          }
-        }
-      )
+      //make sure to User.findById AND let cashValue to negative
+      await findUser.cashUpdate(req.params.userId, cashValue)
       res.send(sellSellSell)
     } else {
       throw new Error("you don't own enough")
