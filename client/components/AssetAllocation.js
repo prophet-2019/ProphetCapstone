@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {getPortfolio} from '../store/assetallocation'
+import {getStockPriceForAssetAllocation} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import {
@@ -20,7 +21,8 @@ class AssetAllocation extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      portfolio: {}
+      portfolio: {},
+      portValues: []
     }
   }
   componentDidMount() {
@@ -28,9 +30,22 @@ class AssetAllocation extends Component {
   }
   componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
-    if (this.props.portfolioData !== prevProps.portfolioData) {
+    //
+    //Thunk returns an object be sure to just grab price --> this is erroring out
+    //
+    // const portArr = Object.keys(this.state.portfolio);
+    // console.log("portArr", portArr)
+    // const portVal = portArr.map(async (val) => {
+    //   console.log("val", val)
+    //   await this.props.getStockPriceForAssetAllocation(val);
+    // })
+    if (
+      this.props.portfolioData !== prevProps.portfolioData ||
+      typeof this.state.portValues[0] !== 'number'
+    ) {
       this.setState({
         portfolio: this.props.portfolioData
+        // portValues: portVal
       })
     }
   }
@@ -53,4 +68,11 @@ class AssetAllocation extends Component {
   }
 }
 
-export default AssetAllocation
+const mapDispatchToProps = dispatch => {
+  return {
+    getStockPriceForAssetAllocation: ticker =>
+      dispatch(getStockPriceForAssetAllocation(ticker))
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(AssetAllocation))
