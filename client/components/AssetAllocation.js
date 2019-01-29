@@ -20,9 +20,7 @@ class AssetAllocation extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      portfolio: {},
-      cash: 0,
-      stocks: 0
+      portfolio: {}
     }
   }
   componentDidMount() {
@@ -30,23 +28,24 @@ class AssetAllocation extends Component {
   }
   componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
-    if (this.props.portfolioData.cash !== prevProps.portfolioData.cash) {
+    if (this.props.portfolioData !== prevProps.portfolioData) {
       this.setState({
-        portfolio: this.props.portfolioData,
-        cash: this.props.portfolioData.cash[0].quantity,
-        stocks: this.props.portfolioData.stocks[0].stockQuantity
+        portfolio: this.props.portfolioData
       })
     }
   }
   render() {
     let myData
-    if (this.state.cash !== 0) {
+    if (this.state.portfolio) {
       console.log('State', this.state)
       const cashCash = this.state.cash || 0
       const portPort = this.state.stocks || 0
       // const cashCash = 2;
       // const portPort = 13;
-      myData = [{angle: cashCash}, {angle: portPort}, {angle: 100}]
+      myData = Object.values(this.state.portfolio).reduce((accum, val) => {
+        accum.push({angle: val})
+        return accum
+      }, [])
     } else {
       myData = [{angle: 0}, {angle: 0}, {angle: 100}]
     }
