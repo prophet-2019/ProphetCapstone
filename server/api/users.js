@@ -15,11 +15,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:userId/transactions', async (req, res, next) => {
   try {
-    const transactions = await Transaction.findAll({
-      where: {
-        userId: req.params.userId
-      }
-    })
+    const transactions = await Transaction.findByUser(req.params.userId)
     res.send(transactions)
   } catch (error) {
     next(error)
@@ -28,11 +24,7 @@ router.get('/:userId/transactions', async (req, res, next) => {
 
 router.get('/:userId/portfolio', async (req, res, next) => {
   try {
-    const usersTransactions = await Transaction.findAll({
-      where: {
-        userId: req.params.userId
-      }
-    })
+    const usersTransactions = await Transaction.findByUser(req.params.userId)
     const getPortfolio = usersTransactions.reduce((accum, val) => {
       let tickTick = val.dataValues.ticker
       let shares = val.dataValues.transQuantity
@@ -53,32 +45,6 @@ router.get('/:userId/portfolio', async (req, res, next) => {
   }
 })
 
-router.post('/:userId/buy', async (req, res, next) => {
-  try {
-    const transactions = await Transaction.findAll({
-      where: {
-        userId: req.params.userId
-      }
-    })
-
-    res.send(transactions)
-  } catch (error) {
-    next(error)
-  }
-})
-
-//Not using this anymore
-// router.get('/:userId/:portfolioId', async (req, res, next) => {
-//   try {
-//     const portfolios = await Portfolio.findById(req.params.portfolioId, {
-//       include: [{model: Cash}, {model: Stock}]
-//     })
-//     res.status(202).send(portfolios)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
 router.put('/:userId/buy', async (req, res, next) => {
   // let stockTicker = req.body.symbol
   // let realTimeQuote = req.body.latestPrice
@@ -97,28 +63,29 @@ router.put('/:userId/buy', async (req, res, next) => {
     const user = await User.findById(req.params.userId)
     let cashValue = realTimeQuote * quantity
     if (user.dataValues.cash >= realTimeQuote * quantity) {
-      const buy = await Transaction.create({
-        ticker: stockTicker,
-        price: realTimeQuote,
-        transQuantity: 100,
-        transactionType: 'buy',
-        userId: req.params.userId
-      })
+      const buy = await Transaction.createTrade(
+        stockTicker,
+        realTimeQuote,
+        115,
+        'buy',
+        req.params.userId
+      )
       res.send(buy)
     } else {
       throw new Error('Not enough $$')
     }
     const oldCash = user.dataValues.cash
-    await User.update(
-      {
-        cash: oldCash - cashValue
-      },
-      {
-        where: {
-          id: req.params.userId
-        }
-      }
-    )
+    // await User.update(
+    //   {
+    //     cash: oldCash - cashValue
+    //   },
+    //   {
+    //     where: {
+    //       id: req.params.userId
+    //     }
+    //   }
+    // )
+    await User.cashUpdate(req.params.userId, cashValue)
   } catch (err) {
     next(err)
   }
@@ -126,18 +93,16 @@ router.put('/:userId/buy', async (req, res, next) => {
 
 router.put('/:userId/sell', async (req, res, next) => {
   //check if user owns that stock
-  let stockTicker = 'AAPL'
+  let stockTicker = 'GE'
   let realTimeQuote = 50
   let shares = 2
   let quantity = shares * realTimeQuote
   let cashValue = realTimeQuote * quantity
   try {
-    const ownsIt = await Transaction.findAll({
-      where: {
-        userId: req.params.userId,
-        ticker: stockTicker
-      }
-    })
+    const ownsIt = await Transaction.findByUserAndStock(
+      req.params.userId,
+      stockTicker
+    )
     if (!ownsIt) {
       throw new Error("Sorry, you don't own this.")
     }
@@ -154,13 +119,13 @@ router.put('/:userId/sell', async (req, res, next) => {
     }, 0)
     //create sell transaction
     if (howMuch >= quantity) {
-      const sellSellSell = await Transaction.create({
-        ticker: stockTicker,
-        price: realTimeQuote,
-        transQuantity: 100,
-        transactionType: 'sell',
-        userId: req.params.userId
-      })
+      const sellSellSell = await Transaction.createTrade(
+        stockTicker,
+        realTimeQuote,
+        115,
+        'sell',
+        req.params.userId
+      )
       const findUser = await User.findById(req.params.userId)
       const oldCash = findUser.dataValues.cash
       await User.update(

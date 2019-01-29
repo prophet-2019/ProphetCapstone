@@ -19,3 +19,40 @@ const Transaction = db.define('transaction', {
 })
 
 module.exports = Transaction
+
+/**
+ * classMethod
+ */
+
+Transaction.findByUser = function(userId) {
+  return Transaction.findAll({
+    where: {
+      userId
+    }
+  })
+}
+
+Transaction.findByUserAndStock = function(userId, ticker) {
+  return Transaction.findAll({
+    where: {
+      userId,
+      ticker
+    }
+  })
+}
+
+Transaction.createTrade = function(
+  ticker,
+  price,
+  transQuantity,
+  transactionType,
+  userId
+) {
+  return Transaction.create({
+    ticker,
+    price,
+    transQuantity,
+    transactionType,
+    userId
+  })
+}

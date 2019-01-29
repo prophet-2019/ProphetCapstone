@@ -48,6 +48,25 @@ User.prototype.correctPassword = function(candidatePwd) {
 /**
  * classMethods
  */
+
+//can't reference cash --> can only reference original model//
+User.cashUpdate = function(userId, cashChange) {
+  userId = Number(userId)
+  cashChange = Number(cashChange)
+  console.log('this.cash', cash)
+  this.cash = Number(this.cash)
+  return User.update(
+    {
+      cash: this.cash - cashChange
+    },
+    {
+      where: {
+        id: userId
+      }
+    }
+  )
+}
+
 User.generateSalt = function() {
   return crypto.randomBytes(16).toString('base64')
 }

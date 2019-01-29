@@ -39,10 +39,7 @@ class AssetAllocation extends Component {
     //   console.log("val", val)
     //   await this.props.getStockPriceForAssetAllocation(val);
     // })
-    if (
-      this.props.portfolioData !== prevProps.portfolioData ||
-      typeof this.state.portValues[0] !== 'number'
-    ) {
+    if (this.props.portfolioData !== prevProps.portfolioData) {
       this.setState({
         portfolio: this.props.portfolioData
         // portValues: portVal
