@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import {getPortfolio} from '../store/assetallocation'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router'
+
 import {
   XYPlot,
   VerticalGridLines,

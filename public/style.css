@@ -15,11 +15,6 @@ nav a {
   margin: 1em;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
 /* react-vis css */
 
 .react-vis-magic-css-import-rule {
