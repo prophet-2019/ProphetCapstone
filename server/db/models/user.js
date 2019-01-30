@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Portfolio = require('./portfolio')
 
 const User = db.define('user', {
   email: {
@@ -53,7 +54,6 @@ User.prototype.correctPassword = function(candidatePwd) {
 User.prototype.cashUpdate = function(userId, cashChange) {
   userId = Number(userId)
   cashChange = Number(cashChange)
-  console.log('this')
   this.cash = Number(this.cash)
   return User.update(
     {
@@ -65,6 +65,14 @@ User.prototype.cashUpdate = function(userId, cashChange) {
       }
     }
   )
+}
+
+User.getPortfolio = function(userId) {
+  return Portfolio.findAll({
+    where: {
+      userId
+    }
+  })
 }
 
 User.generateSalt = function() {
@@ -91,3 +99,11 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
+User.afterCreate(async user => {
+  await Portfolio.create({
+    ticker: 'MONEY',
+    quantity: user.cash,
+    currentMarketValue: user.cash,
+    userId: user.id
+  })
+})
