@@ -44,19 +44,34 @@ class HomePageChart extends Component {
   //just wondering about binding using arrow functions and if this matters
   handleSubmit = () => {
     this.props.getStockPrice(this.state.submitEquity, this.state.timeFrame)
-    this.setState({submitEquity: '', isLoaded: true})
+    this.setState({
+      submitEquity: '',
+      isLoaded: true,
+      historicalPrices: this.props.historicalPrices
+    })
   }
   toggleChart(time) {
     this.setState({timeFrame: time})
-    this.props.getStockPrice(this.state.currentEquity, this.state.timeFrame)
+    console.log('TIME', time, this.state.timeFrame)
+    this.props.getStockPrice(this.state.currentEquity, time)
+    this.setState({historicalPrices: this.props.historicalPrices})
   }
   async componentDidMount() {
-    await this.props.getStockPrice()
+    await this.props.getStockPrice(
+      this.state.currentEquity,
+      this.state.timeFrame
+    )
     await this.props.getPortfolio()
     this.setState({
       historicalPrices: this.props.historicalPrices,
       portfolio: this.props.portfolio
     })
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('prevProps', prevProps, '\n\n\n\n\n\nprevState', prevState)
+    if (prevState.timeFrame !== this.state.timeFrame) {
+      this.toggleChart(this.state.timeFrame)
+    }
   }
   render() {
     const histPrices = this.state.historicalPrices
@@ -80,17 +95,57 @@ class HomePageChart extends Component {
                 dontCheckIfEmpty={true}
               />
             </XYPlot>
-            <button onClick={() => this.toggleChart('1d')}>1D</button>
-            <button onClick={() => this.toggleChart('1m')}>1M</button>
-            <button onClick={() => this.toggleChart('3m')}>3M</button>
-            <button onClick={() => this.toggleChart('6m')}>6M</button>
-            <button onClick={() => this.toggleChart('ytd')}>YTD</button>
-            <button onClick={() => this.toggleChart('1y')}>1Y</button>
-            <button onClick={() => this.toggleChart('2y')}>2Y</button>
-            <button onClick={() => this.toggleChart('5y')}>5Y</button>
+            <button
+              onClick={() => this.toggleChart('1d')}
+              disabled={this.state.timeFrame === '1d'}
+            >
+              1D
+            </button>
+            <button
+              onClick={() => this.toggleChart('1m')}
+              disabled={this.state.timeFrame === '1m'}
+            >
+              1M
+            </button>
+            <button
+              onClick={() => this.toggleChart('3m')}
+              disabled={this.state.timeFrame === '3m'}
+            >
+              3M
+            </button>
+            <button
+              onClick={() => this.toggleChart('6m')}
+              disabled={this.state.timeFrame === '6m'}
+            >
+              6M
+            </button>
+            <button
+              onClick={() => this.toggleChart('ytd')}
+              disabled={this.state.timeFrame === 'ytd'}
+            >
+              YTD
+            </button>
+            <button
+              onClick={() => this.toggleChart('1y')}
+              disabled={this.state.timeFrame === '1y'}
+            >
+              1Y
+            </button>
+            <button
+              onClick={() => this.toggleChart('2y')}
+              disabled={this.state.timeFrame === '2y'}
+            >
+              2Y
+            </button>
+            <button
+              onClick={() => this.toggleChart('5y')}
+              disabled={this.state.timeFrame === '5y'}
+            >
+              5Y
+            </button>
           </div>
         ) : (
-          <h1>Type something, please</h1>
+          <h1>Type something quickly, please</h1>
         )}
 
         <AssetAllocation portfolioData={this.state.portfolio} />
