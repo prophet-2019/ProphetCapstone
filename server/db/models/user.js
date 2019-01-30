@@ -1,12 +1,20 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Portfolio = require('./portfolio')
 
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false
+  },
+  cash: {
+    type: Sequelize.INTEGER,
+    defaultValue: 100000,
+    validate: {
+      min: 0
+    }
   },
   password: {
     type: Sequelize.STRING,
@@ -41,6 +49,32 @@ User.prototype.correctPassword = function(candidatePwd) {
 /**
  * classMethods
  */
+
+//can't reference cash --> can only reference original model//
+User.prototype.cashUpdate = function(userId, cashChange) {
+  userId = Number(userId)
+  cashChange = Number(cashChange)
+  this.cash = Number(this.cash)
+  return User.update(
+    {
+      cash: this.cash - cashChange
+    },
+    {
+      where: {
+        id: userId
+      }
+    }
+  )
+}
+
+User.getPortfolio = function(userId) {
+  return Portfolio.findAll({
+    where: {
+      userId
+    }
+  })
+}
+
 User.generateSalt = function() {
   return crypto.randomBytes(16).toString('base64')
 }
@@ -65,3 +99,11 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
+User.afterCreate(async user => {
+  await Portfolio.create({
+    ticker: 'MONEY',
+    quantity: user.cash,
+    currentMarketValue: user.cash,
+    userId: user.id
+  })
+})

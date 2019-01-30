@@ -1,18 +1,52 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Transaction, Stock} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({email: 'jon@jon.com', password: '123', cash: 100000}),
+    User.create({email: 'pib@bib.com', password: '123', cash: 100000})
+  ])
+
+  const stocks = await Promise.all([
+    Stock.create({name: 'AAPL'}),
+    Stock.create({name: 'TSLA'})
+  ])
+
+  const transactions = await Promise.all([
+    Transaction.create({
+      ticker: 'AAPL',
+      price: 117,
+      transQuantity: 150,
+      transactionType: 'buy',
+      userId: 1,
+      stockId: 1
+    }),
+    Transaction.create({
+      ticker: 'AAPL',
+      price: 133,
+      transQuantity: 40,
+      transactionType: 'sell',
+      userId: 1,
+      stockId: 1
+    }),
+    Transaction.create({
+      ticker: 'AAPL',
+      price: 105,
+      transQuantity: 205,
+      transactionType: 'buy',
+      userId: 1,
+      stockId: 1
+    })
   ])
 
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${transactions.length} transactions`)
+  console.log(`seeded ${stocks.length} stocks`)
   console.log(`seeded successfully`)
 }
 

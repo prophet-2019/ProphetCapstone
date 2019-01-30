@@ -2,8 +2,9 @@ import axios from 'axios'
 
 const GOT_STOCK_PRICE = 'GOT_STOCK_PRICE'
 const GOT_COMPANY_FINANCIALS = 'GOT_COMPANY_FINANCIALS'
+const GOT_REAL_TIME_PRICE = 'GOT_REAL_TIME_PRICE'
 
-const initialState = {historicalPrices: [], financials: {}}
+const initialState = {historicalPrices: [], financials: {}, realTimePrice: 0}
 
 const gotStockPrice = stock => ({
   type: GOT_STOCK_PRICE,
@@ -15,12 +16,30 @@ const gotFinancials = company => ({
   company
 })
 
-export const getStockPrice = () => async dispatch => {
+const gotStockPriceForAssetAllocation = stock => ({
+  type: GOT_STOCK_PRICE,
+  stock
+})
+
+export const getStockPrice = (ticker, time) => async dispatch => {
+  // const ticker = 'AAPL';
+  // const time = '5y'
   try {
     const {data: gotHistoricalPrices} = await axios.get(
-      `https://api.iextrading.com/1.0/stock/aapl/chart/3m`
+      `/api/iex/getChartData/${ticker}/${time}`
     )
     dispatch(gotStockPrice(gotHistoricalPrices))
+  } catch (err) {
+    console.error('BIGGG Drama Show', err.message)
+  }
+}
+
+export const getStockPriceForAssetAllocation = ticker => async dispatch => {
+  try {
+    const {data: realTimePrice} = await axios.get(
+      `https://api.iextrading.com/1.0/stock/${ticker}/price`
+    )
+    dispatch(gotStockPrice(realTimePrice))
   } catch (err) {
     console.error('BIGGG Drama Show', err.message)
   }
@@ -43,6 +62,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         historicalPrices: action.stock
+      }
+    case GOT_REAL_TIME_PRICE:
+      return {
+        ...state,
+        realTimePrice: action.stock
       }
     case GOT_COMPANY_FINANCIALS:
       return {

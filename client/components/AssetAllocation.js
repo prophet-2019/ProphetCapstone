@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {getPortfolio} from '../store/assetallocation'
+import {getStockPriceForAssetAllocation} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import {
@@ -21,8 +22,7 @@ class AssetAllocation extends Component {
     super(props)
     this.state = {
       portfolio: {},
-      cash: 0,
-      stocks: 0
+      portValues: []
     }
   }
   componentDidMount() {
@@ -30,23 +30,34 @@ class AssetAllocation extends Component {
   }
   componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
-    if (this.props.portfolioData.cash !== prevProps.portfolioData.cash) {
+    //
+    //Thunk returns an object be sure to just grab price --> this is erroring out
+    //
+    // const portArr = Object.keys(this.state.portfolio);
+    // console.log("portArr", portArr)
+    // const portVal = portArr.map(async (val) => {
+    //   console.log("val", val)
+    //   await this.props.getStockPriceForAssetAllocation(val);
+    // })
+    if (this.props.portfolioData !== prevProps.portfolioData) {
       this.setState({
-        portfolio: this.props.portfolioData,
-        cash: this.props.portfolioData.cash[0].quantity,
-        stocks: this.props.portfolioData.stocks[0].stockQuantity
+        portfolio: this.props.portfolioData
+        // portValues: portVal
       })
     }
   }
   render() {
     let myData
-    if (this.state.cash !== 0) {
+    if (this.state.portfolio) {
       console.log('State', this.state)
       const cashCash = this.state.cash || 0
       const portPort = this.state.stocks || 0
       // const cashCash = 2;
       // const portPort = 13;
-      myData = [{angle: cashCash}, {angle: portPort}, {angle: 100}]
+      myData = Object.values(this.state.portfolio).reduce((accum, val) => {
+        accum.push({angle: val})
+        return accum
+      }, [])
     } else {
       myData = [{angle: 0}, {angle: 0}, {angle: 100}]
     }
@@ -54,4 +65,11 @@ class AssetAllocation extends Component {
   }
 }
 
-export default AssetAllocation
+const mapDispatchToProps = dispatch => {
+  return {
+    getStockPriceForAssetAllocation: ticker =>
+      dispatch(getStockPriceForAssetAllocation(ticker))
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(AssetAllocation))

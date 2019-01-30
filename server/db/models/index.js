@@ -1,7 +1,7 @@
 const User = require('./user')
-const Portfolio = require('./portfolio')
-const Cash = require('./cash')
+const Transaction = require('./transaction')
 const Stock = require('./stock')
+const Portfolio = require('./portfolio')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -10,20 +10,19 @@ const Stock = require('./stock')
  *    BlogPost.belongsTo(User)
  */
 
-Portfolio.belongsTo(User)
+Transaction.belongsTo(User)
+User.hasMany(Transaction)
+
 User.hasMany(Portfolio)
+Portfolio.belongsTo(User)
 
-Stock.belongsTo(User)
-User.hasMany(Stock)
-
-Cash.belongsTo(User)
-User.hasMany(Cash)
-
-Cash.belongsTo(Portfolio)
-Portfolio.hasMany(Cash)
-
-Stock.belongsTo(Portfolio)
 Portfolio.hasMany(Stock)
+
+Stock.hasMany(Transaction)
+
+// Transaction.belongsTo(Stock)
+// Stock.hasMany(Transaction)
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -32,7 +31,7 @@ Portfolio.hasMany(Stock)
  */
 module.exports = {
   User,
-  Portfolio,
-  Cash,
-  Stock
+  Transaction,
+  Stock,
+  Portfolio
 }
