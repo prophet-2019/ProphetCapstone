@@ -52,22 +52,25 @@ class HomePageChart extends Component {
   }
   toggleChart(time) {
     this.setState({timeFrame: time})
-    console.log('TIME', time, this.state.time)
-    this.props.getStockPrice(this.state.currentEquity, this.state.timeFrame)
+    console.log('TIME', time, this.state.timeFrame)
+    this.props.getStockPrice(this.state.currentEquity, time)
     this.setState({historicalPrices: this.props.historicalPrices})
   }
   async componentDidMount() {
-    await this.props.getStockPrice()
+    await this.props.getStockPrice(
+      this.state.currentEquity,
+      this.state.timeFrame
+    )
     await this.props.getPortfolio()
     this.setState({
       historicalPrices: this.props.historicalPrices,
       portfolio: this.props.portfolio
     })
   }
-  componentWillUpdate(prevProps) {
-    console.log('prevProps', prevProps)
-    if (!this.state.timeFrame) {
-      console.log('break stack')
+  componentDidUpdate(prevProps, prevState) {
+    console.log('prevProps', prevProps, '\n\n\n\n\n\nprevState', prevState)
+    if (prevState.timeFrame !== this.state.timeFrame) {
+      this.toggleChart(this.state.timeFrame)
     }
   }
   render() {

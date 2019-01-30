@@ -61,7 +61,7 @@ export default function(state = initialState, action) {
     case GOT_STOCK_PRICE:
       return {
         ...state,
-        historicalPrices: [...state.historicalPrices, action.stock]
+        historicalPrices: action.stock
       }
     case GOT_REAL_TIME_PRICE:
       return {
