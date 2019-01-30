@@ -84,7 +84,7 @@ Transaction.afterCreate(async transaction => {
     await Portfolio.update(
       {
         quantity: portToUpdate.quantity - transaction.transQuantity,
-        //needs to get original transaction cost
+        //needs to get original transaction cost LIFO/FIFO?
         costValue: portToUpdate.costValue - transCost
       },
       {
