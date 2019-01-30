@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {getFinancials} from '../store/chart'
 import {
   XYPlot,
   XAxis,
@@ -10,6 +9,9 @@ import {
   VerticalGridLines,
   LineMarkSeries
 } from 'react-vis'
+import {getStockPrice} from '../store/chart'
+import {getPortfolio} from '../store/assetallocation'
+import {getFinancials} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 
@@ -96,13 +98,74 @@ class CompareChart extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      financials: {}
+      historicalPricesCo1: [],
+      historicalPricesCo2: [],
+      portfolio: {},
+      submitEquityCo1: '',
+      currentEquityCo1: '',
+      submitEquityCo2: '',
+      currentEquityCo2: '',
+      isLoaded: false,
+      timeFrame: Date.now()
     }
+    this.handleChange1 = this.handleChange1.bind(this)
+    this.handleSubmit1 = this.handleSubmit1.bind(this)
+    this.handleChange2 = this.handleChange2.bind(this)
+    this.handleSubmit2 = this.handleSubmit2.bind(this)
   }
   // }
 
+  handleChange1(event) {
+    this.setState({
+      submitEquityCo1: event.target.value,
+      currentEquityCo1: event.target.value
+    })
+  }
+  handleChange2(event) {
+    this.setState({
+      submitEquityCo2: event.target.value,
+      currentEquityCo2: event.target.value
+    })
+  }
+
+  handleSubmit1() {
+    this.props.getStockPrice(this.state.submitEquityCo1, this.state.timeFrame)
+    this.setState({
+      submitEquityCo1: '',
+      isLoaded: true,
+      historicalPricesCo1: this.props.historicalPrices
+    })
+  }
+
+  handleSubmit2() {
+    this.props.getStockPrice(this.state.submitEquityCo2, this.state.timeFrame)
+    this.setState({
+      submitEquityCo2: '',
+      isLoaded: true,
+      historicalPricesCo2: this.props.historicalPrices
+    })
+  }
+
+  async componentDidMount() {
+    await this.props.getStockPrice(
+      this.state.currentEquityCo1,
+      this.state.currentEquityCo2,
+      this.state.timeFrame
+    )
+    await this.props.getPortfolio()
+    this.setState({
+      historicalPricesCo1: this.props.historicalPrices,
+      historicalPricesCo2: this.props.historicalPrices,
+      portfolio: this.props.portfolio
+    })
+  }
+
   // function Chart({series}) {
   render() {
+    console.log('Current equity of CO1 is -------', this.state.currentEquityCo1)
+    console.log('Submit equity of CO1 is --------', this.state.submitEquityCo1)
+    console.log('Current equity of CO2 is -------', this.state.currentEquityCo2)
+    console.log('Submit equity of CO2 is --------', this.state.submitEquityCo2)
     return (
       <div>
         <label>
@@ -142,6 +205,20 @@ class CompareChart extends Component {
   }
 }
 
-export default CompareChart
-// const chart = <Chart series={series} />
-// ReactDOM.render(chart, document.querySelector('#root'))
+const mapStateToProps = state => {
+  return {
+    historicalPrices: state.chart.historicalPrices,
+    portfolio: state.assetallocation.portfolio
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getStockPrice: (ticker, time) => dispatch(getStockPrice(ticker, time)),
+    getPortfolio: () => dispatch(getPortfolio())
+  }
+}
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CompareChart)
+)
