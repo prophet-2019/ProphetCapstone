@@ -21,10 +21,12 @@ const gotStockPriceForAssetAllocation = stock => ({
   stock
 })
 
-export const getStockPrice = () => async dispatch => {
+export const getStockPrice = (ticker, time) => async dispatch => {
+  // const ticker = 'AAPL';
+  // const time = '5y'
   try {
     const {data: gotHistoricalPrices} = await axios.get(
-      `https://api.iextrading.com/1.0/stock/aapl/chart/3m`
+      `/api/iex/getChartData/${ticker}/${time}`
     )
     dispatch(gotStockPrice(gotHistoricalPrices))
   } catch (err) {
