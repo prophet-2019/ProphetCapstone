@@ -15,15 +15,6 @@ import {getFinancials} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 
-// const {
-//   DiscreteColorLegend,
-//   HorizontalGridLines,
-//   VerticalGridLines,
-//   XAxis,
-//   XYPlot,
-//   YAxis,
-//   LineMarkSeries
-// } = reactVis;
 const data = [
   [0, 71.9764, 87.5474],
   [1, 74.2895, 88.4899],
@@ -106,12 +97,15 @@ class CompareChart extends Component {
       submitEquityCo2: '',
       currentEquityCo2: '',
       isLoaded: false,
-      timeFrame: Date.now()
+      timeFrame: 'ytd',
+      company1Data: [],
+      company2Data: []
     }
     this.handleChange1 = this.handleChange1.bind(this)
-    this.handleSubmit1 = this.handleSubmit1.bind(this)
     this.handleChange2 = this.handleChange2.bind(this)
+    this.handleSubmit1 = this.handleSubmit1.bind(this)
     this.handleSubmit2 = this.handleSubmit2.bind(this)
+    this.compareCompanyData = this.compareCompanyData.bind(this)
   }
   // }
 
@@ -129,35 +123,47 @@ class CompareChart extends Component {
   }
 
   handleSubmit1() {
-    this.props.getStockPrice(this.state.submitEquityCo1, this.state.timeFrame)
+    console.log('ticker: ', this.state.submitEquityCo1)
+    console.log('time is: ', this.state.timeFrame)
+    const {submitEquityCo1} = this.state
+    const {timeFrame} = this.state
+    const company1Data = this.props.getStockPrice(submitEquityCo1, timeFrame)
     this.setState({
       submitEquityCo1: '',
+      historicalPricesCo1: this.props.historicalPrices,
       isLoaded: true,
-      historicalPricesCo1: this.props.historicalPrices
+      company1Data
     })
   }
 
   handleSubmit2() {
-    this.props.getStockPrice(this.state.submitEquityCo2, this.state.timeFrame)
+    const {submitEquityCo2} = this.state
+    const {timeFrame} = this.state
+    const company2Data = this.props.getStockPrice(submitEquityCo2, timeFrame)
     this.setState({
       submitEquityCo2: '',
+      historicalPricesCo2: this.props.historicalPrices,
       isLoaded: true,
-      historicalPricesCo2: this.props.historicalPrices
+      company2Data
     })
   }
 
   async componentDidMount() {
-    await this.props.getStockPrice(
-      this.state.currentEquityCo1,
-      this.state.currentEquityCo2,
-      this.state.timeFrame
-    )
+    // await this.props.getStockPrice(
+    //   this.state.currentEquityCo1,
+    //   this.state.currentEquityCo2,
+    //   this.state.timeFrame
+    // )
     await this.props.getPortfolio()
     this.setState({
       historicalPricesCo1: this.props.historicalPrices,
       historicalPricesCo2: this.props.historicalPrices,
       portfolio: this.props.portfolio
     })
+  }
+
+  compareCompanyData(company1Data, company2Data) {
+    return company1Data.map((arr, idx) => arr.concat(company2Data[idx][1]))
   }
 
   // function Chart({series}) {
@@ -168,38 +174,46 @@ class CompareChart extends Component {
     console.log('Submit equity of CO2 is --------', this.state.submitEquityCo2)
     return (
       <div>
-        <label>
-          Pick an equity for Company 1:
-          <input
-            type="text"
-            value={this.state.submitEquity}
-            onChange={this.handleChange}
+        <div>
+          <label>
+            Pick an equity for Company 1:
+            <input
+              type="text"
+              value={this.state.submitEquityCo1}
+              onChange={this.handleChange1}
+            />
+          </label>
+          <input type="submit" value="Submit" onClick={this.handleSubmit1} />
+        </div>
+        <div>
+          <label>
+            Pick an equity for Company 2:
+            <input
+              type="text"
+              value={this.state.submitEquityCo2}
+              onChange={this.handleChange2}
+            />
+          </label>
+          <input type="submit" value="Submit" onClick={this.handleSubmit2} />
+        </div>
+        <div>
+          <h2 className="tk-adobe-caslon-pro">
+            Nike - P&G Trailing 3 Month Stock Prices
+          </h2>
+          <DiscreteColorLegend
+            items={['Procter & Gamble - $PG', 'Nike - $NKE']}
+            orientation="horizontal"
           />
-        </label>
-        <label>
-          Pick an equity for Company 2:
-          <input
-            type="text"
-            value={this.state.submitEquity}
-            onChange={this.handleChange}
-          />
-        </label>
-        <input type="submit" value="Submit" onClick={this.handleSubmit} />
-        <h2 className="tk-adobe-caslon-pro">
-          Nike - P&G Trailing 3 Month Stock Prices
-        </h2>
-        <DiscreteColorLegend
-          items={['Procter & Gamble - $PG', 'Nike - $NKE']}
-          orientation="horizontal"
-        />
-        <XYPlot width={700} height={300} yDomain={[60, 100]}>
-          <VerticalGridLines />
-          <HorizontalGridLines />
-          <XAxis {...axisProps} tickFormat={String} />
-          <YAxis {...axisProps} tickFormat={d => '$' + d} />
+          <XYPlot width={700} height={300} yDomain={[60, 100]}>
+            <VerticalGridLines />
+            <HorizontalGridLines />
 
-          {series.map((d, i) => <LineMarkSeries key={i} size={3} data={d} />)}
-        </XYPlot>
+            <XAxis {...axisProps} tickFormat={String} />
+            <YAxis {...axisProps} tickFormat={d => '$' + d} />
+
+            {series.map((d, i) => <LineMarkSeries key={i} size={3} data={d} />)}
+          </XYPlot>
+        </div>
       </div>
     )
   }
