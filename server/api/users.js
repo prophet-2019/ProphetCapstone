@@ -129,7 +129,7 @@ router.put('/:userId/sell', async (req, res, next) => {
       await findUser.cashUpdate(req.params.userId, cashValue)
       res.send(sellSellSell)
     } else {
-      throw new Error("you don't own enough")
+      throw new Error("you don't own enough!")
     }
   } catch (error) {
     next(error.message)
