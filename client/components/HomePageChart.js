@@ -28,18 +28,27 @@ class HomePageChart extends Component {
       portfolio: {},
       submitEquity: '',
       isLoaded: false,
-      timeFrame: 'ytd'
+      timeFrame: 'ytd',
+      currentEquity: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.toggleChart = this.toggleChart.bind(this)
   }
   handleChange(evt) {
-    this.setState({submitEquity: evt.target.value})
+    this.setState({
+      submitEquity: evt.target.value,
+      currentEquity: evt.target.value
+    })
   }
   //just wondering about binding using arrow functions and if this matters
   handleSubmit = () => {
     this.props.getStockPrice(this.state.submitEquity, this.state.timeFrame)
     this.setState({submitEquity: '', isLoaded: true})
+  }
+  toggleChart(time) {
+    this.setState({timeFrame: time})
+    this.props.getStockPrice(this.state.currentEquity, this.state.timeFrame)
   }
   async componentDidMount() {
     await this.props.getStockPrice()
@@ -63,13 +72,23 @@ class HomePageChart extends Component {
         </label>
         <input type="submit" value="Submit" onClick={this.handleSubmit} />
         {this.state.isLoaded ? (
-          <XYPlot width={500} height={500} getX={d => d[0]} getY={d => d[1]}>
-            <LineSeries
-              color="red"
-              data={this.props.historicalPrices}
-              dontCheckIfEmpty={true}
-            />
-          </XYPlot>
+          <div>
+            <XYPlot width={500} height={500} getX={d => d[0]} getY={d => d[1]}>
+              <LineSeries
+                color="red"
+                data={this.props.historicalPrices}
+                dontCheckIfEmpty={true}
+              />
+            </XYPlot>
+            <button onClick={() => this.toggleChart('1d')}>1D</button>
+            <button onClick={() => this.toggleChart('1m')}>1M</button>
+            <button onClick={() => this.toggleChart('3m')}>3M</button>
+            <button onClick={() => this.toggleChart('6m')}>6M</button>
+            <button onClick={() => this.toggleChart('ytd')}>YTD</button>
+            <button onClick={() => this.toggleChart('1y')}>1Y</button>
+            <button onClick={() => this.toggleChart('2y')}>2Y</button>
+            <button onClick={() => this.toggleChart('5y')}>5Y</button>
+          </div>
         ) : (
           <h1>Type something, please</h1>
         )}
