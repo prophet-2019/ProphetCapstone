@@ -55,7 +55,7 @@ class AssetAllocation extends Component {
       // const cashCash = 2;
       // const portPort = 13;
       myData = Object.values(this.state.portfolio).reduce((accum, val) => {
-        accum.push({angle: val})
+        accum.push({angle: val.quantity})
         return accum
       }, [])
     } else {

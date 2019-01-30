@@ -14,7 +14,7 @@ const gotPortfolio = portfolio => ({
 export const getPortfolio = () => {
   return async dispatch => {
     try {
-      const {data: portfolioValues} = await axios.get(`/api/users/3/portfolio`)
+      const {data: portfolioValues} = await axios.get(`/api/portfolio/1`)
       dispatch(gotPortfolio(portfolioValues))
     } catch (err) {
       console.error('You dont own anything', err.message)
