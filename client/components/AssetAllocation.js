@@ -28,7 +28,7 @@ class AssetAllocation extends Component {
   componentDidMount() {
     this.setState({portfolio: this.props.portfolioData})
   }
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     // Typical usage (don't forget to compare props):
     //
     //Thunk returns an object be sure to just grab price --> this is erroring out
@@ -39,17 +39,31 @@ class AssetAllocation extends Component {
     //   console.log("val", val)
     //   await this.props.getStockPriceForAssetAllocation(val);
     // })
-    if (this.props.portfolioData !== prevProps.portfolioData) {
+    const isLoaded = prevState.portValues[0] === undefined
+    console.log('Prev', isLoaded, 'State', this.state.portValues[0])
+    const realTimePricePort = this.props.portfolioData.reduce((accum, val) => {
+      if (val.ticker !== 'MONEY') {
+        accum.push([
+          val.ticker,
+          val.quantity,
+          this.props.getStockPriceForAssetAllocation(val.ticker)
+        ])
+      } else {
+        accum.push([val.ticker, val.quantity, val.quantity])
+      }
+      return accum
+    }, [])
+    if (this.props.portfolioData !== prevProps.portfolioData || !isLoaded) {
       this.setState({
-        portfolio: this.props.portfolioData
-        // portValues: portVal
+        portfolio: this.props.portfolioData,
+        portValues: realTimePricePort
       })
     }
   }
   render() {
+    console.log('Portfolio', this.state.portfolio)
     let myData
     if (this.state.portfolio) {
-      console.log('State', this.state)
       const cashCash = this.state.cash || 0
       const portPort = this.state.stocks || 0
       // const cashCash = 2;

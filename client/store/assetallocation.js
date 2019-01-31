@@ -3,7 +3,7 @@ import axios from 'axios'
 const GET_PORTFOLIO = 'GET_PORTFOLIO'
 
 const initialState = {
-  portfolio: {}
+  portfolio: []
 }
 
 const gotPortfolio = portfolio => ({
