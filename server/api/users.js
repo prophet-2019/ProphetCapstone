@@ -55,9 +55,10 @@ router.get('/:userId/portfolio', async (req, res, next) => {
 // })
 
 router.put('/:userId/buy', async (req, res, next) => {
-  let stockTicker = req.body.symbol
-  let realTimeQuote = req.body.latestPrice
-  let quantity = req.body.quantity
+  console.log('body\n\n\n\n\n', req.body)
+  let stockTicker = req.body.iexRealTimeQuote.symbol
+  let realTimeQuote = req.body.iexRealTimeQuote.latestPrice
+  let quantity = +req.body.orderDetails.quantity
   // let stockTicker = 'GE'
   // let realTimeQuote = 50
   // let quantity = 2
@@ -69,19 +70,9 @@ router.put('/:userId/buy', async (req, res, next) => {
       }
       // check to see if the user has enough cash
     })
-    const user = await User.findById(req.params.userId)
+    const user = await User.findById(+req.params.userId)
     let cashValue = realTimeQuote * quantity
-    console.log(
-      'Cash on hand',
-      user.dataValues.cash,
-      'Cost',
-      cashValue,
-      realTimeQuote,
-      quantity,
-      stockTicker,
-      'body',
-      req.body
-    )
+    console.log('user\n\n\n\n', user)
     if (user.dataValues.cash >= cashValue) {
       const buy = await Transaction.createTrade(
         stockTicker,

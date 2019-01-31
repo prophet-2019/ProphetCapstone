@@ -25,17 +25,17 @@ const soldStock = updatedPortfolio => ({
 })
 
 // thunks
-export const getStockPriceToBuy = () => {
+export const getStockPriceToBuy = orderDetails => {
   return async dispatch => {
     try {
       const {data: iexRealTimeQuote} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/aapl/quote`
+        `https://api.iextrading.com/1.0/stock/${orderDetails.ticker}/quote`
       )
       // eventually we will pass the price and stock quantity with the axios call
-      const updatedPortfolio = await axios.put(
-        `/api/users/1/buy`,
-        iexRealTimeQuote
-      )
+      const updatedPortfolio = await axios.put(`/api/users/1/buy`, {
+        iexRealTimeQuote,
+        orderDetails
+      })
       console.log('Updated Port\n\n\n\n\n', updatedPortfolio)
       dispatch(boughtStock(updatedPortfolio))
     } catch (err) {
@@ -53,7 +53,8 @@ export const getStockPriceToSell = () => {
       // eventually we will pass the price and stock quantity with the axios call
       const updatedPortfolio = await axios.put(
         `/api/users/1/sell`,
-        iexRealTimeQuote
+        iexRealTimeQuote,
+        orderDetails
       )
       dispatch(soldStock(updatedPortfolio))
     } catch (err) {
