@@ -20,6 +20,41 @@ form div {
   display: inline-block;
 }
 
+/* Parent Container */
+.parent-container {
+  display: flex;
+  background-color: grey;
+  align-items: stretch;
+  padding: 1%;
+  position: relative;
+  flex: 7;
+}
+
+.parent-container-headline {
+  display: flex;
+  position: relative;
+  background-color: lightgrey;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.main-dashboard {
+  display: flex;
+  flex: 7;
+  position: absolute;
+  align-content: space-between;
+  flex-flow: row-wrap;
+}
+.portfolio {
+  background-color: yellow;
+  flex: 2;
+}
+
+.dashboard {
+  background-color: green;
+  flex: 5;
+}
+
 /* react-vis css */
 
 .react-vis-magic-css-import-rule {
