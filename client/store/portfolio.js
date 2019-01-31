@@ -33,7 +33,7 @@ export const getStockPriceToBuy = () => {
       )
       // eventually we will pass the price and stock quantity with the axios call
       const updatedPortfolio = await axios.put(
-        `/api/users/3/buy`,
+        `/api/users/1/buy`,
         iexRealTimeQuote
       )
       console.log('Updated Port\n\n\n\n\n', updatedPortfolio)
@@ -52,7 +52,7 @@ export const getStockPriceToSell = () => {
       )
       // eventually we will pass the price and stock quantity with the axios call
       const updatedPortfolio = await axios.put(
-        `/api/users/1/1/sell`,
+        `/api/users/1/sell`,
         iexRealTimeQuote
       )
       dispatch(soldStock(updatedPortfolio))

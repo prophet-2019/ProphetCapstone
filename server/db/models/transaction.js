@@ -59,7 +59,7 @@ Transaction.createTrade = function(
 }
 
 Transaction.afterCreate(async transaction => {
-  const transCost = transaction.transQuantity * transaction.transQuantity
+  const transCost = transaction.transQuantity * transaction.price
   const portToUpdate = await Portfolio.findOne({
     where: {
       ticker: transaction.ticker,
