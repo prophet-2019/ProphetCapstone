@@ -7,7 +7,7 @@ const Transaction = db.define('transaction', {
     type: Sequelize.STRING
   },
   price: {
-    type: Sequelize.INTEGER
+    type: Sequelize.DECIMAL
   },
   transQuantity: {
     type: Sequelize.INTEGER,
