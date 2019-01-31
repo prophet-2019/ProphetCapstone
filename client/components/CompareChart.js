@@ -126,7 +126,7 @@ class CompareChart extends Component {
     await this.props.getStockPrice(submitEquityCo2, timeFrame)
     const co2Data = await this.props.historicalPrices
 
-    const compareData = this.compareCompanyData(co1Data, co2Data)
+    const compareData = await this.compareCompanyData(co1Data, co2Data)
 
     this.setState({
       submitEquityCo1: '',
