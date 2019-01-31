@@ -6,8 +6,15 @@ import user from './user'
 import chart from './chart'
 import portfolio from './portfolio'
 import assetallocation from './assetallocation'
+import compareChart from './compareChart'
 
-const reducer = combineReducers({user, chart, portfolio, assetallocation})
+const reducer = combineReducers({
+  user,
+  chart,
+  portfolio,
+  assetallocation,
+  compareChart
+})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
