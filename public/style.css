@@ -22,36 +22,27 @@ form div {
 
 /* Parent Container */
 .parent-container {
-  display: flex;
   background-color: grey;
-  align-items: stretch;
-  padding: 1%;
-  position: relative;
-  flex: 7;
+  padding: 0.5%;
+  min-height: 100vh;
 }
 
-.parent-container-headline {
+.header {
   display: flex;
-  position: relative;
   background-color: lightgrey;
-  flex-direction: column;
-  align-items: stretch;
 }
 
 .main-dashboard {
   display: flex;
-  flex: 7;
-  position: absolute;
-  align-content: space-between;
-  flex-flow: row-wrap;
+  min-height: 80vh;
 }
 .portfolio {
-  background-color: yellow;
+  background-color: lightblue;
   flex: 2;
 }
 
 .dashboard {
-  background-color: green;
+  background-color: lightgoldenrodyellow;
   flex: 5;
 }
 
