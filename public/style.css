@@ -36,14 +36,84 @@ form div {
   display: flex;
   min-height: 80vh;
 }
+
+/* Portfolio Contents */
 .portfolio {
+  display: flex;
   background-color: lightblue;
+  flex-direction: column;
   flex: 2;
+  padding: 0;
+  border: 0.5em;
 }
 
+.portfoliolist {
+  background-color: lightsteelblue;
+  flex-direction: column;
+  min-height: 40vh;
+}
+
+.templateAssetAllocation {
+  background-color: lightslategray;
+  flex-direction: column;
+  min-height: 40vh;
+}
+
+/* Dashboard Contents */
 .dashboard {
   background-color: lightgoldenrodyellow;
   flex: 5;
+}
+
+.dashboard-feature {
+  display: flex;
+  background-color: lightcyan;
+  justify-content: space-between;
+  min-height: 50vh;
+}
+
+.dashboard-financials-details {
+  display: flex;
+}
+
+.financials {
+  background-color: lightgreen;
+  flex: 3;
+  min-height: 40vh;
+}
+
+.details {
+  background-color: lightblue;
+  flex: 3;
+  min-height: 40vh;
+}
+
+.ticker {
+  display: flex;
+  background-color: lightpink;
+}
+
+/* Selector Component */
+.selector-container {
+  display: flex;
+  background-color: lightyellow;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.search {
+  background-color: darkgreen;
+  min-height: 25vh;
+}
+
+.companyPrices {
+  background-color: darkgoldenrod;
+  min-height: 25vh;
+}
+
+.chartSelections {
+  background-color: darkmagenta;
+  min-height: 25vh;
 }
 
 /* react-vis css */

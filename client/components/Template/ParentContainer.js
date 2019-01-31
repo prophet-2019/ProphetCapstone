@@ -4,6 +4,7 @@ import {withRouter} from 'react-router'
 import Dashboard from './Dashboard'
 import UserPortfolio from './UserPortfolio'
 import Header from './Header'
+import Selector from './Selector'
 
 export default class ParentContainer extends Component {
   constructor(props) {
@@ -24,6 +25,9 @@ export default class ParentContainer extends Component {
           </div>
           <div className="dashboard">
             <Dashboard />
+          </div>
+          <div className="dashboard-selector">
+            <Selector />
           </div>
         </div>
       </div>

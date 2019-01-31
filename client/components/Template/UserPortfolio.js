@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
+import PortfolioList from './PortfolioList'
+import TemplateAssetAllocation from './TemplateAssetAllocation'
 
 export default class UserPortfolio extends Component {
   constructor(props) {
@@ -9,8 +11,14 @@ export default class UserPortfolio extends Component {
 
   render() {
     return (
-      <div className="userportfolio-container">
-        <h4> UserPortfolio Container </h4>
+      <div>
+        <div className="userportfolio-container">
+          <h5> UserPortfolio Container </h5>
+        </div>
+        <div>
+          <PortfolioList />
+          <TemplateAssetAllocation />
+        </div>
       </div>
     )
   }
