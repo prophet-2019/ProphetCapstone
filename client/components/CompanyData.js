@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {getFinancialData} from '../store/portfolioDataTable'
+import {getFinancialData} from '../store/financialDataTable'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 
@@ -48,7 +48,7 @@ class CompanyData extends Component {
 
 const mapStateToProps = state => {
   return {
-    financials: state.portfolioDataTable.financials
+    financials: state.financialDataTable.financials
   }
 }
 
