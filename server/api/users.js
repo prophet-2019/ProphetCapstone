@@ -71,7 +71,6 @@ router.put('/:userId/buy', async (req, res, next) => {
     })
     const user = await User.findById(+req.params.userId)
     let cashValue = realTimeQuote * quantity
-    console.log('user\n\n\n\n', user)
     if (user.dataValues.cash >= cashValue) {
       const buy = await Transaction.createTrade(
         stockTicker,

@@ -22,38 +22,51 @@ class AssetAllocation extends Component {
     super(props)
     this.state = {
       portfolio: [],
-      intervalId: 0
+      intervalId: 0,
+      currentUser: 0
     }
-    this.interval = this.interval.bind(this)
+    this.intervalFunc = this.intervalFunc.bind(this)
   }
-  async componentDidMount() {
-    console.log('portfolio on mount: ', this.props.portfolio)
-    await this.interval()
-    this.setState({portfolio: this.props.portfolio})
-  }
-  async interval() {
-    const callBack = func => {
-      func()
+  
+  async intervalFunc() {
+    const callBack = (func, userId) => {
+      func(userId)
     }
-    this.props.getPortfolio()
+    console.log('userId on component', this.props.userId)
+    this.props.getPortfolio(this.state.currentUser)
     const intervalId = setInterval(() => {
-      callBack(this.props.getPortfolio)
-    }, 500)
+      callBack(this.props.getPortfolio, this.props.userId)
+    }, 5000)
     await this.setState({intervalId})
   }
   componentWillUnmount() {
     clearInterval(this.state.intervalId)
   }
-  componentDidUpdate() {
-    if (this.state.portfolio !== this.props.portfolio) {
-      this.setState({portfolio: this.props.portfolio})
-    }
+  async componentDidMount() {
+    this.setState({
+      portfolio: this.props.portfolio,
+      currentUser: this.props.userId
+    })
+    console.log('We mounted!')
+    await this.intervalFunc()
   }
+  // componentDidUpdate() {
+  //   if (
+  //     this.state.portfolio !== this.props.portfolio &&
+  //     this.state.currentUser === 0
+  //   ) {
+  //     this.setState({
+  //       portfolio: this.props.portfolio,
+  //       currentUser: this.props.userId
+  //     })
+  //   }
+  // }
   render() {
     let myData
-    if (this.state.portfolio) {
-      myData = this.state.portfolio.reduce((accum, val) => {
+    if (this.props.portfolio.length) {
+      myData = this.props.portfolio.reduce((accum, val) => {
         accum.push({angle: val[1]})
+        console.log('accum', accum)
         return accum
       }, [])
     } else {
@@ -82,7 +95,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPortfolio: () => dispatch(getPortfolio()),
+    getPortfolio: userId => dispatch(getPortfolio(userId)),
     getStockPriceForAssetAllocation: ticker =>
       dispatch(getStockPriceForAssetAllocation(ticker))
   }

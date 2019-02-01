@@ -15,12 +15,6 @@ nav a {
   margin: 1em;
 }
 
-
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
 /* Parent Container */
 .parent-container {
   background-color: #372121;
