@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import HomePageChart from './HomePageChart'
+import CompareChart from './CompareChart'
 
 /**
  * COMPONENT

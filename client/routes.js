@@ -8,6 +8,7 @@ import {
   UserHome,
   HomePageChart,
   Company,
+  CompareChart
   BuySellPage
 } from './components'
 import {me} from './store'
@@ -35,6 +36,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/compare" component={CompareChart} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
