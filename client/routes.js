@@ -32,6 +32,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/chart" component={HomePageChart} />
         <Route path="/company" component={Company} />
+        <Route path="/home" component={UserHome} />
         <Route path="/pib" component={BuySellPage} />
         {isLoggedIn && (
           <Switch>
