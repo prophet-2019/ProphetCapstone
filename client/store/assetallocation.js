@@ -19,7 +19,11 @@ export const getPortfolio = userId => {
         `/api/portfolio/${userId}`
       )
       const arrForPortfolioBecauseReduceAsynIssue = []
-      const tickersObj = await portfolioValues.reduce(async (accum, val) => {
+      //for loop
+      //drop values into arrForPortfolioBecauseReduceAsynIssue
+      //return arrForPortfolioBecauseReduceAsynIssue
+      for (let i = 0; i < portfolioValues.length; i++) {
+        let val = portfolioValues[i]
         if (val.ticker !== 'MONEY') {
           const {data: currPrice} = await axios.get(
             `/api/iex/stockprice/${val.ticker}`
@@ -29,9 +33,20 @@ export const getPortfolio = userId => {
         } else {
           arrForPortfolioBecauseReduceAsynIssue.push([val.ticker, val.quantity])
         }
-        return arrForPortfolioBecauseReduceAsynIssue
-      }, [])
-      dispatch(gotPortfolio(tickersObj))
+      }
+      // const tickersObj = await portfolioValues.reduce(async (accum, val) => {
+      //   if (val.ticker !== 'MONEY') {
+      //     const {data: currPrice} = await axios.get(
+      //       `/api/iex/stockprice/${val.ticker}`
+      //     )
+      //     const priceIn = +val.quantity * +currPrice
+      //     arrForPortfolioBecauseReduceAsynIssue.push([val.ticker, priceIn])
+      //   } else {
+      //     arrForPortfolioBecauseReduceAsynIssue.push([val.ticker, val.quantity])
+      //   }
+      //   return arrForPortfolioBecauseReduceAsynIssue
+      // }, [])
+      dispatch(gotPortfolio(arrForPortfolioBecauseReduceAsynIssue))
     } catch (err) {
       console.error('You dont own anything', err.message)
     }
