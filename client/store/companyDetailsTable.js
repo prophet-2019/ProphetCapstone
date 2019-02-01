@@ -14,7 +14,7 @@ const gotPortfolioDataForTableFormat = companyStats => ({
 export const getPortfolioData = ticker => {
   return async dispatch => {
     try {
-      const {data: iexJSON} = await axios.get(`/api/getState/${ticker}`)
+      const {data: iexJSON} = await axios.get(`/api/iex/getStats/${ticker}`)
       const companyStats = await iexJSON
       dispatch(gotPortfolioDataForTableFormat(companyStats))
     } catch (err) {

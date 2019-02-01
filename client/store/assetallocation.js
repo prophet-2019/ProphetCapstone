@@ -34,18 +34,6 @@ export const getPortfolio = userId => {
           arrForPortfolioBecauseReduceAsynIssue.push([val.ticker, val.quantity])
         }
       }
-      // const tickersObj = await portfolioValues.reduce(async (accum, val) => {
-      //   if (val.ticker !== 'MONEY') {
-      //     const {data: currPrice} = await axios.get(
-      //       `/api/iex/stockprice/${val.ticker}`
-      //     )
-      //     const priceIn = +val.quantity * +currPrice
-      //     arrForPortfolioBecauseReduceAsynIssue.push([val.ticker, priceIn])
-      //   } else {
-      //     arrForPortfolioBecauseReduceAsynIssue.push([val.ticker, val.quantity])
-      //   }
-      //   return arrForPortfolioBecauseReduceAsynIssue
-      // }, [])
       dispatch(gotPortfolio(arrForPortfolioBecauseReduceAsynIssue))
     } catch (err) {
       console.error('You dont own anything', err.message)

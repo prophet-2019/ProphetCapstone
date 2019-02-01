@@ -57,7 +57,7 @@ router.get('/getPeers/:ticker', async (req, res, next) => {
   }
 })
 
-router.get('/getState/:ticker', async (req, res, next) => {
+router.get('/getStats/:ticker', async (req, res, next) => {
   try {
     const {data: iexRealTimeStats} = await axios.get(
       `https://api.iextrading.com/1.0/stock/${req.params.ticker}/stats`
