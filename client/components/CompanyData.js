@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {getFinancials} from '../store/chart'
+import {getFinancialData} from '../store/portfolioDataTable'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 
@@ -11,25 +11,30 @@ class CompanyData extends Component {
     }
   }
   async componentDidMount() {
-    await this.props.getFinancials()
+    await this.props.getFinancialData('aapl')
     this.setState({financials: this.props.financials})
   }
 
   render() {
-    const financials = this.state.financials.financials || []
+    const labelsOfFinancialReport = Object.keys(this.state.financials)
+    const valuesFromFinancialReport = Object.values(this.state.financials)
+    const arrToMapThroughInComponent = [
+      [labelsOfFinancialReport],
+      [valuesFromFinancialReport]
+    ]
     return (
       <div>
         <table>
           <thead>
             <tr>
-              <th>{this.state.financials.symbol}</th>
+              <th>Data From Most Recent Financial Report</th>
             </tr>
             <tbody>
-              {financials.map((val, idx) => {
+              {labelsOfFinancialReport.map((val, idx) => {
                 return (
                   <tr key={idx}>
-                    <td>{val.reportDate}</td>
-                    <td>{val.grossProfit}</td>
+                    <td>{labelsOfFinancialReport[idx]}</td>
+                    <td>{valuesFromFinancialReport[idx]}</td>
                   </tr>
                 )
               })}
@@ -43,13 +48,13 @@ class CompanyData extends Component {
 
 const mapStateToProps = state => {
   return {
-    financials: state.chart.financials
+    financials: state.portfolioDataTable.financials
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFinancials: () => dispatch(getFinancials())
+    getFinancialData: ticker => dispatch(getFinancialData(ticker))
   }
 }
 

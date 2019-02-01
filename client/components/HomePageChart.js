@@ -52,7 +52,6 @@ class HomePageChart extends Component {
   }
   toggleChart(time) {
     this.setState({timeFrame: time})
-    console.log('TIME', time, this.state.timeFrame)
     this.props.getStockPrice(this.state.currentEquity, time)
     this.setState({historicalPrices: this.props.historicalPrices})
   }

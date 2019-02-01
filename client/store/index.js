@@ -7,13 +7,15 @@ import chart from './chart'
 import portfolio from './portfolio'
 import assetallocation from './assetallocation'
 import compareChart from './compareChart'
+import portfolioDataTable from './portfolioDataTable'
 
 const reducer = combineReducers({
   user,
   chart,
   portfolio,
   assetallocation,
-  compareChart
+  compareChart,
+  portfolioDataTable
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
