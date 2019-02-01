@@ -87,7 +87,7 @@ class HomePageChart extends Component {
         <input type="submit" value="Submit" onClick={this.handleSubmit} />
         {this.state.isLoaded ? (
           <div>
-            <XYPlot width={500} height={500} getX={d => d[0]} getY={d => d[1]}>
+            <XYPlot width={900} height={300} getX={d => d[0]} getY={d => d[1]}>
               <LineSeries
                 color="red"
                 data={this.props.historicalPrices}
@@ -146,8 +146,6 @@ class HomePageChart extends Component {
         ) : (
           <h1>Type something quickly, please</h1>
         )}
-
-        <AssetAllocation portfolioData={this.state.portfolio} />
       </div>
     )
   }
