@@ -14,6 +14,7 @@ export const UserHome = props => {
     <div>
       <h3>Welcome, {email}</h3>
       <HomePageChart />
+      <ComparativeGraphs height={300} width={300} />
     </div>
   )
 }

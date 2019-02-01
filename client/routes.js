@@ -8,7 +8,7 @@ import {
   UserHome,
   HomePageChart,
   Company,
-  CompareChart
+  CompareChart,
   BuySellPage
 } from './components'
 import {me} from './store'
