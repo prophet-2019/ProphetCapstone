@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {getFinancialData} from '../store/financialDataTable'
+import {getPortfolioData} from '../store/companyDetailsTable'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 
@@ -11,13 +11,12 @@ class CompanyData extends Component {
     }
   }
   async componentDidMount() {
-    await this.props.getFinancialData('aapl')
-    this.setState({financials: this.props.financials})
+    await this.props.getPortfolioData('aapl')
   }
 
   render() {
-    const labelsOfFinancialReport = Object.keys(this.state.financials)
-    const valuesFromFinancialReport = Object.values(this.state.financials)
+    const labelsOfFinancialReport = Object.keys(this.props.stats)
+    const valuesFromFinancialReport = Object.values(this.props.stats)
     const arrToMapThroughInComponent = [
       [labelsOfFinancialReport],
       [valuesFromFinancialReport]
@@ -48,13 +47,13 @@ class CompanyData extends Component {
 
 const mapStateToProps = state => {
   return {
-    financials: state.financialDataTable.financials
+    stats: state.companyDetailsTable.stats
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFinancialData: ticker => dispatch(getFinancialData(ticker))
+    getPortfolioData: ticker => dispatch(getPortfolioData(ticker))
   }
 }
 
