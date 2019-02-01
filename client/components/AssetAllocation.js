@@ -22,30 +22,41 @@ class AssetAllocation extends Component {
     super(props)
     this.state = {
       portfolio: [],
-      intervalId: 0
+      intervalId: 0,
+      currentUser: 0
     }
-    this.interval = this.interval.bind(this)
+    this.intervalFunc = this.intervalFunc.bind(this)
   }
-  async componentDidMount() {
-    await this.interval()
-    this.setState({portfolio: this.props.portfolio})
-  }
-  async interval() {
+  async intervalFunc() {
     const callBack = func => {
       func()
     }
-    this.props.getPortfolio()
+    console.log('userId on component', this.props.userId)
+    this.props.getPortfolio(this.state.currentUser)
     const intervalId = setInterval(() => {
-      callBack(this.props.getPortfolio)
+      callBack(this.props.getPortfolio(this.state.currentUser))
     }, 500)
     await this.setState({intervalId})
   }
   componentWillUnmount() {
     clearInterval(this.state.intervalId)
   }
+  async componentDidMount() {
+    this.setState({
+      portfolio: this.props.portfolio,
+      currentUser: this.props.userId
+    })
+    await this.intervalFunc()
+  }
   componentDidUpdate() {
-    if (this.state.portfolio !== this.props.portfolio) {
-      this.setState({portfolio: this.props.portfolio})
+    if (
+      this.state.portfolio !== this.props.portfolio &&
+      this.state.currentUser === 0
+    ) {
+      this.setState({
+        portfolio: this.props.portfolio,
+        currentUser: this.props.userId
+      })
     }
   }
   render() {
@@ -71,7 +82,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPortfolio,
+    getPortfolio: userId => dispatch(userId),
     getStockPriceForAssetAllocation: ticker =>
       dispatch(getStockPriceForAssetAllocation(ticker))
   }

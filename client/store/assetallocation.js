@@ -11,22 +11,25 @@ const gotPortfolio = portfolio => ({
   portfolio
 })
 
-export const getPortfolio = () => {
+export const getPortfolio = userId => {
+  console.log(userId)
   return async dispatch => {
     try {
-      const {data: portfolioValues} = await axios.get(`/api/portfolio/1`)
-      const pib = []
+      const {data: portfolioValues} = await axios.get(
+        `/api/portfolio/${userId}`
+      )
+      const arrForPortfolioBecauseReduceAsynIssue = []
       const tickersObj = await portfolioValues.reduce(async (accum, val) => {
         if (val.ticker !== 'MONEY') {
           const {data: currPrice} = await axios.get(
             `/api/iex/stockprice/${val.ticker}`
           )
           const priceIn = +val.quantity * +currPrice
-          pib.push([val.ticker, priceIn])
+          arrForPortfolioBecauseReduceAsynIssue.push([val.ticker, priceIn])
         } else {
-          pib.push([val.ticker, val.quantity])
+          arrForPortfolioBecauseReduceAsynIssue.push([val.ticker, val.quantity])
         }
-        return pib
+        return arrForPortfolioBecauseReduceAsynIssue
       }, [])
       dispatch(gotPortfolio(tickersObj))
     } catch (err) {
