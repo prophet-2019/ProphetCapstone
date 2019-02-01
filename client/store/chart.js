@@ -17,7 +17,7 @@ const gotFinancials = company => ({
 })
 
 const gotStockPriceForAssetAllocation = stock => ({
-  type: GOT_STOCK_PRICE,
+  type: GOT_REAL_TIME_PRICE,
   stock
 })
 
@@ -39,7 +39,7 @@ export const getStockPriceForAssetAllocation = ticker => async dispatch => {
     const {data: realTimePrice} = await axios.get(
       `https://api.iextrading.com/1.0/stock/${ticker}/price`
     )
-    dispatch(gotStockPrice(realTimePrice))
+    dispatch(gotStockPriceForAssetAllocation(realTimePrice))
   } catch (err) {
     console.error('BIGGG Drama Show', err.message)
   }

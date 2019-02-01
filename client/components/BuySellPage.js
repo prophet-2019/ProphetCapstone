@@ -15,7 +15,8 @@ class BuySellPage extends Component {
   }
   handleSubmitBuy(e) {
     e.preventDefault()
-    this.props.buyStock(this.state)
+    console.log('PROPS', this.props.userId)
+    this.props.buyStock(this.state, this.props.userId)
   }
 
   handleSubmitSell = e => {
@@ -51,13 +52,22 @@ class BuySellPage extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    userId: state.user.id
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
-    buyStock: orderDetails => dispatch(getStockPriceToBuy(orderDetails)),
+    buyStock: (orderDetails, userId) =>
+      dispatch(getStockPriceToBuy(orderDetails, userId)),
     sellStock: () => dispatch(getStockPriceToSell())
   }
 }
 
-const CompanyWithStore = connect(null, mapDispatchToProps)(BuySellPage)
+const CompanyWithStore = connect(mapStateToProps, mapDispatchToProps)(
+  BuySellPage
+)
 
 export default CompanyWithStore

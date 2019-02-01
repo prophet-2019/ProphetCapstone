@@ -25,14 +25,15 @@ const soldStock = updatedPortfolio => ({
 })
 
 // thunks
-export const getStockPriceToBuy = orderDetails => {
+export const getStockPriceToBuy = (orderDetails, userId) => {
+  console.log('THUNK userId', userId)
   return async dispatch => {
     try {
       const {data: iexRealTimeQuote} = await axios.get(
         `https://api.iextrading.com/1.0/stock/${orderDetails.ticker}/quote`
       )
       // eventually we will pass the price and stock quantity with the axios call
-      const updatedPortfolio = await axios.put(`/api/users/1/buy`, {
+      const updatedPortfolio = await axios.put(`/api/users/${+userId}/buy`, {
         iexRealTimeQuote,
         orderDetails
       })
