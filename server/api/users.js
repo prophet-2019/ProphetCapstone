@@ -55,7 +55,6 @@ router.get('/:userId/portfolio', async (req, res, next) => {
 // })
 
 router.put('/:userId/buy', async (req, res, next) => {
-  console.log('body\n\n\n\n\n', req.body)
   let stockTicker = req.body.iexRealTimeQuote.symbol
   let realTimeQuote = req.body.iexRealTimeQuote.latestPrice
   let quantity = +req.body.orderDetails.quantity
@@ -92,14 +91,9 @@ router.put('/:userId/buy', async (req, res, next) => {
 })
 
 router.put('/:userId/sell', async (req, res, next) => {
-  let stockTicker = req.body.symbol
-  let realTimeQuote = req.body.latestPrice
-  let quantity = req.body.quantity
-  //check if user owns that stock
-  // let stockTicker = 'GE'
-  // let realTimeQuote = 50
-  // let shares = 2
-  // let quantity = shares * realTimeQuote
+  let stockTicker = req.body.iexRealTimeQuote.symbol
+  let realTimeQuote = req.body.iexRealTimeQuote.latestPrice
+  let quantity = +req.body.orderDetails.quantity
   let cashValue = realTimeQuote * quantity * -1
   try {
     const ownsIt = await Transaction.findByUserAndStock(

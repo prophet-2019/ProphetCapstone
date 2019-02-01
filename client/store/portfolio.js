@@ -26,7 +26,6 @@ const soldStock = updatedPortfolio => ({
 
 // thunks
 export const getStockPriceToBuy = (orderDetails, userId) => {
-  console.log('THUNK userId', userId)
   return async dispatch => {
     try {
       const {data: iexRealTimeQuote} = await axios.get(
@@ -37,7 +36,6 @@ export const getStockPriceToBuy = (orderDetails, userId) => {
         iexRealTimeQuote,
         orderDetails
       })
-      console.log('Updated Port\n\n\n\n\n', updatedPortfolio)
       dispatch(boughtStock(updatedPortfolio))
     } catch (err) {
       console.error('There are no stocks shown', err.message)
@@ -45,18 +43,17 @@ export const getStockPriceToBuy = (orderDetails, userId) => {
   }
 }
 
-export const getStockPriceToSell = () => {
+export const getStockPriceToSell = (orderDetails, userId) => {
   return async dispatch => {
     try {
       const {data: iexRealTimeQuote} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/aapl/quote`
+        `https://api.iextrading.com/1.0/stock/${orderDetails.ticker}/quote`
       )
       // eventually we will pass the price and stock quantity with the axios call
-      const updatedPortfolio = await axios.put(
-        `/api/users/1/sell`,
+      const updatedPortfolio = await axios.put(`/api/users/${+userId}/sell`, {
         iexRealTimeQuote,
         orderDetails
-      )
+      })
       dispatch(soldStock(updatedPortfolio))
     } catch (err) {
       console.error('There are no stocks shown', err.message)

@@ -15,13 +15,12 @@ class BuySellPage extends Component {
   }
   handleSubmitBuy(e) {
     e.preventDefault()
-    console.log('PROPS', this.props.userId)
     this.props.buyStock(this.state, this.props.userId)
   }
 
   handleSubmitSell = e => {
     e.preventDefault()
-    this.props.sellStock()
+    this.props.sellStock(this.state, this.props.userId)
   }
   render() {
     return (
@@ -44,7 +43,7 @@ class BuySellPage extends Component {
         <button type="submit" onClick={this.handleSubmitBuy}>
           Buy, Buy, Buy
         </button>
-        <button type="submit" onClick={this.handleSubmitBuy}>
+        <button type="submit" onClick={this.handleSubmitSell}>
           Sell, Sell, Sell
         </button>
       </div>
@@ -62,7 +61,8 @@ const mapDispatchToProps = dispatch => {
   return {
     buyStock: (orderDetails, userId) =>
       dispatch(getStockPriceToBuy(orderDetails, userId)),
-    sellStock: () => dispatch(getStockPriceToSell())
+    sellStock: (orderDetails, userId) =>
+      dispatch(getStockPriceToSell(orderDetails, userId))
   }
 }
 
