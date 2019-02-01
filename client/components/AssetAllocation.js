@@ -27,6 +27,7 @@ class AssetAllocation extends Component {
     this.interval = this.interval.bind(this)
   }
   async componentDidMount() {
+    console.log('portfolio on mount: ', this.props.portfolio)
     await this.interval()
     this.setState({portfolio: this.props.portfolio})
   }
@@ -58,7 +59,17 @@ class AssetAllocation extends Component {
     } else {
       myData = [{angle: 0}, {angle: 0}, {angle: 100}]
     }
-    return <RadialChart data={myData} width={300} height={300} />
+    return (
+      <div>
+        <h3>Portfolio Allocation</h3>
+        <RadialChart
+          className="templateAssetAllocation"
+          data={myData}
+          width={300}
+          height={300}
+        />
+      </div>
+    )
   }
 }
 
@@ -71,7 +82,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPortfolio,
+    getPortfolio: () => dispatch(getPortfolio()),
     getStockPriceForAssetAllocation: ticker =>
       dispatch(getStockPriceForAssetAllocation(ticker))
   }
