@@ -94,26 +94,26 @@ form div {
 }
 
 /* Selector Component */
-.selector-container {
+.selector-container,
+.search,
+.companyPrices,
+.chartSelections {
   display: flex;
   background-color: lightyellow;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 33.5vh;
 }
 
 .search {
   background-color: darkgreen;
-  min-height: 25vh;
 }
 
 .companyPrices {
   background-color: darkgoldenrod;
-  min-height: 25vh;
 }
 
 .chartSelections {
   background-color: darkmagenta;
-  min-height: 25vh;
 }
 
 /* react-vis css */
