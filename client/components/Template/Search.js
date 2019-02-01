@@ -7,9 +7,7 @@ class Search extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      historicalPrices: [],
       submitEquity: '',
-      isLoaded: false,
       currentEquity: ''
     }
     this.handleChange = this.handleChange.bind(this)
@@ -23,12 +21,10 @@ class Search extends Component {
     })
   }
 
-  handleSubmit = () => {
-    this.props.getStockPrice(this.state.submitEquity, 'ytd')
-    this.setState({
-      submitEquity: '',
-      // isLoaded: true,
-      historicalPrices: this.props.historicalPrices
+  handleSubmit = async () => {
+    await this.props.getStockPrice(this.state.submitEquity, 'ytd')
+    await this.setState({
+      submitEquity: ''
     })
   }
 
@@ -55,7 +51,8 @@ class Search extends Component {
 
 const mapStateToProps = state => {
   return {
-    historicalPrices: state.chart.historicalPrices
+    historicalPrices: state.chart.historicalPrices,
+    ticker: state.chart.ticker
   }
 }
 
