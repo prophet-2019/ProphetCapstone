@@ -14,9 +14,9 @@ const initialState = {
 }
 
 //action creator
-const boughtStock = boughtStock => ({
+const boughtStock = stockBought => ({
   type: BUY_STOCK,
-  boughtStock
+  stockBought
 })
 
 const soldStock = updatedPortfolio => ({
@@ -25,17 +25,17 @@ const soldStock = updatedPortfolio => ({
 })
 
 // thunks
-export const getStockPriceToBuy = () => {
+export const getStockPriceToBuy = (orderDetails, userId) => {
   return async dispatch => {
     try {
       const {data: iexRealTimeQuote} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/aapl/quote`
+        `https://api.iextrading.com/1.0/stock/${orderDetails.ticker}/quote`
       )
       // eventually we will pass the price and stock quantity with the axios call
-      const updatedPortfolio = await axios.put(
-        `/api/users/1/1/buy`,
-        iexRealTimeQuote
-      )
+      const updatedPortfolio = await axios.put(`/api/users/${+userId}/buy`, {
+        iexRealTimeQuote,
+        orderDetails
+      })
       dispatch(boughtStock(updatedPortfolio))
     } catch (err) {
       console.error('There are no stocks shown', err.message)
@@ -43,17 +43,17 @@ export const getStockPriceToBuy = () => {
   }
 }
 
-export const getStockPriceToSell = () => {
+export const getStockPriceToSell = (orderDetails, userId) => {
   return async dispatch => {
     try {
       const {data: iexRealTimeQuote} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/aapl/quote`
+        `https://api.iextrading.com/1.0/stock/${orderDetails.ticker}/quote`
       )
       // eventually we will pass the price and stock quantity with the axios call
-      const updatedPortfolio = await axios.put(
-        `/api/users/1/1/sell`,
-        iexRealTimeQuote
-      )
+      const updatedPortfolio = await axios.put(`/api/users/${+userId}/sell`, {
+        iexRealTimeQuote,
+        orderDetails
+      })
       dispatch(soldStock(updatedPortfolio))
     } catch (err) {
       console.error('There are no stocks shown', err.message)
@@ -67,11 +67,7 @@ export default function(state = initialState, action) {
     case BUY_STOCK:
       return {
         ...state,
-        portfolio: {
-          //bought stock reducer
-          cash: action.boughtStock.data.cash[0].quantity,
-          stocks: action.boughtStock.data.stocks[0].quantity
-        }
+        portfolio: action.stockBought
       }
     case SELL_STOCK:
       return {

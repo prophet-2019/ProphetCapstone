@@ -3,7 +3,7 @@ import axios from 'axios'
 const GET_PORTFOLIO = 'GET_PORTFOLIO'
 
 const initialState = {
-  portfolio: {}
+  portfolio: []
 }
 
 const gotPortfolio = portfolio => ({
@@ -14,8 +14,24 @@ const gotPortfolio = portfolio => ({
 export const getPortfolio = () => {
   return async dispatch => {
     try {
-      const {data: portfolioValues} = await axios.get(`/api/portfolios/1`)
-      dispatch(gotPortfolio(portfolioValues))
+      const {data: portfolioValues} = await axios.get(`/api/portfolio/1`)
+      const pib = []
+      const tickersObj = await portfolioValues.reduce(async (accum, val) => {
+        if (val.ticker !== 'MONEY') {
+          console.log('VAL', val)
+          const {data: currPrice} = await axios.get(
+            `/api/iex/stockprice/${val.ticker}`
+          )
+          const priceIn = +val.quantity * +currPrice
+          console.log(priceIn)
+          pib.push([val.ticker, priceIn])
+        } else {
+          pib.push([val.ticker, val.quantity])
+        }
+        return pib
+      }, [])
+      console.log('TICKEROBJ', tickersObj)
+      dispatch(gotPortfolio(tickersObj))
     } catch (err) {
       console.error('You dont own anything', err.message)
     }
