@@ -33,12 +33,14 @@ router.get('/getChartData/:ticker/:time', async (req, res, next) => {
 
 router.get('/getFinancialData/:ticker', async (req, res, next) => {
   try {
-    const {data: iexRealtimePrice} = await axios.get(
+    const {data: iexFinancialReportData} = await axios.get(
       `https://api.iextrading.com/1.0/stock/${
         req.params.ticker
       }/financials?period=annual`
     )
-    res.json(iexRealtimePrice)
+    const mostRecentYearFinancialReportFromJSONArr =
+      iexFinancialReportData.financials[0]
+    res.json(mostRecentYearFinancialReportFromJSONArr)
   } catch (err) {
     next(err)
   }
@@ -50,6 +52,17 @@ router.get('/getPeers/:ticker', async (req, res, next) => {
       `https://api.iextrading.com/1.0/stock/${req.params.ticker}/peers`
     )
     res.json(iexRealtimePrice)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/getStats/:ticker', async (req, res, next) => {
+  try {
+    const {data: iexRealTimeStats} = await axios.get(
+      `https://api.iextrading.com/1.0/stock/${req.params.ticker}/stats`
+    )
+    res.json(iexRealTimeStats)
   } catch (err) {
     next(err)
   }
