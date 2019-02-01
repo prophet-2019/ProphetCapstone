@@ -15,6 +15,152 @@ nav a {
   margin: 1em;
 }
 
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+/* Parent Container */
+.parent-container {
+  background-color: #372121;
+  padding: 0.5%;
+  color: lightgrey;
+  text-align: center;
+}
+
+.header-container {
+  display: flex;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+
+.header-child-container {
+  flex: 1;
+  display: flex;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+.header-headline {
+  flex: 6;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  order: 2;
+}
+.header-Logo {
+  flex: 2;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  order: 1;
+}
+.header-logout {
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  order: 3;
+}
+.header-profile {
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  order: 4;
+}
+
+.main-dashboard-container {
+  display: flex;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  min-height: 85vh;
+}
+
+/* Portfolio Contents */
+.portfolio-container {
+  flex: 2;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfoliolist {
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+
+.templateAssetAllocation {
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+
+/* Dashboard Contents */
+.dashboard-container {
+  flex: 6;
+  flex-direction: column;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  display: flex;
+}
+
+.dashboard-feature {
+  flex: 5;
+  display: flex;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+
+.dashboard-financials-details-container {
+  flex: 3;
+  display: flex;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+
+.financials {
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+
+.details {
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+
+.ticker {
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+
+/* Selector Component */
+.selector-container {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5%;
+  border: 1px solid lightgrey;
+}
+
+.search {
+  /* flex: 1; */
+  padding: 0.5%;
+  border: 1px solid lightgrey;
+}
+.companyPrices {
+  flex: 1;
+  padding: 0.5%;
+  border: 1px solid lightgrey;
+}
+
+.chartSelections {
+  flex: 1;
+  padding: 0.5%;
+  border: 1px solid lightgrey;
+}
+
 /* react-vis css */
 
 .react-vis-magic-css-import-rule {
