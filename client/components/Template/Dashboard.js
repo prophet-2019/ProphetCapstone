@@ -5,7 +5,6 @@ import FeaturedChart from './FeaturedChart'
 import CompanyFinancials from './CompanyFinancials'
 import CompanyDetails from './CompanyDetails'
 import Ticker from './Ticker'
-import Selector from './Selector'
 
 export default class Dashboard extends Component {
   constructor(props) {

@@ -9,7 +9,7 @@ import {
   HomePageChart,
   Company,
   CompareChart,
-  CompanyDetails,
+  CompanyFinancials,
   BuySellPage
 } from './components'
 import {me} from './store'
@@ -34,7 +34,7 @@ class Routes extends Component {
         <Route path="/chart" component={HomePageChart} />
         <Route path="/company" component={Company} />
         <Route path="/buysell" component={BuySellPage} />
-        <Route path="/details" component={CompanyDetails} />
+        <Route path="/financials" component={CompanyFinancials} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
