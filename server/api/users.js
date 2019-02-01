@@ -55,12 +55,12 @@ router.get('/:userId/portfolio', async (req, res, next) => {
 // })
 
 router.put('/:userId/buy', async (req, res, next) => {
-  // let stockTicker = req.body.symbol
-  // let realTimeQuote = req.body.latestPrice
-  // let quantity = req.body.quantity
-  let stockTicker = 'GE'
-  let realTimeQuote = 50
-  let quantity = 2
+  let stockTicker = req.body.iexRealTimeQuote.symbol
+  let realTimeQuote = req.body.iexRealTimeQuote.latestPrice
+  let quantity = +req.body.orderDetails.quantity
+  // let stockTicker = 'GE'
+  // let realTimeQuote = 50
+  // let quantity = 2
   try {
     // check to see if the stock exists in Stock table.  If not, create it.
     await Stock.findOrCreate({
@@ -69,13 +69,14 @@ router.put('/:userId/buy', async (req, res, next) => {
       }
       // check to see if the user has enough cash
     })
-    const user = await User.findById(req.params.userId)
+    const user = await User.findById(+req.params.userId)
     let cashValue = realTimeQuote * quantity
-    if (user.dataValues.cash >= realTimeQuote * quantity) {
+    console.log('user\n\n\n\n', user)
+    if (user.dataValues.cash >= cashValue) {
       const buy = await Transaction.createTrade(
         stockTicker,
         realTimeQuote,
-        115,
+        quantity,
         'buy',
         req.params.userId
       )
@@ -90,11 +91,9 @@ router.put('/:userId/buy', async (req, res, next) => {
 })
 
 router.put('/:userId/sell', async (req, res, next) => {
-  //check if user owns that stock
-  let stockTicker = 'GE'
-  let realTimeQuote = 50
-  let shares = 2
-  let quantity = shares * realTimeQuote
+  let stockTicker = req.body.iexRealTimeQuote.symbol
+  let realTimeQuote = req.body.iexRealTimeQuote.latestPrice
+  let quantity = +req.body.orderDetails.quantity
   let cashValue = realTimeQuote * quantity * -1
   try {
     const ownsIt = await Transaction.findByUserAndStock(
@@ -120,7 +119,7 @@ router.put('/:userId/sell', async (req, res, next) => {
       const sellSellSell = await Transaction.createTrade(
         stockTicker,
         realTimeQuote,
-        115,
+        quantity,
         'sell',
         req.params.userId
       )

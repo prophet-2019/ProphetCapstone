@@ -25,7 +25,7 @@ class HomePageChart extends Component {
     super(props)
     this.state = {
       historicalPrices: [],
-      portfolio: {},
+      portfolio: [],
       submitEquity: '',
       isLoaded: false,
       timeFrame: 'ytd',
@@ -68,7 +68,6 @@ class HomePageChart extends Component {
     })
   }
   componentDidUpdate(prevProps, prevState) {
-    console.log('prevProps', prevProps, '\n\n\n\n\n\nprevState', prevState)
     if (prevState.timeFrame !== this.state.timeFrame) {
       this.toggleChart(this.state.timeFrame)
     }

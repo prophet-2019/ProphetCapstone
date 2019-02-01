@@ -7,7 +7,7 @@ const Transaction = db.define('transaction', {
     type: Sequelize.STRING
   },
   price: {
-    type: Sequelize.INTEGER
+    type: Sequelize.DECIMAL
   },
   transQuantity: {
     type: Sequelize.INTEGER,
@@ -59,7 +59,7 @@ Transaction.createTrade = function(
 }
 
 Transaction.afterCreate(async transaction => {
-  const transCost = transaction.transQuantity * transaction.transQuantity
+  const transCost = transaction.transQuantity * transaction.price
   const portToUpdate = await Portfolio.findOne({
     where: {
       ticker: transaction.ticker,
