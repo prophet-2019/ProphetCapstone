@@ -9,10 +9,8 @@ export default class PortfolioList extends Component {
 
   render() {
     return (
-      <div>
-        <div className="portfoliolist">
-          <h4> List of portfolio values </h4>
-        </div>
+      <div className="portfoliolist">
+        <h4> List of portfolio values </h4>
       </div>
     )
   }

@@ -11,14 +11,9 @@ export default class UserPortfolio extends Component {
 
   render() {
     return (
-      <div>
-        <div className="userportfolio-container">
-          <h5> UserPortfolio Container </h5>
-        </div>
-        <div>
-          <PortfolioList />
-          <TemplateAssetAllocation />
-        </div>
+      <div className="portfolio-container">
+        <PortfolioList />
+        <TemplateAssetAllocation />
       </div>
     )
   }

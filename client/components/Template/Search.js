@@ -10,7 +10,7 @@ export default class Search extends Component {
   render() {
     return (
       <div className="search">
-        <h4> Search Container </h4>
+        <h4> Search Component </h4>
       </div>
     )
   }

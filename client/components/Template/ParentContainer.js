@@ -14,21 +14,14 @@ export default class ParentContainer extends Component {
   render() {
     return (
       <div className="parent-container">
-        <h2> Parent Container </h2>
-
-        <div className="header">
+        <div className="header-container">
           <Header />
         </div>
-        <div className="main-dashboard">
-          <div className="portfolio">
-            <UserPortfolio />
-          </div>
-          <div className="dashboard">
-            <Dashboard />
-          </div>
-          <div className="dashboard-selector">
-            <Selector />
-          </div>
+
+        <div className="main-dashboard-container">
+          <UserPortfolio />
+          <Dashboard />
+          <Selector />
         </div>
       </div>
     )

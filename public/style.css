@@ -22,98 +22,142 @@ form div {
 
 /* Parent Container */
 .parent-container {
-  background-color: grey;
+  background-color: #372121;
   padding: 0.5%;
-  min-height: 100vh;
+  color: lightgrey;
+  text-align: center;
 }
 
-.header {
+.header-container {
   display: flex;
-  background-color: lightgrey;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
 }
 
-.main-dashboard {
+.header-child-container {
+  flex: 1;
   display: flex;
-  min-height: 80vh;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+.header-headline {
+  flex: 6;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  order: 2;
+}
+.header-Logo {
+  flex: 2;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  order: 1;
+}
+.header-logout {
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  order: 3;
+}
+.header-profile {
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  order: 4;
+}
+
+.main-dashboard-container {
+  display: flex;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  min-height: 85vh;
 }
 
 /* Portfolio Contents */
-.portfolio {
-  display: flex;
-  background-color: lightblue;
-  flex-direction: column;
+.portfolio-container {
   flex: 2;
-  padding: 0;
-  border: 0.5em;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  display: flex;
+  flex-direction: column;
 }
 
 .portfoliolist {
-  background-color: lightsteelblue;
-  flex-direction: column;
-  min-height: 40vh;
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
 }
 
 .templateAssetAllocation {
-  background-color: lightslategray;
-  flex-direction: column;
-  min-height: 40vh;
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
 }
 
 /* Dashboard Contents */
-.dashboard {
-  background-color: lightgoldenrodyellow;
-  flex: 5;
+.dashboard-container {
+  flex: 6;
+  flex-direction: column;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+  display: flex;
 }
 
 .dashboard-feature {
+  flex: 5;
   display: flex;
-  background-color: lightcyan;
-  justify-content: space-between;
-  min-height: 50vh;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
 }
 
-.dashboard-financials-details {
+.dashboard-financials-details-container {
+  flex: 3;
   display: flex;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
 }
 
 .financials {
-  background-color: lightgreen;
-  flex: 3;
-  min-height: 40vh;
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
 }
 
 .details {
-  background-color: lightblue;
-  flex: 3;
-  min-height: 40vh;
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
 }
 
 .ticker {
-  display: flex;
-  background-color: lightpink;
+  flex: 1;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
 }
 
 /* Selector Component */
-.selector-container,
-.search,
-.companyPrices,
-.chartSelections {
+.selector-container {
+  flex: 2;
   display: flex;
-  background-color: lightyellow;
   flex-direction: column;
-  min-height: 33.5vh;
+  padding: 0.5%;
+  border: 1px solid lightgrey;
 }
 
 .search {
-  background-color: darkgreen;
+  /* flex: 1; */
+  padding: 0.5%;
+  border: 1px solid lightgrey;
 }
-
 .companyPrices {
-  background-color: darkgoldenrod;
+  flex: 1;
+  padding: 0.5%;
+  border: 1px solid lightgrey;
 }
 
 .chartSelections {
-  background-color: darkmagenta;
+  flex: 1;
+  padding: 0.5%;
+  border: 1px solid lightgrey;
 }
 
 /* react-vis css */

@@ -10,7 +10,7 @@ export default class Ticker extends Component {
   render() {
     return (
       <div className="ticker">
-        <h4> Ticker Container </h4>
+        <h4> Ticker Component </h4>
       </div>
     )
   }

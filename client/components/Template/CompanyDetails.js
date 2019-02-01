@@ -9,8 +9,8 @@ export default class CompanyDetails extends Component {
 
   render() {
     return (
-      <div className="companyDetails">
-        <h4> Company Details Container </h4>
+      <div className="details">
+        <h4> Company Details Component </h4>
       </div>
     )
   }

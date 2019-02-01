@@ -9,10 +9,8 @@ export default class TemplateAssetAllocation extends Component {
 
   render() {
     return (
-      <div>
-        <div className="templateAssetAllocation">
-          <h4> Asset Allocation Chart </h4>
-        </div>
+      <div className="templateAssetAllocation">
+        <h4> Asset Allocation Chart </h4>
       </div>
     )
   }

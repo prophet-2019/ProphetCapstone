@@ -9,8 +9,8 @@ export default class CompanyFinancials extends Component {
 
   render() {
     return (
-      <div className="companyFinancials">
-        <h4> Company Financials Container </h4>
+      <div className="financials">
+        <h4> Company Financials Component </h4>
       </div>
     )
   }

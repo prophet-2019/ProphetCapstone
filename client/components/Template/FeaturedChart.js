@@ -9,8 +9,8 @@ export default class FeaturedChart extends Component {
 
   render() {
     return (
-      <div className="featuredchart">
-        <h4> FeaturedChart Container </h4>
+      <div className="dashboard-feature">
+        <h4> FeaturedChart Component </h4>
       </div>
     )
   }

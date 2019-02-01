@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import UserPortfolio from './UserPortfolio'
+import HeadlineComponent from './HeadlineComponent'
 
 export default class Header extends Component {
   constructor(props) {
@@ -10,11 +10,20 @@ export default class Header extends Component {
 
   render() {
     return (
-      <div className="header">
-        <h3>Logo</h3>
-        <h4>Headline Placeholder</h4>
-        <h5>Logout</h5>
-        <h5>Profile</h5>
+      <div className="header-child-container">
+        <div className="header-Logo">
+          <h3>Logo</h3>
+        </div>
+
+        <HeadlineComponent />
+
+        <div className="header-logout">
+          <h5>Logout</h5>
+        </div>
+
+        <div className="header-profile">
+          <h5>Profile</h5>
+        </div>
       </div>
     )
   }

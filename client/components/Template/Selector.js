@@ -13,16 +13,9 @@ export default class Selector extends Component {
   render() {
     return (
       <div className="selector-container">
-        {/* <h4> Selector Container </h4> */}
-        <div className="search-container">
-          <Search />
-        </div>
-        <div className="companyPrices-container">
-          <CompanyPrices />
-        </div>
-        <div className="chartSelections-container">
-          <ChartSelections />
-        </div>
+        <Search />
+        <CompanyPrices />
+        <ChartSelections />
       </div>
     )
   }

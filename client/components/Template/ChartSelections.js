@@ -10,7 +10,7 @@ export default class ChartSelections extends Component {
   render() {
     return (
       <div className="chartSelections">
-        <h4> Chart Selections Container </h4>
+        <h4> Chart Selections Component </h4>
       </div>
     )
   }
