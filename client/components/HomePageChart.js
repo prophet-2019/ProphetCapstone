@@ -1,96 +1,39 @@
 import React, {Component} from 'react'
-import {
-  XYPlot,
-  VerticalGridLines,
-  HorizontalGridLines,
-  LineSeries,
-  FlexibleXYPlot,
-  BarSeries,
-  XAxis,
-  YAxis,
-  RectSeries,
-  VerticalBarSeries
-} from 'react-vis'
+import {XYPlot, LineSeries} from 'react-vis'
 import {getStockPrice} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {getPortfolio} from '../store/assetallocation'
-import AssetAllocation from './AssetAllocation'
-
-// /Users/jaybhagat/Projects/capstone/node_modules/react-vis/dist/style.css
-// /Users/jaybhagat/Projects/capstone/client/components/HomePageChart.js
 
 class HomePageChart extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      historicalPrices: [],
-      portfolio: [],
-      submitEquity: '',
-      isLoaded: false,
-      timeFrame: 'ytd',
-      currentEquity: ''
+      timeFrame: 'ytd'
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.toggleChart = this.toggleChart.bind(this)
   }
-  handleChange(evt) {
-    this.setState({
-      submitEquity: evt.target.value,
-      currentEquity: evt.target.value
-    })
-  }
-  //just wondering about binding using arrow functions and if this matters
-  handleSubmit = () => {
-    this.props.getStockPrice(this.state.submitEquity, this.state.timeFrame)
-    this.setState({
-      submitEquity: '',
-      isLoaded: true,
-      historicalPrices: this.props.historicalPrices
-    })
-  }
+
   toggleChart(time) {
     this.setState({timeFrame: time})
-    console.log('TIME', time, this.state.timeFrame)
-    this.props.getStockPrice(this.state.currentEquity, time)
-    this.setState({historicalPrices: this.props.historicalPrices})
+    this.props.getStockPrice(this.props.ticker, time)
   }
-  async componentDidMount() {
-    await this.props.getStockPrice(
-      this.state.currentEquity,
-      this.state.timeFrame
-    )
-    await this.props.getPortfolio()
-    this.setState({
-      historicalPrices: this.props.historicalPrices,
-      portfolio: this.props.portfolio
-    })
-  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.timeFrame !== this.state.timeFrame) {
       this.toggleChart(this.state.timeFrame)
     }
   }
   render() {
-    const histPrices = this.state.historicalPrices
+    const histPrices = this.props.historicalPrices
     return (
       <div>
-        <label>
-          Pick an equity:
-          <input
-            type="text"
-            value={this.state.submitEquity}
-            onChange={this.handleChange}
-          />
-        </label>
-        <input type="submit" value="Submit" onClick={this.handleSubmit} />
-        {this.state.isLoaded ? (
+        {this.props.historicalPrices.length > 0 ? (
           <div>
             <XYPlot width={900} height={300} getX={d => d[0]} getY={d => d[1]}>
               <LineSeries
+                animation
                 color="red"
-                data={this.props.historicalPrices}
+                data={histPrices}
                 dontCheckIfEmpty={true}
               />
             </XYPlot>
@@ -143,9 +86,7 @@ class HomePageChart extends Component {
               5Y
             </button>
           </div>
-        ) : (
-          <h1>Type something quickly, please</h1>
-        )}
+        ) : null}
       </div>
     )
   }
@@ -154,14 +95,13 @@ class HomePageChart extends Component {
 const mapStateToProps = state => {
   return {
     historicalPrices: state.chart.historicalPrices,
-    portfolio: state.assetallocation.portfolio
+    ticker: state.chart.ticker
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getStockPrice: (ticker, time) => dispatch(getStockPrice(ticker, time)),
-    getPortfolio: () => dispatch(getPortfolio())
+    getStockPrice: (ticker, time) => dispatch(getStockPrice(ticker, time))
   }
 }
 
