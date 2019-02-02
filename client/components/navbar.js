@@ -16,6 +16,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/company">Company</Link>
           <Link to="/compare">Comparison</Link>
           <Link to="/container">View Template</Link>
+          <Link to="/buysell">Buy/Sell</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -25,9 +26,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-          <Link to="/chart">Chart</Link>
-          <Link to="/company">Company</Link>
-          <Link to="/container">View Template</Link>
         </div>
       )}
     </nav>

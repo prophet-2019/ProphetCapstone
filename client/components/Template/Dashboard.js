@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router'
 import FeaturedChart from './FeaturedChart'
-import CompanyFinancials from './CompanyFinancials'
+import CompanyFinancials from '../CompanyFinancials'
 import CompanyDetails from './CompanyDetails'
 import Ticker from './Ticker'
 

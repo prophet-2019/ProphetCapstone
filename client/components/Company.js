@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getStockPriceToBuy, getStockPriceToSell} from '../store/portfolio'
 import HomePageChart from './HomePageChart'
-import CompanyData from './CompanyData'
+import CompanyFinancials from './CompanyFinancials'
 
 class Company extends Component {
   constructor(props) {
@@ -28,13 +28,7 @@ class Company extends Component {
       <div>
         <h3>Apple</h3>
         <HomePageChart />
-        <CompanyData />
-        <button type="submit" onClick={this.handleSubmitBuy}>
-          Buy
-        </button>
-        <button type="submit" onClick={this.handleSubmitSell}>
-          Sell
-        </button>
+        <CompanyFinancials />
       </div>
     )
   }

@@ -11,7 +11,13 @@ class CompanyData extends Component {
     }
   }
   async componentDidMount() {
-    await this.props.getPortfolioData('aapl')
+    console.log('DID MOUNT TICKERRR ---- ', this.props.ticker)
+    await this.props.ticker
+    await this.props.getPortfolioData(this.props.ticker)
+  }
+
+  componentDidUpdate() {
+    console.log('DID UPDATE TICKERRR ---- ', this.props.ticker)
   }
 
   render() {
@@ -23,23 +29,23 @@ class CompanyData extends Component {
     ]
     return (
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Data From Most Recent Financial Report</th>
-            </tr>
-            <tbody>
-              {labelsOfFinancialReport.map((val, idx) => {
-                return (
-                  <tr key={idx}>
-                    <td>{labelsOfFinancialReport[idx]}</td>
-                    <td>{valuesFromFinancialReport[idx]}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </thead>
-        </table>
+        <h5>Data From Most Recent Financial Report</h5>
+        <div className="financialList">
+          <table>
+            {this.props.ticker ? (
+              <tbody>
+                {labelsOfFinancialReport.map((val, idx) => {
+                  return (
+                    <tr key={idx}>
+                      <td>{labelsOfFinancialReport[idx]}</td>
+                      <td>{valuesFromFinancialReport[idx]}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            ) : null}
+          </table>
+        </div>
       </div>
     )
   }
@@ -47,7 +53,8 @@ class CompanyData extends Component {
 
 const mapStateToProps = state => {
   return {
-    stats: state.companyDetailsTable.stats
+    stats: state.companyDetailsTable.stats,
+    ticker: state.chart.ticker
   }
 }
 

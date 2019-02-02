@@ -16,18 +16,13 @@ class HomePageChart extends Component {
   toggleChart(time) {
     this.setState({timeFrame: time})
     this.props.getStockPrice(this.props.ticker, time)
-    this.setState({historicalPrices: this.props.historicalPrices})
   }
+
   async componentDidMount() {
     await this.props.getStockPrice(
       this.state.currentEquity,
       this.state.timeFrame
     )
-    await this.props.getPortfolio()
-    this.setState({
-      historicalPrices: this.props.historicalPrices,
-      portfolio: this.props.portfolio
-    })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -39,7 +34,7 @@ class HomePageChart extends Component {
     const histPrices = this.props.historicalPrices
     return (
       <div>
-        {this.props.historicalPrices.length > 0 ? (
+        {histPrices.length > 0 ? (
           <div>
             <XYPlot width={900} height={300} getX={d => d[0]} getY={d => d[1]}>
               <LineSeries
