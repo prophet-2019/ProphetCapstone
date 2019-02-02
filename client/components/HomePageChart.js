@@ -36,7 +36,7 @@ class HomePageChart extends Component {
       <div>
         {histPrices.length > 0 ? (
           <div>
-            <XYPlot width={900} height={300} getX={d => d[0]} getY={d => d[1]}>
+            <XYPlot width={700} height={300} getX={d => d[0]} getY={d => d[1]}>
               <LineSeries
                 animation
                 color="red"

@@ -2,31 +2,32 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import {getStockPrice} from '../../store/chart'
+import {getComparedStockPrice} from '../../store/compareChart'
 
 class Search extends Component {
   constructor(props) {
     super(props)
     this.state = {
       submitEquity: '',
-      currentEquity: '',
       submitEquity2: '',
-      currentEquity2: ''
+      timeFrame: '3m'
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange2 = this.handleChange2.bind(this)
+    this.handleSubmit2 = this.handleSubmit2.bind(this)
   }
 
   handleChange(evt) {
+    evt.preventDefault()
     this.setState({
-      submitEquity: evt.target.value,
-      currentEquity: evt.target.value
+      submitEquity: evt.target.value
     })
   }
   handleChange2(evt) {
+    evt.preventDefault()
     this.setState({
-      submitEquity2: evt.target.value,
-      currentEquity2: evt.target.value
+      submitEquity2: evt.target.value
     })
   }
 
@@ -36,37 +37,32 @@ class Search extends Component {
       submitEquity: ''
     })
   }
+
   handleSubmit2 = async () => {
-    await this.props.getStockPrice(
+    await this.props.getCompanyStockPrices(
+      this.state.submitEquity,
       this.state.submitEquity2,
-      'ytd',
-      this.props.ticker
+      this.state.timeFrame
     )
     await this.setState({
+      submitEquity: '',
       submitEquity2: ''
     })
-  }
-
-  async componentDidMount() {
-    await this.props.getStockPrice(this.state.currentEquity, 'ytd')
   }
 
   render() {
     return (
       <div className="search">
-        <div>
-          <label>
-            Pick an equity:
-            <input
-              type="text"
-              value={this.state.submitEquity}
-              onChange={this.handleChange}
-            />
-          </label>
-          <input type="submit" value="Submit" onClick={this.handleSubmit} />
-        </div>
         {this.props.compare ? (
           <div>
+            <label>
+              Pick an equity:
+              <input
+                type="text"
+                value={this.state.submitEquity}
+                onChange={this.handleChange}
+              />
+            </label>
             <label>
               Pick another equity:
               <input
@@ -77,7 +73,19 @@ class Search extends Component {
             </label>
             <input type="submit" value="Submit" onClick={this.handleSubmit2} />
           </div>
-        ) : null}
+        ) : (
+          <div>
+            <label>
+              Pick an equity:
+              <input
+                type="text"
+                value={this.state.submitEquity}
+                onChange={this.handleChange}
+              />
+            </label>
+            <input type="submit" value="Submit" onClick={this.handleSubmit} />
+          </div>
+        )}
       </div>
     )
   }
@@ -95,7 +103,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getStockPrice: (ticker, time, ticker2) =>
-      dispatch(getStockPrice(ticker, time, ticker2))
+      dispatch(getStockPrice(ticker, time, ticker2)),
+    getCompanyStockPrices: (ticker1, ticker2, time) =>
+      dispatch(getComparedStockPrice(ticker1, ticker2, time))
   }
 }
 

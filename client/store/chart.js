@@ -6,7 +6,7 @@ const GOT_REAL_TIME_PRICE = 'GOT_REAL_TIME_PRICE'
 
 const initialState = {historicalPrices: [], financials: {}, realTimePrice: 0}
 
-const gotStockPrice = (prices, ticker, ticker2) => ({
+const gotStockPrice = (prices, ticker, ticker2 = '') => ({
   type: GOT_STOCK_PRICE,
   prices,
   ticker,
@@ -23,12 +23,13 @@ const gotStockPriceForAssetAllocation = stock => ({
   stock
 })
 
-export const getStockPrice = (ticker, time, ticker2 = '') => async dispatch => {
+export const getStockPrice = (ticker, time) => async dispatch => {
   try {
     const {data: gotHistoricalPrices} = await axios.get(
       `/api/iex/getChartData/${ticker}/${time}`
     )
-    dispatch(gotStockPrice(gotHistoricalPrices, ticker, ticker2))
+
+    dispatch(gotStockPrice(gotHistoricalPrices, ticker))
   } catch (err) {
     console.error('BIGGG Drama Show', err.message)
   }

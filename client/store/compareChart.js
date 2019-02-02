@@ -4,9 +4,11 @@ const GOT_COMPARE_STOCK_PRICE = 'GOT_COMPARE_STOCK_PRICE'
 
 const initialState = {compareData: []}
 
-const gotComparedStockPrices = compareData => ({
+const gotComparedStockPrices = (compareData, ticker1, ticker2) => ({
   type: GOT_COMPARE_STOCK_PRICE,
-  compareData
+  compareData,
+  ticker1,
+  ticker2
 })
 
 export const getComparedStockPrice = (
@@ -36,7 +38,7 @@ export const getComparedStockPrice = (
 
     const series = [2, 1].map(i => mergedData.map(d => ({x: d[0], y: d[i]})))
 
-    dispatch(gotComparedStockPrices(series))
+    dispatch(gotComparedStockPrices(series, ticker1, ticker2))
   } catch (err) {
     console.error('There was an error getting compared stock data', err.message)
   }
@@ -47,7 +49,9 @@ export default function(state = initialState, action) {
     case GOT_COMPARE_STOCK_PRICE:
       return {
         ...state,
-        compareData: action.compareData
+        compareData: action.compareData,
+        ticker1: action.ticker1,
+        ticker2: action.ticker2
       }
     default:
       return state
