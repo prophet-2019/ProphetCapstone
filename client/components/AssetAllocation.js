@@ -27,7 +27,7 @@ class AssetAllocation extends Component {
     }
     this.intervalFunc = this.intervalFunc.bind(this)
   }
-  
+
   async intervalFunc() {
     const callBack = (func, userId) => {
       func(userId)
@@ -76,6 +76,7 @@ class AssetAllocation extends Component {
       <div>
         <h3>Portfolio Allocation</h3>
         <RadialChart
+          animation
           className="templateAssetAllocation"
           data={myData}
           width={300}
