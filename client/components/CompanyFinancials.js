@@ -6,21 +6,10 @@ import {withRouter} from 'react-router'
 class CompanyData extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      financials: {}
-    }
-  }
-  async componentDidMount() {
-    console.log('DID MOUNT TICKERRR ---- ', this.props.ticker)
-    await this.props.ticker
-    await this.props.getPortfolioData(this.props.ticker)
-  }
-
-  componentDidUpdate() {
-    console.log('DID UPDATE TICKERRR ---- ', this.props.ticker)
   }
 
   render() {
+    this.props.getPortfolioData(this.props.ticker)
     const labelsOfFinancialReport = Object.keys(this.props.stats)
     const valuesFromFinancialReport = Object.values(this.props.stats)
     const arrToMapThroughInComponent = [
