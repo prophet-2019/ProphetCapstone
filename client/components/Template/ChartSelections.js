@@ -18,6 +18,11 @@ const styles = theme => ({
 class ChartSelections extends Component {
   constructor(props) {
     super(props)
+    this.toggleCompare = this.toggleCompare.bind(this)
+  }
+
+  toggleCompare() {
+    this.props.enableCompare()
   }
 
   render() {

@@ -8,6 +8,8 @@ class CompanyData extends Component {
     super(props)
   }
 
+  componentDidMount() {}
+
   render() {
     this.props.getPortfolioData(this.props.ticker)
     const labelsOfFinancialReport = Object.keys(this.props.stats)
