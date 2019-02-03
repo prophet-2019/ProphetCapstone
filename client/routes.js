@@ -10,7 +10,8 @@ import {
   Company,
   CompareChart,
   CompanyFinancials,
-  BuySellPage
+  BuySellPage,
+  Ticker
 } from './components'
 import {me} from './store'
 import ParentContainer from './components/Template/ParentContainer'
@@ -36,7 +37,7 @@ class Routes extends Component {
         <Route path="/company" component={Company} />
         <Route path="/buysell" component={BuySellPage} />
         <Route path="/financials" component={CompanyFinancials} />
-        <Route path="/testing" component={PortfolioDataTable} />
+        <Route path="/testing" component={Ticker} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
