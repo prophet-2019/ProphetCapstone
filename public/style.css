@@ -100,6 +100,7 @@ nav a {
   padding: 0.5%;
   border: 0.5px solid lightgrey;
   display: flex;
+  min-width: 0;
 }
 
 .dashboard-feature {
@@ -135,9 +136,11 @@ nav a {
   border: 0.5px solid lightgrey;
 }
 
-.ticker {
+.tickerDiv {
   flex: 1;
-  padding: 0.5%;
+  width: 100%;
+  /* padding: 0.5%; */
+
   border: 0.5px solid lightgrey;
 }
 
@@ -541,4 +544,9 @@ nav a {
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
   }
+}
+
+.ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
 }
