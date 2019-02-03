@@ -7,7 +7,7 @@ class CompanyData extends Component {
   constructor(props) {
     super(props)
   }
-
+  
   componentDidMount() {}
 
   render() {

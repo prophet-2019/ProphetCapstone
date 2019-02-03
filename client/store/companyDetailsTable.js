@@ -3,7 +3,7 @@ import axios from 'axios'
 const GET_REAL_TIME_COMPANY_STATS = 'GET_REAL_TIME_COMPANY_STATS'
 
 const ENABLE_COMPARE = 'ENABLE_COMPARE'
-
+const DISABLE_COMPARE = 'DISABLE_COMPARE'
 const initialState = {
   stats: {},
   compare: false
@@ -17,6 +17,11 @@ const gotPortfolioDataForTableFormat = companyStats => ({
 const compare = () => ({
   type: ENABLE_COMPARE,
   compare: true
+})
+
+const disableCompare = () => ({
+  type: DISABLE_COMPARE,
+  compare: false
 })
 
 export const getPortfolioData = ticker => {
@@ -40,6 +45,12 @@ export const revealCompare = () => {
   }
 }
 
+export const singleCompany = () => {
+  return dispatch => {
+    dispatch(disableCompare())
+  }
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_REAL_TIME_COMPANY_STATS:
@@ -48,6 +59,11 @@ export default function(state = initialState, action) {
         stats: action.companyStats
       }
     case ENABLE_COMPARE:
+      return {
+        ...state,
+        compare: action.compare
+      }
+    case DISABLE_COMPARE:
       return {
         ...state,
         compare: action.compare
