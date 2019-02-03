@@ -14,6 +14,7 @@ import {
 } from './components'
 import {me} from './store'
 import ParentContainer from './components/Template/ParentContainer'
+import PortfolioDataTable from './components/PortfolioDataTable'
 /**
  * COMPONENT
  */
@@ -35,6 +36,7 @@ class Routes extends Component {
         <Route path="/company" component={Company} />
         <Route path="/buysell" component={BuySellPage} />
         <Route path="/financials" component={CompanyFinancials} />
+        <Route path="/testing" component={PortfolioDataTable} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
