@@ -1,3 +1,8 @@
+@font-face {
+  font-family: subway-ticker;
+  src: url('subway-ticker.ttf') format('truetype');
+}
+
 body {
   font-family: sans-serif;
 }
@@ -460,6 +465,7 @@ nav a {
 }
 
 .ticker {
+  font-family: subway-ticker;
   display: inline-block;
   height: 48px;
   line-height: 48px;
@@ -476,35 +482,42 @@ nav a {
   animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+  font-family: subway-ticker;
 }
 
 .ticker__item {
   display: inline-block;
+  font-family: subway-ticker;
   padding: 0 24px;
   font-size: 24px;
   color: black;
 }
 
 .ticker__item--details {
+  font-family: subway-ticker;
   display: flex;
   justify-content: space-around;
 }
 
 .ticker__item--details span + span {
+  font-family: subway-ticker;
   padding-left: 10px;
 }
 
 .ticker__item--symbol,
 .stock-card__symbol {
+  font-family: subway-ticker;
   color: navy;
   font-weight: 600;
 }
 
 .ticker__item--change.positive {
+  font-family: subway-ticker;
   color: green;
 }
 
 .ticker__item--change.negative {
+  font-family: subway-ticker;
   color: crimson;
 }
 
