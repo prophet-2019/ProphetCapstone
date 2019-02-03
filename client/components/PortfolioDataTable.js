@@ -55,13 +55,24 @@ class PortfolioDataTable extends Component {
     return (
       <div>
         <table>
-          <th>Portfolio</th>
-          <tbody>
+          <thead>
             <tr>
-              {this.props.portfolio.map(val => {
-                return <td>{val[0]}</td>
-              })}
+              <th>Ticker</th>
+              <th>Quantity</th>
+              <th>Current Price</th>
+              <th>Cost Basis</th>
             </tr>
+          </thead>
+          <tbody>
+            {this.props.portfolio.map((val, idx) => {
+              return (
+                <tr key={val[0]}>
+                  <td>{val[0]}</td>
+                  <td>{val[1]}</td>
+                  <td>{val[1]}</td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
