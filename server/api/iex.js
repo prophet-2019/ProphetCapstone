@@ -8,7 +8,7 @@ router.get('/stockprice/:ticker', async (req, res, next) => {
     const {data: iexRealtimePrice} = await axios.get(
       `https://api.iextrading.com/1.0/stock/${req.params.ticker}/quote`
     )
-    res.json(iexRealtimePrice.iexRealtimePrice)
+    res.json(iexRealtimePrice.latestPrice)
   } catch (err) {
     next(err)
   }
