@@ -1,40 +1,27 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {getPriceFromAPI} from '../store/ticker'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 
 import TickerItem from './TickerItem'
 
-export default class Ticker extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      symbols: [],
-      isLoading: true
-    }
-  }
-  componentDidMount() {
-    axios
-      .get('https://api.iextrading.com/1.0/stock/market/previous')
-      .then(response => {
-        const stocks = Object.keys(response.data)
-        let date = response.data[stocks[0]].date
-        const symbols = stocks.map(stock => {
-          return response.data[stock]
-        })
-        // this.props.updateTicker(symbols);
-        this.setState({symbols, isLoading: false})
-        this.props.addPreviousSession(date)
-      })
-  }
+const Ticker = ({data}) => {
+  return (
+    <div className={data.length === 0 ? 'ticker' : 'ticker scrolling'}>
+      {data.map(symbol => (
+        <div key={symbol.symbol} className="ticker__item">
+          <TickerItem symbol={symbol} />
+        </div>
+      ))}
+    </div>
+  )
+}
 
-  render() {
-    return (
-      <div className={this.state.isLoading ? 'ticker' : 'ticker scrolling'}>
-        {this.state.symbols.map(symbol => (
-          <div key={symbol.symbol} className="ticker__item">
-            <TickerItem symbol={symbol} />
-          </div>
-        ))}
-      </div>
-    )
+const mapStateToProps = state => {
+  return {
+    data: state.ticker.data
   }
 }
+
+export default withRouter(connect(mapStateToProps, null)(Ticker))

@@ -10,6 +10,7 @@ import compareChart from './compareChart'
 import financialDataTable from './financialDataTable'
 import portfolioDataTable from './portfolioDataTable'
 import companyDetailsTable from './companyDetailsTable'
+import ticker from './ticker'
 
 const reducer = combineReducers({
   user,
@@ -19,7 +20,8 @@ const reducer = combineReducers({
   compareChart,
   financialDataTable,
   portfolioDataTable,
-  companyDetailsTable
+  companyDetailsTable,
+  ticker
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
