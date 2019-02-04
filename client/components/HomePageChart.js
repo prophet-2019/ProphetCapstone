@@ -1,7 +1,16 @@
 import React, {Component} from 'react'
-import {XYPlot, LineSeries} from 'react-vis'
+import {
+  XYPlot,
+  LineSeries,
+  XAxis,
+  YAxis,
+  ChartLabel,
+  HorizontalGridLines,
+  VerticalGridlines
+} from 'react-vis'
 import {getStockPrice} from '../store/chart'
 import {connect} from 'react-redux'
+import {curveCatmullRom} from 'd3-shape'
 import {withRouter} from 'react-router'
 
 class HomePageChart extends Component {
@@ -37,10 +46,31 @@ class HomePageChart extends Component {
         {histPrices.length > 0 ? (
           <div>
             <XYPlot width={700} height={300} getX={d => d[0]} getY={d => d[1]}>
+              <XAxis />
+              <YAxis />
+              <ChartLabel
+                text="X Axis"
+                className="alt-x-label"
+                includeMargin={false}
+                xPercent={0.025}
+                yPercent={1.01}
+              />
+              <ChartLabel
+                text="Y Axis"
+                className="alt-y-label"
+                includeMargin={false}
+                xPercent={0.06}
+                yPercent={0.06}
+                style={{
+                  transform: 'rotate(-90)',
+                  textAnchor: 'end'
+                }}
+              />
               <LineSeries
                 animation
-                color="red"
+                color="purple"
                 data={histPrices}
+                curve={curveCatmullRom.alpha(0.5)}
                 dontCheckIfEmpty={true}
               />
             </XYPlot>
