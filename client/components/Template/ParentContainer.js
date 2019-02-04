@@ -17,11 +17,11 @@ export default class ParentContainer extends Component {
         <div className="header-container">
           <Header />
         </div>
-        <div className="main-dashboard-container">
+        <div className="portfolio-dashboard-selector-container">
           <UserPortfolio />
-          <div className="dashboard-spacer" />
+
           <Dashboard />
-          <div className="dashboard-spacer" />
+
           <Selector />
         </div>
       </div>
