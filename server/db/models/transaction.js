@@ -66,6 +66,13 @@ Transaction.afterCreate(async transaction => {
       userId: transaction.userId
     }
   })
+  const findUsersMoneyItem = await Portfolio.findOne({
+    where: {
+      ticker: 'MONEY',
+      userId: transaction.userId
+    }
+  })
+  console.log('find Money\n\n\n\n\n\n\n', findUsersMoneyItem.quantity)
   if (portToUpdate && transaction.transactionType === 'buy') {
     console.log('port', portToUpdate.quantity, typeof portToUpdate.quantity)
     await Portfolio.update(
@@ -79,6 +86,12 @@ Transaction.afterCreate(async transaction => {
           userId: transaction.userId
         }
       }
+    )
+    await Portfolio.update(
+      {
+        quantity: portToUpdate.quantity - transaction.transCost
+      },
+      {where: {userId: findUsersMoneyItem.userId}}
     )
   } else if (portToUpdate && transaction.transactionType === 'sell') {
     await Portfolio.update(
@@ -94,6 +107,25 @@ Transaction.afterCreate(async transaction => {
         }
       }
     )
+    await Portfolio.update(
+      {
+        quantity: portToUpdate.quantity + transCost
+      },
+      {where: {userId: findUsersMoneyItem.userId}}
+    )
+  } else if (!portToUpdate && transaction.transactionType === 'buy') {
+    await Portfolio.create({
+      ticker: transaction.ticker,
+      quantity: transaction.transQuantity,
+      costValue: transCost,
+      userId: transaction.userId
+    })
+    await Portfolio.update(
+      {
+        quantity: findUsersMoneyItem.quantity - transCost
+      },
+      {where: {userId: findUsersMoneyItem.userId}}
+    )
   } else {
     await Portfolio.create({
       ticker: transaction.ticker,
@@ -101,5 +133,11 @@ Transaction.afterCreate(async transaction => {
       costValue: transCost,
       userId: transaction.userId
     })
+    await Portfolio.update(
+      {
+        quantity: findUsersMoneyItem.quantity + transCost
+      },
+      {where: {userId: findUsersMoneyItem.userId}}
+    )
   }
 })
