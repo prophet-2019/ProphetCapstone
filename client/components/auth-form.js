@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {Button, Form, Grid, Header, Segment} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -14,6 +15,7 @@ const AuthForm = props => {
     <div>
       <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
         <Grid.Column style={{maxWidth: 450}}>
+          <Header as="h3" color="teal" textAlign="center" />
           <Header as="h2" color="teal" textAlign="center">
             {displayName} to your account
           </Header>
@@ -41,6 +43,8 @@ const AuthForm = props => {
                 {displayName}
               </Button>
             </Segment>
+            <Link to="/login"> Login | </Link>
+            <Link to="/signup"> Sign up </Link>
           </Form>
         </Grid.Column>
       </Grid>
