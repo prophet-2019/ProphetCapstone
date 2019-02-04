@@ -15,11 +15,13 @@ class Dashboard extends Component {
     return (
       <div className="dashboard-container">
         {this.props.compare ? <CompareChart /> : <FeaturedChart />}
+        <div className="dashboard-spacer" />
         <div className="dashboard-financials-details-container">
           <CompanyFinancials />
+          <div className="dashboard-spacer" />
           <CompanyDetails />
         </div>
-
+        <div className="dashboard-spacer" />
         <TickerArea />
       </div>
     )

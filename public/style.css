@@ -22,36 +22,33 @@ nav a {
 
 /* Parent Container */
 .parent-container {
-  background-color: #170226;
+  background-color: #1d1522;
   display: flex;
-  padding: 0.5%;
-  /* color: lightgrey; */
-  text-align: center;
   flex-direction: column;
+  /* color: lightgrey; */
+  /* padding: 0.5%; */
+  text-align: center;
 }
 
 .header-container {
-  flex: 1;
-  display: flex;
   background-color: #422365;
-  padding: 0.5%;
-
+  display: flex;
+  /* flex: 1; */
+  /* padding: 0.÷5%; */
   /* border: 0.5px solid lightgrey; */
 }
 .dashboard-spacer {
-  background-color: #170226;
-  flex: 1;
+  /* background-color: #1d1522; */
+  flex: 0.25;
 }
-.header-child-container {
-  flex: 1;
-  display: flex;
-  padding: 0.5%;
-  border: 0.5px solid lightgrey;
+.header-isLoggedIn-container {
+  /* padding: 0.5%; */
+  /* border: 0.5px solid lightgrey; */
 }
 
 .isLoggedIn-container {
-  flex: 1;
   display: flex;
+
   padding: 0.5%;
   border: 0.5px solid lightgrey;
 }
@@ -81,8 +78,12 @@ nav a {
   order: 4;
 }
 
+.isLoggedOut {
+  flex: 1;
+}
+
 .main-dashboard-container {
-  background-color: #422365;
+  /* background-color: #422365; */
   flex: 4;
   display: flex;
   padding: 0.5%;
@@ -93,7 +94,8 @@ nav a {
 /* Portfolio Contents */
 .portfolio-container {
   flex: 2;
-  border-radius: 10px;
+  background-color: #422365;
+  border-radius: 5%;
   /* margin: 0.5%; */
   /* border: 0.5px solid lightgrey; */
   display: flex;
@@ -103,13 +105,13 @@ nav a {
 .portfoliolist {
   flex: 1;
   padding: 0.5%;
-  border: 0.5px solid lightgrey;
+  /* border: 0.5px solid lightgrey; */
 }
 
 .templateAssetAllocation {
   flex: 1;
   padding: 0.5%;
-  border: 0.5px solid lightgrey;
+  /* border: 0.5px solid lightgrey; */
 }
 
 /* Dashboard Contents */
