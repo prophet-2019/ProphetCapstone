@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
+import BuySellPage from '../BuySellPage'
 
 class CompanyPrices extends Component {
   constructor(props) {
@@ -10,8 +11,8 @@ class CompanyPrices extends Component {
   render() {
     return (
       <div className="companyPrices">
-        <h4> Company Prices Component </h4>
-        <h5>{this.props.stats.companyName}</h5>
+        <h4> Buy and Sell Stocks Here </h4>
+        <BuySellPage ticker={this.props.ticker} />
       </div>
     )
   }
@@ -19,7 +20,8 @@ class CompanyPrices extends Component {
 
 const mapStateToProps = state => {
   return {
-    stats: state.companyDetailsTable.stats
+    stats: state.companyDetailsTable.stats,
+    ticker: state.chart.ticker
   }
 }
 

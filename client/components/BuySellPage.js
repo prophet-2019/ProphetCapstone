@@ -22,18 +22,23 @@ class BuySellPage extends Component {
     e.preventDefault()
     this.props.sellStock(this.state, this.props.userId)
   }
+  componentDidMount() {
+    this.setState({ticker: this.props.ticker})
+  }
+  componentDidUpdate() {
+    if (this.state.ticker !== this.props.ticker) {
+      this.setState({ticker: this.props.ticker})
+    }
+  }
   render() {
+    const initTick = this.props.ticker ? this.props.ticker : this.state.ticker
     return (
       <div>
-        <h1>
-          Enter amounts to buy or sell stocks. The fields won't clear after you
-          hit the button, but check Postico to see if they've gone through.
-        </h1>
         <label>Stock Ticker</label>
         <input
           required
           name="ticker"
-          value={this.state.ticker}
+          value={initTick}
           onChange={evt => this.setState({ticker: evt.target.value})}
         />
         <label>Quantity</label>
@@ -44,10 +49,10 @@ class BuySellPage extends Component {
           onChange={evt => this.setState({quantity: evt.target.value})}
         />
         <button type="submit" onClick={this.handleSubmitBuy}>
-          Buy, Buy, Buy
+          Buy
         </button>
         <button type="submit" onClick={this.handleSubmitSell}>
-          Sell, Sell, Sell
+          Sell
         </button>
       </div>
     )
