@@ -13,13 +13,13 @@ const Portfolio = db.define('portfolio', {
     }
   },
   costValue: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DECIMAL(10, 2),
     validate: {
       min: 0
     }
   },
   currentMarketValue: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DECIMAL(10, 2),
     validate: {
       min: 0
     }

@@ -7,7 +7,7 @@ const Transaction = db.define('transaction', {
     type: Sequelize.STRING
   },
   price: {
-    type: Sequelize.DECIMAL
+    type: Sequelize.DECIMAL(10, 2)
   },
   transQuantity: {
     type: Sequelize.INTEGER,
@@ -72,9 +72,7 @@ Transaction.afterCreate(async transaction => {
       userId: transaction.userId
     }
   })
-  console.log('find Money\n\n\n\n\n\n\n', findUsersMoneyItem.quantity)
   if (portToUpdate && transaction.transactionType === 'buy') {
-    console.log('port', portToUpdate.quantity, typeof portToUpdate.quantity)
     await Portfolio.update(
       {
         quantity: portToUpdate.quantity + transaction.transQuantity,
