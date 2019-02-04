@@ -29,9 +29,17 @@ export const getPortfolio = userId => {
             `/api/iex/stockprice/${val.ticker}`
           )
           const priceIn = +val.quantity * +currPrice
-          arrForPortfolioBecauseReduceAsynIssue.push([val.ticker, priceIn])
+          arrForPortfolioBecauseReduceAsynIssue.push([
+            val.ticker,
+            priceIn,
+            val.quantity
+          ])
         } else {
-          arrForPortfolioBecauseReduceAsynIssue.push([val.ticker, val.quantity])
+          arrForPortfolioBecauseReduceAsynIssue.push([
+            val.ticker,
+            val.quantity,
+            val.quantity
+          ])
         }
       }
       dispatch(gotPortfolio(arrForPortfolioBecauseReduceAsynIssue))

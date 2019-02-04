@@ -68,7 +68,7 @@ class PortfolioDataTable extends Component {
               return (
                 <tr key={val[0]}>
                   <td>{val[0]}</td>
-                  <td>{val[1]}</td>
+                  <td>{val[2]}</td>
                   <td>{val[1]}</td>
                 </tr>
               )
