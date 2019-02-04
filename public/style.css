@@ -35,6 +35,14 @@ nav a {
   padding: 0.5%;
   border: 0.5px solid lightgrey;
 }
+
+.isLoggedIn-container {
+  flex: 1;
+  display: flex;
+  padding: 0.5%;
+  border: 0.5px solid lightgrey;
+}
+
 .header-headline {
   flex: 6;
   padding: 0.5%;
