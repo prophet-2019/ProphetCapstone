@@ -50,17 +50,7 @@ class AssetAllocation extends Component {
     console.log('We mounted!')
     await this.intervalFunc()
   }
-  // componentDidUpdate() {
-  //   if (
-  //     this.state.portfolio !== this.props.portfolio &&
-  //     this.state.currentUser === 0
-  //   ) {
-  //     this.setState({
-  //       portfolio: this.props.portfolio,
-  //       currentUser: this.props.userId
-  //     })
-  //   }
-  // }
+
   render() {
     let myData
     if (this.props.portfolio.length) {

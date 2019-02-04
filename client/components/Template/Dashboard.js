@@ -4,7 +4,7 @@ import FeaturedChart from './FeaturedChart'
 import CompareChart from '../CompareChart'
 import CompanyFinancials from '../CompanyFinancials'
 import CompanyDetails from './CompanyDetails'
-import Ticker from './Ticker'
+import TickerArea from './TickerArea'
 
 class Dashboard extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Dashboard extends Component {
           <CompanyDetails />
         </div>
 
-        <Ticker />
+        <TickerArea />
       </div>
     )
   }

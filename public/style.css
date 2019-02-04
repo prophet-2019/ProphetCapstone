@@ -1,3 +1,8 @@
+@font-face {
+  font-family: subway-ticker;
+  src: url('subway-ticker.ttf') format('truetype');
+}
+
 body {
   font-family: sans-serif;
 }
@@ -95,6 +100,7 @@ nav a {
   padding: 0.5%;
   border: 0.5px solid lightgrey;
   display: flex;
+  min-width: 0;
 }
 
 .dashboard-feature {
@@ -130,9 +136,11 @@ nav a {
   border: 0.5px solid lightgrey;
 }
 
-.ticker {
+.tickerDiv {
   flex: 1;
-  padding: 0.5%;
+  width: 100%;
+  /* padding: 0.5%; */
+
   border: 0.5px solid lightgrey;
 }
 
@@ -448,4 +456,97 @@ nav a {
 
 .rv-radial-chart .rv-xy-plot__series--label {
   pointer-events: none;
+}
+
+.ticker-wrap {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  height: 48px;
+  background-color: #ccc;
+  padding-left: 100%;
+}
+
+.ticker {
+  font-family: subway-ticker;
+  display: inline-block;
+  height: 48px;
+  line-height: 48px;
+  white-space: nowrap;
+  padding-right: 100%;
+}
+
+.ticker.scrolling {
+  -webkit-animation-name: ticker;
+  animation-name: ticker;
+  -webkit-animation-duration: 8500s;
+  animation-duration: 8500s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  font-family: subway-ticker;
+}
+
+.ticker__item {
+  display: inline-block;
+  font-family: subway-ticker;
+  padding: 0 24px;
+  font-size: 24px;
+  color: black;
+}
+
+.ticker__item--details {
+  font-family: subway-ticker;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ticker__item--details span + span {
+  font-family: subway-ticker;
+  padding-left: 10px;
+}
+
+.ticker__item--symbol,
+.stock-card__symbol {
+  font-family: subway-ticker;
+  color: navy;
+  font-weight: 600;
+}
+
+.ticker__item--change.positive {
+  font-family: subway-ticker;
+  color: green;
+}
+
+.ticker__item--change.negative {
+  font-family: subway-ticker;
+  color: crimson;
+}
+
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+.ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
 }

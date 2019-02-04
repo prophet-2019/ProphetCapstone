@@ -25,7 +25,10 @@ class BuySellPage extends Component {
   render() {
     return (
       <div>
-        <h1>UConn Buy or Sell</h1>
+        <h1>
+          Enter amounts to buy or sell stocks. The fields won't clear after you
+          hit the button, but check Postico to see if they've gone through.
+        </h1>
         <label>Stock Ticker</label>
         <input
           required

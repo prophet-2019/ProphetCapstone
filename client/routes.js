@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, useState} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -10,13 +10,21 @@ import {
   Company,
   CompareChart,
   CompanyFinancials,
-  BuySellPage
+  BuySellPage,
+  Ticker
 } from './components'
 import {me} from './store'
 import ParentContainer from './components/Template/ParentContainer'
+import PortfolioDataTable from './components/PortfolioDataTable'
 /**
  * COMPONENT
  */
+
+const Testing = () => (
+  <div style={{width: '300px'}}>
+    <Ticker />
+  </div>
+)
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
@@ -35,6 +43,7 @@ class Routes extends Component {
         <Route path="/company" component={Company} />
         <Route path="/buysell" component={BuySellPage} />
         <Route path="/financials" component={CompanyFinancials} />
+        <Route path="/testing" component={Testing} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
