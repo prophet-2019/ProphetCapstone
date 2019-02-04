@@ -7,7 +7,7 @@ const Transaction = db.define('transaction', {
     type: Sequelize.STRING
   },
   price: {
-    type: Sequelize.DECIMAL
+    type: Sequelize.DECIMAL(10, 2)
   },
   transQuantity: {
     type: Sequelize.INTEGER,
@@ -66,8 +66,13 @@ Transaction.afterCreate(async transaction => {
       userId: transaction.userId
     }
   })
+  const findUsersMoneyItem = await Portfolio.findOne({
+    where: {
+      ticker: 'MONEY',
+      userId: transaction.userId
+    }
+  })
   if (portToUpdate && transaction.transactionType === 'buy') {
-    console.log('port', portToUpdate.quantity, typeof portToUpdate.quantity)
     await Portfolio.update(
       {
         quantity: portToUpdate.quantity + transaction.transQuantity,
@@ -79,6 +84,13 @@ Transaction.afterCreate(async transaction => {
           userId: transaction.userId
         }
       }
+    )
+    console.log('AMOUNTS', portToUpdate.quantity, transCost)
+    await Portfolio.update(
+      {
+        quantity: findUsersMoneyItem.quantity - transCost
+      },
+      {where: {userId: findUsersMoneyItem.userId, ticker: 'MONEY'}}
     )
   } else if (portToUpdate && transaction.transactionType === 'sell') {
     await Portfolio.update(
@@ -94,6 +106,25 @@ Transaction.afterCreate(async transaction => {
         }
       }
     )
+    await Portfolio.update(
+      {
+        quantity: findUsersMoneyItem.quantity + transCost
+      },
+      {where: {userId: findUsersMoneyItem.userId, ticker: 'MONEY'}}
+    )
+  } else if (!portToUpdate && transaction.transactionType === 'buy') {
+    await Portfolio.create({
+      ticker: transaction.ticker,
+      quantity: transaction.transQuantity,
+      costValue: transCost,
+      userId: transaction.userId
+    })
+    await Portfolio.update(
+      {
+        quantity: findUsersMoneyItem.quantity - transCost
+      },
+      {where: {userId: findUsersMoneyItem.userId, ticker: 'MONEY'}}
+    )
   } else {
     await Portfolio.create({
       ticker: transaction.ticker,
@@ -101,5 +132,11 @@ Transaction.afterCreate(async transaction => {
       costValue: transCost,
       userId: transaction.userId
     })
+    await Portfolio.update(
+      {
+        quantity: findUsersMoneyItem.quantity + transCost
+      },
+      {where: {userId: findUsersMoneyItem.userId, ticker: 'MONEY'}}
+    )
   }
 })
