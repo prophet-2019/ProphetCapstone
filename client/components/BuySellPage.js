@@ -22,7 +22,16 @@ class BuySellPage extends Component {
     e.preventDefault()
     this.props.sellStock(this.state, this.props.userId)
   }
+  componentDidMount() {
+    this.setState({ticker: this.props.ticker})
+  }
+  componentDidUpdate() {
+    if (this.state.ticker !== this.props.ticker) {
+      this.setState({ticker: this.props.ticker})
+    }
+  }
   render() {
+    const initTick = this.props.ticker ? this.props.ticker : this.state.ticker
     return (
       <div>
         <h1>
@@ -33,7 +42,7 @@ class BuySellPage extends Component {
         <input
           required
           name="ticker"
-          value={this.state.ticker}
+          value={initTick}
           onChange={evt => this.setState({ticker: evt.target.value})}
         />
         <label>Quantity</label>
