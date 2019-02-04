@@ -37,7 +37,7 @@ class CompareChart extends Component {
     return (
       <div>
         <div>
-          <h2 className="tk-adobe-caslon-pro">
+          <h2 className="compareChart">
             Nike - P&G Trailing 3 Month Stock Prices
           </h2>
           <DiscreteColorLegend

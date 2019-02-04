@@ -13,8 +13,10 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="dashboard-container">
+      // <div className="dashboard-jsx-wrapper">
+      <div className="chart-container">
         {this.props.compare ? <CompareChart /> : <FeaturedChart />}
+
         <div className="dashboard-financials-details-container">
           <CompanyFinancials />
           <CompanyDetails />

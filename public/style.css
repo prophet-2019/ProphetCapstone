@@ -22,27 +22,32 @@ nav a {
 
 /* Parent Container */
 .parent-container {
-  background-color: #372121;
-  padding: 0.5%;
-  color: lightgrey;
+  background-color: #1d1522;
+  display: flex;
+  flex-direction: column;
+  min-height: 85vh;
+  /* color: lightgrey; */
+  /* padding: 0.5%; */
   text-align: center;
 }
 
 .header-container {
+  background-color: #564668;
   display: flex;
-  padding: 0.5%;
-  border: 0.5px solid lightgrey;
-}
-
-.header-child-container {
   flex: 1;
-  display: flex;
-  padding: 0.5%;
-  border: 0.5px solid lightgrey;
+  /* padding: 0.÷5%; */
+  /* border: 0.5px solid lightgrey; */
+}
+.dashboard-spacer {
+  background-color: #1d1522;
+  flex: 0.0625;
+}
+.header-isLoggedIn-container {
+  /* padding: 0.5%; */
+  /* border: 0.5px solid lightgrey; */
 }
 
 .isLoggedIn-container {
-  flex: 1;
   display: flex;
   padding: 0.5%;
   border: 0.5px solid lightgrey;
@@ -73,83 +78,123 @@ nav a {
   order: 4;
 }
 
-.main-dashboard-container {
+.isLoggedOut {
+  flex: 1;
+}
+
+.portfolio-dashboard-selector-container {
+  /* background-color: #422365; */
+  flex: 4;
   display: flex;
-  padding: 0.5%;
-  border: 0.5px solid lightgrey;
-  min-height: 85vh;
+  /* padding: 0.5%; */
+  margin: 0.5%;
+  /* border: 0.5px solid lightgrey; */
+  /* min-height: 85vh; */
 }
 
 /* Portfolio Contents */
 .portfolio-container {
+  margin: 1%;
   flex: 2;
-  padding: 0.5%;
-  border: 0.5px solid lightgrey;
+  background-color: #564668;
+  border-radius: 10px;
+  max-width: 25%;
+  /* margin: 0.5%; */
+  /* border: 0.5px solid lightgrey; */
   display: flex;
   flex-direction: column;
 }
 
 .portfoliolist {
   flex: 1;
-  padding: 0.5%;
-  border: 0.5px solid lightgrey;
+  /* padding: 0.5%; */
+  /* border: 0.5px solid lightgrey; */
 }
 
 .templateAssetAllocation {
   flex: 1;
   padding: 0.5%;
-  border: 0.5px solid lightgrey;
+  /* border: 0.5px solid lightgrey; */
 }
 
 /* Dashboard Contents */
-.dashboard-container {
-  flex: 6;
-  flex-direction: column;
-  padding: 0.5%;
-  border: 0.5px solid lightgrey;
+.dashboard-jsx-wrapper {
   display: flex;
-  min-width: 0;
+  flex-direction: column;
+  min-width: 66%;
+}
+
+.chart-container {
+  margin: 1%;
+  border-radius: 10px;
+  /* flex: 6; */
+  flex-direction: column;
+  /* padding: 0.5%; */
+  /* border: 0.5px solid lightgrey; */
+  display: flex;
+  max-width: 66%;
+  /* background-color: #1d1522; */
 }
 
 .dashboard-feature {
+  background-color: #564668;
+  border-radius: 10px;
   flex: 5;
-  display: flex;
+  /* display: flex; */
   padding: 0.5%;
-  border: 0.5px solid lightgrey;
+  /* border: 0.5px solid lightgrey; */
+}
+
+.compareChart {
+  background-color: #564668;
+  border-radius: 10px;
+  flex: 5;
+  /* display: flex; */
+  padding: 0.5%;
+  /* border: 0.5px solid lightgrey; */
 }
 
 .dashboard-financials-details-container {
-  flex: 3;
+  flex: 2.5;
   display: flex;
   padding: 0.5%;
-  border: 0.5px solid lightgrey;
+  /* border: 0.5px solid lightgrey; */
 }
 
 .financials {
   flex: 1;
   padding: 0.5%;
-  border: 0.5px solid lightgrey;
+  /* border: 0.5px solid lightgrey; */
   display: flex;
 }
 
 .financialList {
+  background-color: #564668;
+  border-radius: 10px;
   flex: 1;
   max-height: 200px;
+  margin: 1%;
   overflow-y: scroll;
 }
 
 .details {
+  background-color: #564668;
+  border-radius: 10px;
   flex: 1;
   padding: 0.5%;
-  border: 0.5px solid lightgrey;
+  margin: 1%;
+  /* border: 0.5px solid lightgrey; */
 }
 
 .tickerDiv {
-  flex: 1;
+  background-color: #564668;
+  border-radius: 10px;
+  flex: 0.5;
   width: 100%;
+  align-content: center;
+  margin: 1%;
   /* padding: 0.5%; */
-
-  border: 0.5px solid lightgrey;
+  /* border: 0.5px solid lightgrey; */
 }
 
 /* Selector Component */
@@ -158,24 +203,34 @@ nav a {
   display: flex;
   flex-direction: column;
   padding: 0.5%;
-  border: 1px solid lightgrey;
+  max-width: 25%;
+  /* border: 1px solid lightgrey; */
 }
 
 .search {
-  /* flex: 1; */
+  background-color: #564668;
+  border-radius: 10px;
+  flex: 1;
+  margin: 1%;
   padding: 0.5%;
-  border: 1px solid lightgrey;
+  /* border: 1px solid lightgrey; */
 }
 .companyPrices {
-  flex: 1;
+  background-color: #564668;
+  border-radius: 10px;
+  flex: 2;
+  margin: 1%;
   padding: 0.5%;
-  border: 1px solid lightgrey;
+  /* border: 1px solid lightgrey; */
 }
 
 .chartSelections {
+  background-color: #564668;
+  border-radius: 10px;
   flex: 1;
+  margin: 1%;
   padding: 0.5%;
-  border: 1px solid lightgrey;
+  /* border: 1px solid lightgrey; */
 }
 
 /* react-vis css */

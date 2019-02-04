@@ -6,12 +6,12 @@ import {Link} from 'react-router-dom'
 import {logout} from '../../store'
 
 const Header = ({handleClick, isLoggedIn}) => (
-  <div className="header-child-container">
-    <nav>
-      {isLoggedIn ? (
+  <div className="header-isLoggedIn-container">
+    {/* <nav> */}
+    {/* {isLoggedIn ? (
         <div className="isLoggedIn-container">
           {/* The header will show these links after you log in */}
-          <div className="header-Logo">
+    {/* <div className="header-Logo">
             <img
               src="https://ih1.redbubble.net/image.697159210.3375/st%2Csmall%2C215x235-pad%2C210x230%2Cf8f8f8.lite-1u2.jpg"
               as="prophet-logo"
@@ -33,13 +33,13 @@ const Header = ({handleClick, isLoggedIn}) => (
           </div>
         </div>
       ) : (
-        <div>
+        <div className="isLoggedOut">
           {/* The header will show these links before you log in */}
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/login">Login</Link>
-        </div>
-      )}
-    </nav>
+    {/* <Link to="/signup">Sign Up</Link> */}
+    {/* <Link to="/login">Login</Link> */}
+    {/* </div> */}
+    {/* )}  */}
+    {/* </nav>  */}
   </div>
 )
 

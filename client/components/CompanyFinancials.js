@@ -7,7 +7,7 @@ class CompanyData extends Component {
   constructor(props) {
     super(props)
   }
-  
+
   componentDidMount() {}
 
   render() {
@@ -19,7 +19,7 @@ class CompanyData extends Component {
       [valuesFromFinancialReport]
     ]
     return (
-      <div>
+      <div className="companyFinancials-container">
         <h5>Data From Most Recent Financial Report</h5>
         <div className="financialList">
           <table>
@@ -34,7 +34,9 @@ class CompanyData extends Component {
                   )
                 })}
               </tbody>
-            ) : null}
+            ) : (
+              <div className="financialList" />
+            )}
           </table>
         </div>
       </div>
