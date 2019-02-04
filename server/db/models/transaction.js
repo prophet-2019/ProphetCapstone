@@ -87,11 +87,12 @@ Transaction.afterCreate(async transaction => {
         }
       }
     )
+    console.log('AMOUNTS', portToUpdate.quantity, transCost)
     await Portfolio.update(
       {
-        quantity: portToUpdate.quantity - transaction.transCost
+        quantity: findUsersMoneyItem.quantity - transCost
       },
-      {where: {userId: findUsersMoneyItem.userId}}
+      {where: {userId: findUsersMoneyItem.userId, ticker: 'MONEY'}}
     )
   } else if (portToUpdate && transaction.transactionType === 'sell') {
     await Portfolio.update(
@@ -109,9 +110,9 @@ Transaction.afterCreate(async transaction => {
     )
     await Portfolio.update(
       {
-        quantity: portToUpdate.quantity + transCost
+        quantity: findUsersMoneyItem.quantity + transCost
       },
-      {where: {userId: findUsersMoneyItem.userId}}
+      {where: {userId: findUsersMoneyItem.userId, ticker: 'MONEY'}}
     )
   } else if (!portToUpdate && transaction.transactionType === 'buy') {
     await Portfolio.create({
@@ -124,7 +125,7 @@ Transaction.afterCreate(async transaction => {
       {
         quantity: findUsersMoneyItem.quantity - transCost
       },
-      {where: {userId: findUsersMoneyItem.userId}}
+      {where: {userId: findUsersMoneyItem.userId, ticker: 'MONEY'}}
     )
   } else {
     await Portfolio.create({
@@ -137,7 +138,7 @@ Transaction.afterCreate(async transaction => {
       {
         quantity: findUsersMoneyItem.quantity + transCost
       },
-      {where: {userId: findUsersMoneyItem.userId}}
+      {where: {userId: findUsersMoneyItem.userId, ticker: 'MONEY'}}
     )
   }
 })
