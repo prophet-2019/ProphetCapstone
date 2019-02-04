@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Navbar} from './components'
 import Routes from './routes'
 import {getPriceFromAPI} from './store/ticker'
 import {connect} from 'react-redux'
@@ -12,7 +11,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <Routes />
       </div>
     )

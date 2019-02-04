@@ -1,30 +1,14 @@
-import React, {Component, useState} from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {
-  Login,
-  Signup,
-  UserHome,
-  HomePageChart,
-  Company,
-  CompareChart,
-  CompanyFinancials,
-  BuySellPage,
-  Ticker
-} from './components'
+import {Login, Signup} from './components'
 import {me} from './store'
 import ParentContainer from './components/Template/ParentContainer'
-import PortfolioDataTable from './components/PortfolioDataTable'
+
 /**
  * COMPONENT
  */
-
-const Testing = () => (
-  <div style={{width: '300px'}}>
-    <Ticker />
-  </div>
-)
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
@@ -36,20 +20,13 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/container" component={ParentContainer} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/" component={Signup} />
         <Route path="/signup" component={Signup} />
-        <Route path="/chart" component={HomePageChart} />
-        <Route path="/company" component={Company} />
-        <Route path="/buysell" component={BuySellPage} />
-        <Route path="/financials" component={CompanyFinancials} />
-        <Route path="/testing" component={Testing} />
+        <Route path="/login" component={Login} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/container" component={ParentContainer} />
-            <Route path="/home" component={UserHome} />
-            <Route path="/compare" component={CompareChart} />
+            <Route path="/home" component={ParentContainer} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
