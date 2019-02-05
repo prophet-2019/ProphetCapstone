@@ -561,7 +561,7 @@ table {
   font-family: subway-ticker;
   padding: 0 24px;
   font-size: 24px;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 .ticker__item--details {
@@ -578,7 +578,7 @@ table {
 .ticker__item--symbol,
 .stock-card__symbol {
   font-family: subway-ticker;
-  color: navy;
+  color: purple;
   font-weight: 600;
 }
 

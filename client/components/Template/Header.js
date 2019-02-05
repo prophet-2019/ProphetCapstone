@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Button, Segment} from 'semantic-ui-react'
+// import ProphetLogo from
 import HeadlineComponent from './HeadlineComponent'
 import {Link} from 'react-router-dom'
 import {logout} from '../../store'
@@ -9,12 +10,7 @@ import {logout} from '../../store'
 const Header = ({handleClick}) => (
   <div className="header-container">
     <div className="header-Logo">
-      <img
-        src="https://ih1.redbubble.net/image.697159210.3375/st%2Csmall%2C215x235-pad%2C210x230%2Cf8f8f8.lite-1u2.jpg"
-        as="prophet-logo"
-        height="50"
-        width="50"
-      />
+      <img src="/Prophet_Logo.png" as="prophet-logo" height="50" width="50" />
     </div>
     <Segment inverted id="header-logout">
       <Button

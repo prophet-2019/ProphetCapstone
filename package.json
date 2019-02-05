@@ -1,7 +1,7 @@
 {
   "name": "prophet-app",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "Let's teach you how to buy and sell stocks!",
   "engines": {
     "node": ">= 7.0.0"
   },
