@@ -16,6 +16,7 @@ import {
   VerticalBarSeries,
   RadialChart
 } from 'react-vis'
+import {Table} from 'semantic-ui-react'
 
 class PortfolioDataTable extends Component {
   constructor(props) {
@@ -53,29 +54,26 @@ class PortfolioDataTable extends Component {
 
   render() {
     return (
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Ticker</th>
-              <th>Quantity</th>
-              <th>Current Price</th>
-              <th>Cost Basis</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.portfolio.map((val, idx) => {
-              return (
-                <tr key={val[0]}>
-                  <td>{val[0]}</td>
-                  <td>{val[2]}</td>
-                  <td>{val[1]}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </div>
+      <Table striped>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Ticker</Table.HeaderCell>
+            <Table.HeaderCell>Quantity</Table.HeaderCell>
+            <Table.HeaderCell>CurrentPrice</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {this.props.portfolio.map((val, idx) => {
+            return (
+              <Table.Row key={val[0]}>
+                <Table.Cell>{val[0]}</Table.Cell>
+                <Table.Cell textAlign="center">{val[2]}</Table.Cell>
+                <Table.Cell>${val[1].toFixed(3)}</Table.Cell>
+              </Table.Row>
+            )
+          })}
+        </Table.Body>
+      </Table>
     )
   }
 }

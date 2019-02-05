@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
+import Ticker from '../Ticker'
 
 export default class CompanyDetails extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ export default class CompanyDetails extends Component {
   render() {
     return (
       <div className="details">
-        <h4> Company Details Component </h4>
+        <h5>Company Details</h5>
       </div>
     )
   }

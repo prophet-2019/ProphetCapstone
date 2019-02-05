@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {getPortfolioData} from '../store/companyDetailsTable'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
+import {Table} from 'semantic-ui-react'
 
 class CompanyData extends Component {
   constructor(props) {
@@ -21,24 +22,22 @@ class CompanyData extends Component {
     return (
       <div className="companyFinancials-container">
         <h5>Data From Most Recent Financial Report</h5>
-        <div className="financialList">
-          <table>
-            {this.props.ticker ? (
-              <tbody>
+        {this.props.ticker ? (
+          <div className="financialList">
+            <Table striped>
+              <Table.Body>
                 {labelsOfFinancialReport.map((val, idx) => {
                   return (
-                    <tr key={idx}>
-                      <td>{labelsOfFinancialReport[idx]}</td>
-                      <td>{valuesFromFinancialReport[idx]}</td>
-                    </tr>
+                    <Table.Row key={idx}>
+                      <Table.Cell>{labelsOfFinancialReport[idx]}</Table.Cell>
+                      <Table.Cell>{valuesFromFinancialReport[idx]}</Table.Cell>
+                    </Table.Row>
                   )
                 })}
-              </tbody>
-            ) : (
-              <div className="financialList" />
-            )}
-          </table>
-        </div>
+              </Table.Body>
+            </Table>
+          </div>
+        ) : null}
       </div>
     )
   }

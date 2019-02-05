@@ -63,7 +63,7 @@ class AssetAllocation extends Component {
     }
     return (
       <div>
-        <h3>Portfolio Allocation</h3>
+        <h4>Portfolio Allocation</h4>
         <RadialChart
           animation
           className="templateAssetAllocation"
