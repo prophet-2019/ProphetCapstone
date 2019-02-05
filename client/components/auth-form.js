@@ -12,11 +12,11 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div id="authform">
       <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
         <Grid.Column style={{maxWidth: 450}}>
-          <Header as="h3" color="teal" textAlign="center" />
-          <Header as="h2" color="teal" textAlign="center">
+          <Header as="h3" textAlign="center" />
+          <Header as="h2" className="ui pink header" textAlign="center">
             {displayName} to your account
           </Header>
           <Form size="large" onSubmit={handleSubmit} name={name}>
@@ -39,12 +39,25 @@ const AuthForm = props => {
                 iconPosition="left"
                 placeholder="Password"
               />
-              <Button color="teal" fluid size="large" primary type="submit">
+              <Button
+                id="login-button"
+                color="purple"
+                fluid
+                size="large"
+                primary
+                type="submit"
+              >
                 {displayName}
               </Button>
             </Segment>
-            <Link to="/login"> Login | </Link>
-            <Link to="/signup"> Sign up </Link>
+            <Link to="/login" id="login-link">
+              {' '}
+              Login |{' '}
+            </Link>
+            <Link to="/signup" id="login-signup">
+              {' '}
+              Sign up{' '}
+            </Link>
           </Form>
         </Grid.Column>
       </Grid>
