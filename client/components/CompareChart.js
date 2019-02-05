@@ -26,13 +26,8 @@ class CompareChart extends Component {
     }
   }
 
-  async componentDidMount() {
-    console.log('props on Compare Chart mount: \n\n\n\n', this.props)
-  }
-
   render() {
     const {series} = this.props
-    console.log('our mounted props are: \n\n\n\n\n', this.props)
 
     return (
       <div>

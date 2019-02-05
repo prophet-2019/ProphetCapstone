@@ -32,7 +32,6 @@ class AssetAllocation extends Component {
     const callBack = (func, userId) => {
       func(userId)
     }
-    console.log('userId on component', this.props.userId)
     this.props.getPortfolio(this.state.currentUser)
     const intervalId = setInterval(() => {
       callBack(this.props.getPortfolio, this.props.userId)
@@ -55,7 +54,6 @@ class AssetAllocation extends Component {
     if (this.props.portfolio.length) {
       myData = this.props.portfolio.reduce((accum, val) => {
         accum.push({angle: val[1]})
-        console.log('accum', accum)
         return accum
       }, [])
     } else {
@@ -94,38 +92,3 @@ const mapDispatchToProps = dispatch => {
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(AssetAllocation)
 )
-
-// componentDidUpdate(prevProps, prevState) {
-//   // Typical usage (don't forget to compare props):
-//   //
-//   //Thunk returns an object be sure to just grab price --> this is erroring out
-//   //
-//   // const portArr = Object.keys(this.state.portfolio);
-//   // console.log("portArr", portArr)
-//   // const portVal = portArr.map(async (val) => {
-//   //   console.log("val", val)
-//   //   await this.props.getStockPriceForAssetAllocation(val);
-//   // })
-//   // const isLoaded = prevState.portValues[0] === undefined
-//   // console.log('Prev', isLoaded, 'State', this.state.portValues[0])
-//   // const realTimePricePort = this.props.portfolioData.reduce(async (accum, val) => {
-//   //   if (val.ticker !== 'MONEY') {
-//   //     let total = await this.props.getStockPriceForAssetAllocation(val.ticker)
-//   //     accum.push([
-//   //       val.ticker,
-//   //       val.quantity,
-//   //       // this.props.getStockPriceForAssetAllocation(val.ticker),
-//   //       total
-//   //     ])
-//   //   } else {
-//   //     accum.push([val.ticker, val.quantity, val.quantity])
-//   //   }
-//   //   return accum
-//   // }, [])
-//   if (this.props.portfolioData !== prevProps.portfolioData) {
-//     this.setState({
-//       portfolio: this.props.portfolioData,
-//       // portValues: realTimePricePort
-//     })
-//   }
-// }

@@ -12,7 +12,6 @@ const gotPortfolio = portfolio => ({
 })
 
 export const getPortfolio = userId => {
-  console.log(userId)
   return async dispatch => {
     try {
       const {data: portfolioValues} = await axios.get(
