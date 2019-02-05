@@ -14,9 +14,8 @@ export default class ParentContainer extends Component {
   render() {
     return (
       <div className="parent-container">
-        <div className="header-container">
-          <Header />
-        </div>
+        <Header />
+
         <div className="portfolio-dashboard-selector-container">
           <UserPortfolio />
 
