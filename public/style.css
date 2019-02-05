@@ -215,6 +215,30 @@ nav a {
   padding: 0.5%;
   /* border: 1px solid lightgrey; */
 }
+
+#search-button {
+  background-color: #564668;
+}
+
+#search-button {
+  background-color: #564668;
+}
+
+/* Buy / Sell buttons */
+#buy-sell {
+  background-color: #564668;
+}
+
+/* Home Page Chart toggle chart buttons */
+#toggle-chart-buttons {
+  background-color: #564668;
+}
+
+/* Chart Selections toggle buttons */
+#chart-selections-buttons {
+  background-color: #564668;
+}
+
 .companyPrices {
   background-color: #564668;
   border-radius: 10px;

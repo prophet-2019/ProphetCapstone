@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import {withStyles} from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
+import {Button, Segment} from 'semantic-ui-react'
 import {revealCompare, singleCompany} from '../../store/companyDetailsTable'
 
 const styles = theme => ({
@@ -34,30 +34,27 @@ class ChartSelections extends Component {
     const {classes} = this.props
     return (
       <div className="chartSelections">
-        <Button
-          variant="contained"
-          className={classes.button}
-          onClick={this.toggleSingle}
-        >
-          Closing Prices
-        </Button>
+        <Segment inverted id="chart-selections-buttons">
+          <Button
+            inverted
+            color="purple"
+            variant="contained"
+            className={classes.button}
+            onClick={this.toggleSingle}
+          >
+            Closing Prices
+          </Button>
 
-        <Button
-          variant="contained"
-          onClick={this.toggleCompare}
-          className={classes.button}
-        >
-          Compare Two Equities
-        </Button>
-
-        <Button
-          variant="contained"
-          color="secondary"
-          disabled
-          className={classes.button}
-        >
-          Disabled
-        </Button>
+          <Button
+            inverted
+            color="purple"
+            variant="contained"
+            onClick={this.toggleCompare}
+            className={classes.button}
+          >
+            Compare Two Equities
+          </Button>
+        </Segment>
       </div>
     )
   }
