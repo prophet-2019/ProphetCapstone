@@ -6,7 +6,8 @@ import {
   YAxis,
   ChartLabel,
   HorizontalGridLines,
-  VerticalGridlines
+  VerticalGridlines,
+  Crosshair
 } from 'react-vis'
 import {getStockPrice} from '../store/chart'
 import {connect} from 'react-redux'
@@ -17,7 +18,9 @@ class HomePageChart extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      timeFrame: 'ytd'
+      timeFrame: 'ytd',
+      currentEquity: 'BRK.A',
+      crosshairValues: []
     }
     this.toggleChart = this.toggleChart.bind(this)
   }
@@ -45,7 +48,14 @@ class HomePageChart extends Component {
       <div>
         {histPrices.length > 0 ? (
           <div>
-            <XYPlot width={700} height={300} getX={d => d[0]} getY={d => d[1]}>
+            <h1>{this.props.ticker}</h1>
+            <XYPlot
+              width={700}
+              height={300}
+              onMouseOver={() => this.setState({crosshairValues: []})}
+              getX={d => d[0]}
+              getY={d => d[1]}
+            >
               <XAxis />
               <YAxis />
               <ChartLabel
@@ -73,6 +83,7 @@ class HomePageChart extends Component {
                 curve={curveCatmullRom.alpha(0.5)}
                 dontCheckIfEmpty={true}
               />
+              <Crosshair values={this.state.crosshairValues} />
             </XYPlot>
             <button
               onClick={() => this.toggleChart('1d')}
