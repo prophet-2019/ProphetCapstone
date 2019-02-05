@@ -47,7 +47,6 @@ class AssetAllocation extends Component {
       portfolio: this.props.portfolio,
       currentUser: this.props.userId
     })
-    console.log('We mounted!')
     await this.intervalFunc()
   }
 

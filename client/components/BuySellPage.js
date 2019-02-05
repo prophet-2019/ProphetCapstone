@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getStockPriceToBuy, getStockPriceToSell} from '../store/portfolio'
-
+import {Button, Segment} from 'semantic-ui-react'
 class BuySellPage extends Component {
   constructor(props) {
     super(props)
@@ -48,12 +48,26 @@ class BuySellPage extends Component {
           value={this.state.quantity}
           onChange={evt => this.setState({quantity: evt.target.value})}
         />
-        <button type="submit" onClick={this.handleSubmitBuy}>
-          Buy
-        </button>
-        <button type="submit" onClick={this.handleSubmitSell}>
-          Sell
-        </button>
+        <Segment inverted id="buy-sell">
+          <Button
+            inverted
+            color="purple"
+            type="submit"
+            onClick={this.handleSubmitBuy}
+          >
+            Buy
+          </Button>
+        </Segment>
+        <Segment inverted id="buy-sell">
+          <Button
+            inverted
+            color="purple"
+            type="submit"
+            onClick={this.handleSubmitSell}
+          >
+            Sell
+          </Button>
+        </Segment>
       </div>
     )
   }

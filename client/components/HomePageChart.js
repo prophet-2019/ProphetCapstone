@@ -3,7 +3,7 @@ import {XYPlot, LineSeries} from 'react-vis'
 import {getStockPrice} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-
+import {Button, Segment} from 'semantic-ui-react'
 class HomePageChart extends Component {
   constructor(props) {
     super(props)
@@ -44,54 +44,72 @@ class HomePageChart extends Component {
                 dontCheckIfEmpty={true}
               />
             </XYPlot>
-            <button
-              onClick={() => this.toggleChart('1d')}
-              disabled={this.state.timeFrame === '1d'}
-            >
-              1D
-            </button>
-            <button
-              onClick={() => this.toggleChart('1m')}
-              disabled={this.state.timeFrame === '1m'}
-            >
-              1M
-            </button>
-            <button
-              onClick={() => this.toggleChart('3m')}
-              disabled={this.state.timeFrame === '3m'}
-            >
-              3M
-            </button>
-            <button
-              onClick={() => this.toggleChart('6m')}
-              disabled={this.state.timeFrame === '6m'}
-            >
-              6M
-            </button>
-            <button
-              onClick={() => this.toggleChart('ytd')}
-              disabled={this.state.timeFrame === 'ytd'}
-            >
-              YTD
-            </button>
-            <button
-              onClick={() => this.toggleChart('1y')}
-              disabled={this.state.timeFrame === '1y'}
-            >
-              1Y
-            </button>
-            <button
-              onClick={() => this.toggleChart('2y')}
-              disabled={this.state.timeFrame === '2y'}
-            >
-              2Y
-            </button>
-            <button
-              onClick={() => this.toggleChart('5y')}
-              disabled={this.state.timeFrame === '5y'}
-            >
-              5Y
-            </button>
+            <Segment inverted id="toggle-chart-buttons">
+              <Button
+                inverted
+                color="purple"
+                onClick={() => this.toggleChart('1d')}
+                disabled={this.state.timeFrame === '1d'}
+              >
+                1D
+              </Button>
+              <Button
+                inverted
+                color="purple"
+                onClick={() => this.toggleChart('1m')}
+                disabled={this.state.timeFrame === '1m'}
+              >
+                1M
+              </Button>
+              <Button
+                inverted
+                color="purple"
+                onClick={() => this.toggleChart('3m')}
+                disabled={this.state.timeFrame === '3m'}
+              >
+                3M
+              </Button>
+              <Button
+                inverted
+                color="purple"
+                onClick={() => this.toggleChart('6m')}
+                disabled={this.state.timeFrame === '6m'}
+              >
+                6M
+              </Button>
+              <Button
+                inverted
+                color="purple"
+                onClick={() => this.toggleChart('ytd')}
+                disabled={this.state.timeFrame === 'ytd'}
+              >
+                YTD
+              </Button>
+              <Button
+                inverted
+                color="purple"
+                onClick={() => this.toggleChart('1y')}
+                disabled={this.state.timeFrame === '1y'}
+              >
+                1Y
+              </Button>
+              <Button
+                inverted
+                color="purple"
+                onClick={() => this.toggleChart('2y')}
+                disabled={this.state.timeFrame === '2y'}
+              >
+                2Y
+              </Button>
+              <Button
+                inverted
+                color="purple"
+                onClick={() => this.toggleChart('5y')}
+                disabled={this.state.timeFrame === '5y'}
+              >
+                5Y
+              </Button>
+            </Segment>
           </div>
         ) : null}
       </div>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
+import {Button, Segment} from 'semantic-ui-react'
 import {getStockPrice} from '../../store/chart'
 import {getComparedStockPrice} from '../../store/compareChart'
 
@@ -71,7 +72,17 @@ class Search extends Component {
                 onChange={this.handleChange2}
               />
             </label>
-            <input type="submit" value="Submit" onClick={this.handleSubmit2} />
+            <Segment inverted id="search-button">
+              <Button
+                inverted
+                color="purple"
+                type="submit"
+                value="Submit"
+                onClick={this.handleSubmit2}
+              >
+                Submit
+              </Button>
+            </Segment>
           </div>
         ) : (
           <div>
@@ -83,7 +94,17 @@ class Search extends Component {
                 onChange={this.handleChange}
               />
             </label>
-            <input type="submit" value="Submit" onClick={this.handleSubmit} />
+            <Segment inverted id="search-button">
+              <Button
+                inverted
+                color="purple"
+                type="submit"
+                value="Submit"
+                onClick={this.handleSubmit}
+              >
+                Submit
+              </Button>
+            </Segment>
           </div>
         )}
       </div>
