@@ -3,6 +3,8 @@ import Routes from './routes'
 import {getPriceFromAPI} from './store/ticker'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
+import Particles from 'react-particles-js'
+import particleConfig from './particle'
 
 class App extends Component {
   componentDidMount() {
@@ -11,6 +13,44 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Particles
+          className="particles-js"
+          params={{
+            particles: {
+              number: {
+                value: 600,
+                density: {
+                  enable: true
+                }
+              },
+              color: {
+                value: '#9370DB'
+              },
+              size: {
+                value: 2,
+                random: true
+              },
+              shape: {
+                type: 'cirlce',
+                stroke: {
+                  width: 1
+                }
+              },
+              opacity: {
+                value: 70
+              },
+              move: {
+                direction: 'top',
+                out_mode: 'out',
+                speed: 40
+              },
+              line_linked: {
+                enable: true,
+                color: '4B0082'
+              }
+            }
+          }}
+        />
         <Routes />
       </div>
     )
