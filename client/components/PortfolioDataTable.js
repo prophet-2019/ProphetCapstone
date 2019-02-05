@@ -33,7 +33,6 @@ class PortfolioDataTable extends Component {
     const callBack = (func, userId) => {
       func(userId)
     }
-    console.log('userId on component', this.props.userId)
     this.props.getPortfolio(this.state.currentUser)
     const intervalId = setInterval(() => {
       callBack(this.props.getPortfolio, this.props.userId)
@@ -48,7 +47,6 @@ class PortfolioDataTable extends Component {
       portfolio: this.props.portfolio,
       currentUser: this.props.userId
     })
-    console.log('We mounted!')
     await this.intervalFunc()
   }
 
