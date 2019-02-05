@@ -17,7 +17,8 @@ class HomePageChart extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      timeFrame: 'ytd'
+      timeFrame: 'ytd',
+      currentEquity: 'BRK.A'
     }
     this.toggleChart = this.toggleChart.bind(this)
   }
@@ -45,6 +46,7 @@ class HomePageChart extends Component {
       <div>
         {histPrices.length > 0 ? (
           <div>
+            <h1>{this.props.ticker}</h1>
             <XYPlot width={700} height={300} getX={d => d[0]} getY={d => d[1]}>
               <XAxis />
               <YAxis />
