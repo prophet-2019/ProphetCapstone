@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Button, Segment} from 'semantic-ui-react'
-import WelcomeModal from './WelcomeModal'
+import ModalTutorial from './ModalTutorial'
 import {Link} from 'react-router-dom'
 import {logout} from '../../store'
 
@@ -11,7 +11,7 @@ const Header = ({handleClick}) => (
     <div className="header-Logo">
       <img src="/ProphetLogo300.svg" as="prophet-logo" height="50" width="50" />
     </div>
-    <WelcomeModal />
+    <ModalTutorial />
     <Segment inverted id="header-logout">
       <Button
         inverted
