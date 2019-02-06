@@ -34,40 +34,41 @@ class BuySellPage extends Component {
     const initTick = this.props.ticker ? this.props.ticker : this.state.ticker
     return (
       <div>
-        <label>Stock Ticker</label>
-        <input
-          required
-          name="ticker"
-          value={initTick}
-          onChange={evt => this.setState({ticker: evt.target.value})}
-        />
-        <label>Quantity</label>
-        <input
-          required
-          name="quantity"
-          value={this.state.quantity}
-          onChange={evt => this.setState({quantity: evt.target.value})}
-        />
-        <Segment inverted id="buy-sell">
-          <Button
-            inverted
-            color="purple"
-            type="submit"
-            onClick={this.handleSubmitBuy}
-          >
-            Buy
-          </Button>
-        </Segment>
-        <Segment inverted id="buy-sell">
-          <Button
-            inverted
-            color="purple"
-            type="submit"
-            onClick={this.handleSubmitSell}
-          >
-            Sell
-          </Button>
-        </Segment>
+        <h5>Stock Ticker</h5>
+        <div className="buy-sell-ticker">
+          <h3>{this.props.ticker}</h3>
+        </div>
+        <div>
+          <label>Quantity: </label>
+          <input
+            required
+            name="quantity"
+            value={this.state.quantity}
+            onChange={evt => this.setState({quantity: evt.target.value})}
+          />
+        </div>
+        <div className="companyPrices-btns">
+          <Segment inverted id="buy">
+            <Button
+              inverted
+              color="purple"
+              type="submit"
+              onClick={this.handleSubmitBuy}
+            >
+              Buy
+            </Button>
+          </Segment>
+          <Segment inverted id="sell">
+            <Button
+              inverted
+              color="purple"
+              type="submit"
+              onClick={this.handleSubmitSell}
+            >
+              Sell
+            </Button>
+          </Segment>
+        </div>
       </div>
     )
   }

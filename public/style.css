@@ -124,6 +124,7 @@ h2 {
   flex: 1;
   margin: 1%;
 }
+
 .dashboard-spacer {
   background-color: #1d1522;
   flex: 0.0625;
@@ -143,12 +144,22 @@ h2 {
   align-items: center;
   flex: 1;
   padding: 0.5%;
-  order: 2;
+  order: 3;
 }
 
-/* #logout-button {
+.ui.Modal.tutorial.mission {
+  color: pink;
+}
+
+#modal-btn {
   background-color: #564668;
-} */
+  order: 2;
+  color: #dfd3e2;
+  font-size: 24px;
+}
+#modal-btn.clickable:hover {
+  cursor: pointer;
+}
 
 .portfolio-dashboard-selector-container {
   flex: 4;
@@ -258,14 +269,12 @@ table {
 }
 
 .tickerDiv {
-  background-color: #564668;
+  background-color: #ffffff;
   border-radius: 10px;
   flex: 0.5;
   width: 100%;
   align-content: center;
   margin: 0.5%;
-  /* padding: 0.5%; */
-  /* border: 0.5px solid lightgrey; */
 }
 
 /* Selector Component */
@@ -284,7 +293,6 @@ table {
   flex: 1;
   margin: 1%;
   padding: 0.5%;
-  /* border: 1px solid lightgrey; */
 }
 
 #search-button {
@@ -292,7 +300,16 @@ table {
 }
 
 /* Buy / Sell buttons */
-#buy-sell {
+.buy-sell-ticker {
+  position: relative;
+  bottom: 10px;
+}
+
+#buy {
+  background-color: #564668;
+}
+
+#sell {
   background-color: #564668;
 }
 
@@ -312,7 +329,6 @@ table {
   flex: 2;
   margin: 1%;
   padding: 0.5%;
-  /* border: 1px solid lightgrey; */
 }
 
 .chartSelections {
@@ -321,7 +337,6 @@ table {
   flex: 1;
   margin: 1%;
   padding: 0.5%;
-  /* border: 1px solid lightgrey; */
 }
 
 /* react-vis css */
@@ -617,7 +632,7 @@ table {
   width: 100%;
   overflow: hidden;
   height: 48px;
-  background-color: #ccc;
+  /* background-color: #ccc; */
   padding-left: 100%;
 }
 
