@@ -18,7 +18,7 @@ class App extends Component {
           params={{
             particles: {
               number: {
-                value: 600,
+                value: 350,
                 density: {
                   enable: true
                 }
@@ -42,7 +42,7 @@ class App extends Component {
               move: {
                 direction: 'top',
                 out_mode: 'out',
-                speed: 10
+                speed: 1
               },
               line_linked: {
                 enable: true,

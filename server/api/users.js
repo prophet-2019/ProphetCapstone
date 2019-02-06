@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Transaction, Stock} = require('../db/models')
+const {User, Transaction, Stock, Portfolio} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -58,9 +58,6 @@ router.put('/:userId/buy', async (req, res, next) => {
   let stockTicker = req.body.iexRealTimeQuote.symbol
   let realTimeQuote = req.body.iexRealTimeQuote.latestPrice
   let quantity = +req.body.orderDetails.quantity
-  // let stockTicker = 'GE'
-  // let realTimeQuote = 50
-  // let quantity = 2
   try {
     // check to see if the stock exists in Stock table.  If not, create it.
     await Stock.findOrCreate({
@@ -72,18 +69,19 @@ router.put('/:userId/buy', async (req, res, next) => {
     const user = await User.findById(+req.params.userId)
     let cashValue = realTimeQuote * quantity
     if (user.dataValues.cash >= cashValue) {
-      const buy = await Transaction.createTrade(
+      await Transaction.createTrade(
         stockTicker,
         realTimeQuote,
         quantity,
         'buy',
         req.params.userId
       )
-      res.send(buy)
     } else {
       throw new Error('Not enough $$')
     }
     await user.cashUpdate(req.params.userId, cashValue)
+    const userPortfolio = await Portfolio.getPortfolio(req.params.userId)
+    res.send(userPortfolio)
   } catch (err) {
     next(err)
   }
@@ -115,7 +113,7 @@ router.put('/:userId/sell', async (req, res, next) => {
     }, 0)
     //create sell transaction
     if (howMuch >= quantity) {
-      const sellSellSell = await Transaction.createTrade(
+      await Transaction.createTrade(
         stockTicker,
         realTimeQuote,
         quantity,
@@ -125,7 +123,8 @@ router.put('/:userId/sell', async (req, res, next) => {
       const findUser = await User.findById(req.params.userId)
       //make sure to User.findById AND let cashValue to negative
       await findUser.cashUpdate(req.params.userId, cashValue)
-      res.send(sellSellSell)
+      const userPortfolio = await Portfolio.getPortfolio(req.params.userId)
+      res.send(userPortfolio)
     } else {
       throw new Error("you don't own enough!")
     }

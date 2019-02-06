@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getStockPriceToBuy, getStockPriceToSell} from '../store/portfolio'
+import {getStockPriceToBuy, getStockPriceToSell} from '../store/assetallocation'
 import {Button, Segment} from 'semantic-ui-react'
 class BuySellPage extends Component {
   constructor(props) {

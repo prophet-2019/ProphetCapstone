@@ -48,8 +48,24 @@ class PortfolioDataTable extends Component {
       currentUser: this.props.userId
     })
     await this.intervalFunc()
+    this.props.getPortfolio(this.props.userId)
   }
-
+  componentDidUpdate(prevProps) {
+    //conditional to check prevProps against current Props
+    const quantOfPrev = prevProps.portfolio.reduce((accum, val) => {
+      accum += val[2]
+      return accum
+    }, 0)
+    const quantOfCurrent = this.props.portfolio.reduce((accum, val) => {
+      accum += val[2]
+      return accum
+    }, 0)
+    if (quantOfPrev !== quantOfCurrent) {
+      console.log('did we run\n\n\n\n', prevProps)
+      //dispatch getPortfolio
+      this.props.getPortfolio(this.props.userId)
+    }
+  }
   render() {
     return (
       <Table striped>
