@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-import {Button, Form, Grid, Header, Segment} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 /**
@@ -12,55 +11,58 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div id="authform">
-      <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
-        <Grid.Column style={{maxWidth: 450}}>
-          <Header as="h3" textAlign="center" />
-          <Header as="h2" className="ui pink header" textAlign="center">
-            {displayName} to your account
-          </Header>
-          <Form size="large" onSubmit={handleSubmit} name={name}>
-            <Segment stacked>
-              <Form.Input
+    <div id="form">
+      <div className="form-header">
+        <h1 className="welcome" align="center">
+          {' '}
+          Welcome to Prophet{' '}
+        </h1>
+        <h2 className="header" align="center">
+          {displayName} to your account
+        </h2>
+        <div className="form-container">
+          <form size="large" onSubmit={handleSubmit} name={name}>
+            <div className="input-group">
+              <label label="E-mail">
+                <i className="fa fa-envelope-o fa-fw" />
+              </label>
+              <input
                 name="email"
                 label="email"
                 type="text"
-                fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="E-mail address"
+                placeholder="Enter e-mail address"
               />
-              <Form.Input
+            </div>
+            <div className="input-group">
+              <label label="Password">
+                <i className="fa fa-key fa-fw" />
+              </label>
+              <input
                 name="password"
                 label="password"
                 type="password"
-                fluid
-                icon="lock"
-                iconPosition="left"
-                placeholder="Password"
+                placeholder="Enter password"
               />
-              <Button
-                id="login-button"
-                color="purple"
-                fluid
-                size="large"
-                primary
-                type="submit"
-              >
-                {displayName}
-              </Button>
-            </Segment>
-            <Link to="/login" id="login-link">
-              {' '}
-              Login |{' '}
-            </Link>
-            <Link to="/signup" id="login-signup">
-              {' '}
-              Sign up{' '}
-            </Link>
-          </Form>
-        </Grid.Column>
-      </Grid>
+            </div>
+            <button
+              id="login-button"
+              color="purple"
+              fluid
+              size="large"
+              primary
+              type="submit"
+            >
+              {displayName}
+            </button>
+          </form>
+        </div>
+        <Link to="/login" id="login-link">
+          {`Already signed up? | `}
+        </Link>
+        <Link to="/signup" id="login-signup">
+          New user?
+        </Link>
+      </div>
       {error && error.response && <div> {error.response.data} </div>}
       {/* <a href="/auth/google">{displayName} with Google</a> */}
     </div>
