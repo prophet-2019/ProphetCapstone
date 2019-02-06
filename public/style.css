@@ -1,8 +1,6 @@
 @font-face {
   font-family: subway-ticker;
   src: url('subway-ticker.ttf') format('truetype');
-  font-family: avenir-next-condensed;
-  src: url('Avenir-Next-Condensed.ttc') format('truetype');
 }
 
 body {
@@ -26,6 +24,12 @@ a {
 }
 
 /* login form */
+
+.btn:hover {
+  background-color: #e03997;
+  color: white;
+}
+
 #login-button {
   background-color: purple;
 }

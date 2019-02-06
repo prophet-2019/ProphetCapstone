@@ -46,11 +46,13 @@ const AuthForm = props => {
             </div>
             <button
               id="login-button"
+              className="btn"
               color="purple"
               fluid
               size="large"
               primary
               type="submit"
+              onClick={handleSubmit}
             >
               {displayName}
             </button>
