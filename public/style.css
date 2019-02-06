@@ -118,6 +118,11 @@ h2 {
   flex: 1;
   margin: 1%;
 }
+
+.ui.modal {
+  .modal();
+}
+
 .dashboard-spacer {
   background-color: #1d1522;
   flex: 0.0625;
