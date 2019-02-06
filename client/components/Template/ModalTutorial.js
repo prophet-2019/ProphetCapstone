@@ -5,7 +5,7 @@ const ModalTutorial = () => (
   <Modal
     trigger={
       <Button id="modal-btn" align="center">
-        Get Started Here!
+        Wondering Where To Get Started? Click Here!
       </Button>
     }
     basic
