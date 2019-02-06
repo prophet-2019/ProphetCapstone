@@ -7,22 +7,24 @@ import {Table} from 'semantic-ui-react'
 class CompanyData extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      dispatchedObj: {},
+      ticker: ''
+    }
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const dispatchedObj = this.props.getPortfolioData(this.props.ticker)
+    this.setState({dispatchedObj, ticker: this.props.ticker})
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.ticker !== prevProps.ticker) {
+      this.props.getPortfolioData(this.props.ticker)
+    }
+  }
 
   render() {
-    const currentTicker = this.props.ticker
-    let count = 0
-    if (currentTicker === this.props.ticker && count === 0) {
-      setInterval(() => this.props.getPortfolioData(this.props.ticker), 10000)
-      count++
-    } else if (currentTicker !== this.props.ticker && count !== 0) {
-      console.log('currentTicker not matching was Matching hit', count)
-      this.props.getPortfolioData(currentTicker)
-    } else {
-      setInterval(() => this.props.getPortfolioData(this.props.ticker), 10000)
-    }
     const labelsOfFinancialReport = Object.keys(this.props.stats)
     const valuesFromFinancialReport = Object.values(this.props.stats)
     const arrToMapThroughInComponent = [
