@@ -300,7 +300,16 @@ table {
 }
 
 /* Buy / Sell buttons */
-#buy-sell {
+.buy-sell-ticker {
+  position: relative;
+  bottom: 10px;
+}
+
+#buy {
+  background-color: #564668;
+}
+
+#sell {
   background-color: #564668;
 }
 
@@ -320,7 +329,6 @@ table {
   flex: 2;
   margin: 1%;
   padding: 0.5%;
-  /* border: 1px solid lightgrey; */
 }
 
 .chartSelections {
@@ -329,7 +337,6 @@ table {
   flex: 1;
   margin: 1%;
   padding: 0.5%;
-  /* border: 1px solid lightgrey; */
 }
 
 /* react-vis css */
