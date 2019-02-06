@@ -22,75 +22,51 @@ nav a {
 
 /* Parent Container */
 .parent-container {
-  background-color: #1d1522;
   display: flex;
   flex-direction: column;
   min-height: 85vh;
   color: #dfd3e2;
   font: avenir-next-condensed, sans-serif;
-  /* padding: 0.5%; */
   text-align: center;
 }
 
 .header-container {
   background-color: #564668;
+  border-radius: 10px;
   display: flex;
   flex: 1;
-  /* padding: 0.÷5%; */
-  /* border: 0.5px solid lightgrey; */
+  margin: 1%;
 }
 .dashboard-spacer {
   background-color: #1d1522;
   flex: 0.0625;
 }
-.header-isLoggedIn-container {
-  /* padding: 0.5%; */
-  /* border: 0.5px solid lightgrey; */
-}
 
-.isLoggedIn-container {
-  display: flex;
-  padding: 0.5%;
-  border: 0.5px solid lightgrey;
-}
-
-.header-headline {
-  flex: 6;
-  padding: 0.5%;
-  border: 0.5px solid lightgrey;
-  order: 2;
-}
 .header-Logo {
-  flex: 2;
+  display: flex;
+  justify-content: flex-start;
+  flex: 1;
   padding: 0.5%;
-  border: 0.5px solid lightgrey;
   order: 1;
 }
-.header-logout {
+#header-logout {
+  background-color: #564668;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   flex: 1;
   padding: 0.5%;
-  border: 0.5px solid lightgrey;
-  order: 3;
-}
-.header-profile {
-  flex: 1;
-  padding: 0.5%;
-  border: 0.5px solid lightgrey;
-  order: 4;
+  order: 2;
 }
 
-.isLoggedOut {
-  flex: 1;
-}
+/* #logout-button {
+  background-color: #564668;
+} */
 
 .portfolio-dashboard-selector-container {
-  /* background-color: #422365; */
   flex: 4;
   display: flex;
-  /* padding: 0.5%; */
   margin: 0.25%;
-  /* border: 0.5px solid lightgrey; */
-  /* min-height: 85vh; */
 }
 
 /* Portfolio Contents */
@@ -223,10 +199,6 @@ table {
   margin: 1%;
   padding: 0.5%;
   /* border: 1px solid lightgrey; */
-}
-
-#search-button {
-  background-color: #564668;
 }
 
 #search-button {
@@ -606,7 +578,7 @@ table {
 .ticker__item--symbol,
 .stock-card__symbol {
   font-family: subway-ticker;
-  color: navy;
+  color: #b413ec;
   font-weight: 600;
 }
 
