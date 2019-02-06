@@ -78,7 +78,7 @@ class HomePageChart extends Component {
               />
               <LineSeries
                 animation
-                color="purple"
+                color="#B413EC"
                 data={histPrices}
                 curve={curveCatmullRom.alpha(0.5)}
                 dontCheckIfEmpty={true}
