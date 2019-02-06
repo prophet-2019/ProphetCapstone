@@ -36,7 +36,7 @@ class PortfolioDataTable extends Component {
     this.props.getPortfolio(this.state.currentUser)
     const intervalId = setInterval(() => {
       callBack(this.props.getPortfolio, this.props.userId)
-    }, 5000)
+    }, 50000)
     await this.setState({intervalId})
   }
   componentWillUnmount() {
