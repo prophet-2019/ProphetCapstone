@@ -7,15 +7,6 @@ import {Table} from 'semantic-ui-react'
 class CompanyData extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      dispatchedObj: {},
-      ticker: ''
-    }
-  }
-
-  componentDidMount() {
-    const dispatchedObj = this.props.getPortfolioData(this.props.ticker)
-    this.setState({dispatchedObj, ticker: this.props.ticker})
   }
 
   componentDidUpdate(prevProps) {
