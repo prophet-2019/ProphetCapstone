@@ -85,7 +85,6 @@ Transaction.afterCreate(async transaction => {
         }
       }
     )
-    console.log('AMOUNTS', portToUpdate.quantity, transCost)
     await Portfolio.update(
       {
         quantity: findUsersMoneyItem.quantity - transCost

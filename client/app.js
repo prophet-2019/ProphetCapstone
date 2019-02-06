@@ -18,7 +18,7 @@ class App extends Component {
           params={{
             particles: {
               number: {
-                value: 350,
+                value: 75,
                 density: {
                   enable: true
                 }

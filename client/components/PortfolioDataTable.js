@@ -61,7 +61,6 @@ class PortfolioDataTable extends Component {
       return accum
     }, 0)
     if (quantOfPrev !== quantOfCurrent) {
-      console.log('did we run\n\n\n\n', prevProps)
       //dispatch getPortfolio
       this.props.getPortfolio(this.props.userId)
     }

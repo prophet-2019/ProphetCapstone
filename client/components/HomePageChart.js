@@ -52,19 +52,12 @@ class HomePageChart extends Component {
             <XYPlot
               width={700}
               height={300}
-              onMouseOver={() => this.setState({crosshairValues: []})}
+              onMouseLeave={() => this.setState({crosshairValues: []})}
               getX={d => d[0]}
               getY={d => d[1]}
             >
               <XAxis />
               <YAxis />
-              <ChartLabel
-                text="X Axis"
-                className="alt-x-label"
-                includeMargin={false}
-                xPercent={0.025}
-                yPercent={1.01}
-              />
               <ChartLabel
                 text="Y Axis"
                 className="alt-y-label"
@@ -82,6 +75,11 @@ class HomePageChart extends Component {
                 data={histPrices}
                 curve={curveCatmullRom.alpha(0.5)}
                 dontCheckIfEmpty={true}
+                onNearestX={(value, {innerX}) =>
+                  this.setState({
+                    crosshairValues: histPrices.map(d => d[innerX])
+                  })
+                }
               />
               <Crosshair values={this.state.crosshairValues} />
             </XYPlot>
