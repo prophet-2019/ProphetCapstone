@@ -4,7 +4,6 @@ import {withRouter} from 'react-router'
 import PortfolioList from './PortfolioList'
 import AssetAllocation from '../AssetAllocation'
 import {getPortfolio} from '../../store/assetallocation'
-import TemplateAssetAllocation from './TemplateAssetAllocation'
 
 class UserPortfolio extends Component {
   constructor(props) {

@@ -3,19 +3,7 @@ import {getPortfolio} from '../store/assetallocation'
 import {getStockPriceForAssetAllocation} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {
-  XYPlot,
-  VerticalGridLines,
-  HorizontalGridLines,
-  LineSeries,
-  FlexibleXYPlot,
-  BarSeries,
-  XAxis,
-  YAxis,
-  RectSeries,
-  VerticalBarSeries,
-  RadialChart
-} from 'react-vis'
+import {RadialChart} from 'react-vis'
 
 class AssetAllocation extends Component {
   constructor(props) {
@@ -64,6 +52,7 @@ class AssetAllocation extends Component {
         <h4>Portfolio Allocation</h4>
         <RadialChart
           animation
+          colorType="literal"
           className="templateAssetAllocation"
           data={myData}
           width={300}
