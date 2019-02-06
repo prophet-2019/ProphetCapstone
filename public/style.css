@@ -1,6 +1,8 @@
 @font-face {
   font-family: subway-ticker;
   src: url('subway-ticker.ttf') format('truetype');
+  font-family: avenir-next-condensed;
+  src: url('Avenir-Next-Condensed.ttc') format('truetype');
 }
 
 body {
@@ -11,13 +13,88 @@ a {
   text-decoration: none;
 }
 
-label {
-  display: block;
+/* background picture affects signup/login */
+.particles-js {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+  background-color: #1f0036;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+/* login form */
+#login-button {
+  background-color: purple;
+}
+
+#login-link {
+  color: #e03997;
+  padding-left: 42%;
+  font-size: 20px;
+  position: relative;
+  top: 20px;
+}
+
+#login-signup {
+  color: #e03997;
+  font-size: 20px;
+  position: relative;
+  top: 20px;
+}
+
+h1,
+h2 {
+  color: #e03997;
+}
+
+.welcome {
+  font-size: 50px;
+  position: relative;
+  top: -30px;
+}
+
+.form-header {
+  position: relative;
+  top: 100px;
+}
+
+.form-container {
+  margin: auto;
+  width: 25rem;
+  padding: 30px;
+  border-radius: 15%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-container .input-group {
+  margin-bottom: 2rem;
+}
+
+.form-container .input-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4%;
+  border: none;
+  background-color: #fff;
+  outline: 0;
+}
+
+.form-container .input-group input + label {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.form-container button {
+  display: block;
+  width: 100%;
+  padding: 5%;
+  border: none;
+  background-color: purple;
+  color: #e03997;
 }
 
 /* Parent Container */
@@ -617,16 +694,4 @@ table {
 .ticker-wrapper {
   width: 100%;
   overflow: hidden;
-}
-
-.particles-js {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  position: absolute;
-  background-size: cover;
-  z-index: -1;
-  right: 0;
-  bottom: 0;
-  background-color: #1f0036;
 }
