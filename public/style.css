@@ -658,8 +658,8 @@ table {
 .ticker.scrolling {
   -webkit-animation-name: ticker;
   animation-name: ticker;
-  -webkit-animation-duration: 85s;
-  animation-duration: 85s;
+  -webkit-animation-duration: 850s;
+  animation-duration: 850s;
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
