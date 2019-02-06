@@ -71,7 +71,6 @@ export const getStockPriceToBuy = (orderDetails, userId) => {
         iexRealTimeQuote,
         orderDetails
       })
-      console.log('updatedPort', updatedPortfolio)
       const arrForPortfolioBecauseReduceAsynIssue = []
       //for loop
       //drop values into arrForPortfolioBecauseReduceAsynIssue
