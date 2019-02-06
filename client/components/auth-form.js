@@ -52,7 +52,6 @@ const AuthForm = props => {
               size="large"
               primary
               type="submit"
-              onClick={handleSubmit}
             >
               {displayName}
             </button>
