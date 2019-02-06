@@ -5,6 +5,16 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import {RadialChart} from 'react-vis'
 
+const myPalette = [
+  '#330066',
+  '#cc00ff',
+  '#330099',
+  '#cc66cc',
+  '#663399',
+  '#ff99ff',
+  '#660099'
+]
+
 class AssetAllocation extends Component {
   constructor(props) {
     super(props)
@@ -52,7 +62,9 @@ class AssetAllocation extends Component {
         <h4>Portfolio Allocation</h4>
         <RadialChart
           animation
-          colorType="literal"
+          colorType="category"
+          colorDomain={[0, 1, 2, 3, 4, 5, 6]}
+          colorRange={myPalette}
           className="templateAssetAllocation"
           data={myData}
           width={300}
