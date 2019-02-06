@@ -42,11 +42,11 @@ class App extends Component {
               move: {
                 direction: 'top',
                 out_mode: 'out',
-                speed: 40
+                speed: 10
               },
               line_linked: {
                 enable: true,
-                color: '4B0082'
+                color: '#e03997'
               }
             }
           }}

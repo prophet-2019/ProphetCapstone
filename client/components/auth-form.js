@@ -14,11 +14,15 @@ const AuthForm = props => {
     <div id="form">
       <div className="form-header">
         <h1 className="welcome" align="center">
-          {' '}
-          Welcome to Prophet{' '}
+          Welcome to Prophet
         </h1>
-        <h2 className="header" align="center">
-          {displayName} to your account
+        <h2 className="header-logo" align="center">
+          <img
+            src="/ProphetLogo300.svg"
+            as="prophet-logo"
+            height="100"
+            width="100"
+          />
         </h2>
         <div className="form-container">
           <form size="large" onSubmit={handleSubmit} name={name}>
@@ -56,13 +60,13 @@ const AuthForm = props => {
               {displayName}
             </button>
           </form>
+          <Link to="/login" id="login-link">
+            {`Already signed up? | `}
+          </Link>
+          <Link to="/signup" id="login-signup">
+            New user?
+          </Link>
         </div>
-        <Link to="/login" id="login-link">
-          {`Already signed up? | `}
-        </Link>
-        <Link to="/signup" id="login-signup">
-          New user?
-        </Link>
       </div>
       {error && error.response && <div> {error.response.data} </div>}
       {/* <a href="/auth/google">{displayName} with Google</a> */}
@@ -88,7 +92,7 @@ const mapLogin = state => {
 const mapSignup = state => {
   return {
     name: 'signup',
-    displayName: 'Sign Up',
+    displayName: 'Sign up',
     error: state.user.error
   }
 }
