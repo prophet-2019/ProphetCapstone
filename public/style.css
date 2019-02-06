@@ -32,11 +32,12 @@ a {
 
 #login-button {
   background-color: purple;
+  font-size: 20px;
 }
 
 #login-link {
   color: #e03997;
-  padding-left: 42%;
+  padding-left: 5%;
   font-size: 20px;
   position: relative;
   top: 20px;
@@ -57,12 +58,17 @@ h2 {
 .welcome {
   font-size: 50px;
   position: relative;
-  top: -30px;
+  top: -60px;
+}
+
+.header-logo {
+  position: relative;
+  top: -35px;
 }
 
 .form-header {
   position: relative;
-  top: 100px;
+  top: 200px;
 }
 
 .form-container {
