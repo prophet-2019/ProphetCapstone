@@ -1,45 +1,35 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getPortfolioData} from '../store/companyDetailsTable'
+// import {getPortfolioData} from '../store/companyDetailsTable'
 import {withRouter} from 'react-router'
+import {Table} from 'semantic-ui-react'
+import axios from 'axios'
 
 class CompanyDetails extends Component {
   constructor(props) {
     super(props)
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.ticker !== prevProps.ticker) {
-      this.props.getPortfolioData(this.props.ticker)
-    }
-  }
+  componentDidUpdate(prevProps) {}
 
   render() {
-    const labelsOfFinancialReport = Object.keys(this.props.stats)
-    const valuesFromFinancialReport = Object.values(this.props.stats)
-    const arrToMapThroughInComponent = [
-      [labelsOfFinancialReport],
-      [valuesFromFinancialReport]
-    ]
     return (
       <div className="companyDetails-container">
-        <h5>Company Prices</h5>
-        {this.props.ticker ? (
-          <div className="financialList">
-            <Table striped>
-              <Table.Body>
-                {labelsOfFinancialReport.map((val, idx) => {
-                  return (
-                    <Table.Row key={idx}>
-                      <Table.Cell>{labelsOfFinancialReport[idx]}</Table.Cell>
-                      <Table.Cell>{valuesFromFinancialReport[idx]}</Table.Cell>
-                    </Table.Row>
-                  )
-                })}
-              </Table.Body>
-            </Table>
-          </div>
-        ) : null}
+        <h5>Company Details</h5>
+
+        <div className="financialList">
+          <Table striped>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell>{this.props.stats.companyName}</Table.Cell>
+                <Table.Cell>
+                  Price ${this.props.stats.marketcap /
+                    this.props.stats.sharesOutstanding}
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+        </div>
       </div>
     )
   }
