@@ -18,7 +18,8 @@ class Dashboard extends Component {
         {this.props.compare ? <CompareChart /> : <FeaturedChart />}
 
         <div className="dashboard-financials-details-container">
-          <CompanyFinancials />
+          <div className="companyFinancials-container" />
+          {/* <CompanyFinancials /> */}
           <CompanyDetails />
         </div>
 

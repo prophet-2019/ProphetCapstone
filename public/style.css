@@ -105,7 +105,8 @@ h2 {
 .parent-container {
   display: flex;
   flex-direction: column;
-  min-height: 85vh;
+  max-height: 100vh;
+  max-width: 100vw;
   color: #dfd3e2;
   font: avenir-next-condensed, sans-serif;
   text-align: center;
@@ -147,7 +148,7 @@ h2 {
 .portfolio-dashboard-selector-container {
   flex: 4;
   display: flex;
-  margin: 0.25%;
+  margin: 0.125%;
 }
 
 /* Portfolio Contents */
@@ -165,6 +166,10 @@ h2 {
 .portfoliolist {
   flex: 1;
   padding: 1%;
+  overflow-y: scroll;
+}
+
+#portfolio-table-shell {
 }
 
 table {
@@ -181,7 +186,7 @@ table {
 .dashboard-jsx-wrapper {
   display: flex;
   flex-direction: column;
-  min-width: 66%;
+  max-width: 60vw;
 }
 
 .chart-container {
@@ -189,37 +194,28 @@ table {
   border-radius: 10px;
   /* flex: 6; */
   flex-direction: column;
-  /* padding: 0.5%; */
-  /* border: 0.5px solid lightgrey; */
   display: flex;
-  max-width: 66%;
-  /* background-color: #1d1522; */
+  max-width: 60vw;
 }
 
 .dashboard-feature {
   background-color: #564668;
   border-radius: 10px;
   flex: 5;
-  /* display: flex; */
   padding: 0.5%;
-  /* border: 0.5px solid lightgrey; */
 }
 
 .compareChart {
   background-color: #564668;
   border-radius: 10px;
   flex: 5;
-  /* display: flex; */
   padding: 0.5%;
-  /* border: 0.5px solid lightgrey; */
 }
 
 .dashboard-financials-details-container {
   flex: 2.5;
   border-radius: 10px;
   display: flex;
-  /* padding: 0.5%; */
-  /* border: 0.5px solid lightgrey; */
 }
 
 .companyFinancials-container {
@@ -248,18 +244,16 @@ table {
   border-radius: 10px;
   padding: 0.5%;
   margin: 0.5%;
-  /* border: 0.5px solid lightgrey; */
 }
 
 .tickerDiv {
   background-color: #564668;
   border-radius: 10px;
   flex: 0.5;
-  width: 100%;
+  /* width: 100%; */
   align-content: center;
   margin: 0.5%;
-  /* padding: 0.5%; */
-  /* border: 0.5px solid lightgrey; */
+  max-width: 60vw;
 }
 
 /* Selector Component */
@@ -268,7 +262,7 @@ table {
   display: flex;
   flex-direction: column;
   padding: 0.5%;
-  max-width: 25%;
+  max-width: 25vw;
   /* border: 1px solid lightgrey; */
 }
 

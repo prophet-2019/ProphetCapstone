@@ -52,7 +52,7 @@ class PortfolioDataTable extends Component {
 
   render() {
     return (
-      <Table striped>
+      <Table striped id="portfolio-table-shell">
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Ticker</Table.HeaderCell>
