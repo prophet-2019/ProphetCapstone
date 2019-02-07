@@ -201,6 +201,10 @@ table {
   min-width: 66%;
 }
 
+.chart-background {
+  border-radius: 10px;
+}
+
 .chart-container {
   margin: 1%;
   border-radius: 10px;
