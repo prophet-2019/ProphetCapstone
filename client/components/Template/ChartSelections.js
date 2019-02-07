@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import {withStyles} from '@material-ui/core/styles'
 import {Button, Segment} from 'semantic-ui-react'
 import {revealCompare, singleCompany} from '../../store/companyDetailsTable'
+import Peer from '../Peer'
 
 const styles = theme => ({
   button: {
@@ -33,29 +34,30 @@ class ChartSelections extends Component {
   render() {
     const {classes} = this.props
     return (
-      <div className="chartSelections">
-        <Segment inverted id="chart-selections-buttons">
-          <Button
-            inverted
-            color="purple"
-            variant="contained"
-            className={classes.button}
-            onClick={this.toggleSingle}
-          >
-            Closing Prices
-          </Button>
+      <Peer />
+      // <div className="chartSelections">
+      //   <Segment inverted id="chart-selections-buttons">
+      //     <Button
+      //       inverted
+      //       color="purple"
+      //       variant="contained"
+      //       className={classes.button}
+      //       onClick={this.toggleSingle}
+      //     >
+      //       Closing Prices
+      //     </Button>
 
-          <Button
-            inverted
-            color="purple"
-            variant="contained"
-            onClick={this.toggleCompare}
-            className={classes.button}
-          >
-            Compare Two Equities
-          </Button>
-        </Segment>
-      </div>
+      //     <Button
+      //       inverted
+      //       color="purple"
+      //       variant="contained"
+      //       onClick={this.toggleCompare}
+      //       className={classes.button}
+      //     >
+      //       Compare Two Equities
+      //     </Button>
+      //   </Segment>
+      // </div>
     )
   }
 }
