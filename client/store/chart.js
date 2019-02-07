@@ -3,8 +3,14 @@ import axios from 'axios'
 const GOT_STOCK_PRICE = 'GOT_STOCK_PRICE'
 const GOT_COMPANY_FINANCIALS = 'GOT_COMPANY_FINANCIALS'
 const GOT_REAL_TIME_PRICE = 'GOT_REAL_TIME_PRICE'
+const GOT_PEERS = 'GOT_PEERS'
 
-const initialState = {historicalPrices: [], financials: {}, realTimePrice: 0}
+const initialState = {
+  historicalPrices: [],
+  financials: {},
+  realTimePrice: 0,
+  peers: []
+}
 
 const gotStockPrice = (prices, ticker, ticker2 = '') => ({
   type: GOT_STOCK_PRICE,
@@ -21,6 +27,11 @@ const gotFinancials = company => ({
 const gotStockPriceForAssetAllocation = stock => ({
   type: GOT_REAL_TIME_PRICE,
   stock
+})
+
+const gotPeers = ticker => ({
+  type: GOT_PEERS,
+  ticker
 })
 
 export const getStockPrice = (ticker, time) => async dispatch => {
@@ -57,6 +68,17 @@ export const getFinancials = () => async dispatch => {
   }
 }
 
+export const getPeers = ticker => async dispatch => {
+  try {
+    const {data: peers} = await axios.get(
+      `https://api.iextrading.com/1.0/stock/${ticker}/peers`
+    )
+    dispatch(gotPeers(peers))
+  } catch (error) {
+    console.error('Peers not loading')
+  }
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_STOCK_PRICE:
@@ -75,6 +97,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         financials: action.company
+      }
+    case GOT_PEERS:
+      return {
+        ...state,
+        peers: action.ticker
       }
     default:
       return state
