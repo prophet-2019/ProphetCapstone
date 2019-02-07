@@ -18,6 +18,8 @@ import {
 } from 'react-vis'
 import {Table} from 'semantic-ui-react'
 
+const myPalette = ['purple', 'violet', 'pink', 'blue']
+let count = 0
 class PortfolioDataTable extends Component {
   constructor(props) {
     super(props)
@@ -71,30 +73,30 @@ class PortfolioDataTable extends Component {
   }
   render() {
     return (
-      <Table striped>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Ticker</Table.HeaderCell>
-            <Table.HeaderCell>Quantity</Table.HeaderCell>
-            <Table.HeaderCell>Current Value</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
+      <div className="portfoliolist-container">
+        <Table striped>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Ticker</Table.HeaderCell>
+              <Table.HeaderCell>Quantity</Table.HeaderCell>
+              <Table.HeaderCell>CurrentPrice</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
           {this.props.portfolio.map((val, idx) => {
             return (
-              <Table.Row key={val[0]}>
-                <Table.Cell>{val[0]}</Table.Cell>
-                <Table.Cell textAlign="center">
-                  {this.numberWithCommas(val[2])}
-                </Table.Cell>
-                <Table.Cell>
-                  ${this.numberWithCommas(val[1].toFixed(0))}
-                </Table.Cell>
-              </Table.Row>
+              <Table.Body key={idx}>
+                <Table.Row id={`portfolioData${idx}`}>
+                  <Table.Cell>{val[0]}</Table.Cell>
+                  <Table.Cell textAlign="center">{val[2]}</Table.Cell>
+                  <Table.Cell>${val[1].toFixed(3)}</Table.Cell>
+                </Table.Row>
+              </Table.Body>
             )
           })}
-        </Table.Body>
-      </Table>
+          {/* </div> */}
+        </Table>
+      </div>
     )
   }
 }
