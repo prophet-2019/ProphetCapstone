@@ -1,17 +1,14 @@
 import React, {Component} from 'react'
-import {getPeers} from '../store/chart'
+import {getPeers, getStockPrice} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {Table} from 'semantic-ui-react'
+import {Button, Table} from 'semantic-ui-react'
 
 class Peer extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      portfolio: [],
-      intervalId: 0,
-      currentUser: 0
-    }
+    this.state = {}
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentDidMount() {
     this.props.getPeers(this.props.ticker)
@@ -21,6 +18,10 @@ class Peer extends Component {
       this.props.getPeers(this.props.ticker)
     }
   }
+  handleSubmit = async val => {
+    await this.props.getStockPrice(val, 'ytd')
+  }
+
   render() {
     return (
       <Table striped>
@@ -33,7 +34,9 @@ class Peer extends Component {
           {this.props.peers.map(val => {
             return (
               <Table.Row key={val}>
-                <Table.Cell>{val}</Table.Cell>
+                <Table.Cell>
+                  <Button onClick={() => this.handleSubmit(val)}>{val}</Button>
+                </Table.Cell>
               </Table.Row>
             )
           })}
@@ -52,7 +55,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPeers: ticker => dispatch(getPeers(ticker))
+    getPeers: ticker => dispatch(getPeers(ticker)),
+    getStockPrice: (ticker, time, ticker2) =>
+      dispatch(getStockPrice(ticker, time, ticker2))
   }
 }
 
