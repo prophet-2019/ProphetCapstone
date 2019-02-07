@@ -1,7 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {Button, Segment} from 'semantic-ui-react'
+import {
+  Button,
+  Segment,
+  Modal,
+  Transition,
+  TransitionablePortal
+} from 'semantic-ui-react'
 import {getStockPrice} from '../../store/chart'
 import {getComparedStockPrice} from '../../store/compareChart'
 
@@ -11,7 +17,8 @@ class Search extends Component {
     this.state = {
       submitEquity: '',
       submitEquity2: '',
-      timeFrame: '3m'
+      timeFrame: '3m',
+      open: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -51,9 +58,51 @@ class Search extends Component {
     })
   }
 
+  show = size => () => this.setState({size, open: true})
+
+  close = () => this.setState({open: false})
+
   render() {
+    const {open, size} = this.state
+
     return (
       <div className="search">
+        <Button
+          id="help-btn"
+          onClick={this.show('tiny')}
+          icon="question circle outline icon"
+        />
+        <div>
+          <Transition.Group
+            open={open}
+            transition="horizontal-flip"
+            duration={1000}
+          >
+            {open && (
+              <Modal size={size} open={open} onClose={this.close}>
+                <Modal.Header>What is an equity?</Modal.Header>
+                <Modal.Content>
+                  <p>
+                    Definition: the value of the shares issued by a company.
+                  </p>
+                  <p>
+                    Enter a unique stock ticker (ie, Apple [AAPL], Alphabet
+                    [GOOG], Tesla [TSLA])
+                  </p>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button
+                    onClick={this.close}
+                    positive
+                    icon="checkmark"
+                    labelPosition="right"
+                    content="Got it!"
+                  />
+                </Modal.Actions>
+              </Modal>
+            )}
+          </Transition.Group>
+        </div>
         {this.props.compare ? (
           <div>
             <label>

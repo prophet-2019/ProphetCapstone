@@ -11,6 +11,11 @@ a {
   text-decoration: none;
 }
 
+#help-btn {
+  background-color: #564668;
+  color: #e03997;
+}
+
 /* background picture affects signup/login */
 .particles-js {
   width: 100%;
