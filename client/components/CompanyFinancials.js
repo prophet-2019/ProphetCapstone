@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {getPortfolioData} from '../store/companyDetailsTable'
+import {getNews} from '../store/financialDataTable'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import {Table} from 'semantic-ui-react'
@@ -9,9 +10,14 @@ class CompanyData extends Component {
     super(props)
   }
 
+  componentDidMount() {
+    this.props.getNews('KO')
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.ticker !== prevProps.ticker) {
       this.props.getPortfolioData(this.props.ticker)
+      this.props.getNews(this.props.ticker)
     }
   }
 
@@ -22,18 +28,20 @@ class CompanyData extends Component {
       [labelsOfFinancialReport],
       [valuesFromFinancialReport]
     ]
+    const {news} = this.props
     return (
       <div className="companyFinancials-container">
-        <h5>Data From Most Recent Financial Report</h5>
+        <h5>CompanyFinacials Component</h5>
         {this.props.ticker ? (
           <div className="financialList">
             <Table striped>
               <Table.Body>
-                {labelsOfFinancialReport.map((val, idx) => {
+                {news.map((val, idx) => {
+                  console.log('val', val)
                   return (
                     <Table.Row key={idx}>
-                      <Table.Cell>{labelsOfFinancialReport[idx]}</Table.Cell>
-                      <Table.Cell>{valuesFromFinancialReport[idx]}</Table.Cell>
+                      <Table.Cell>{val.source}</Table.Cell>
+                      <Table.Cell>{val.headline}</Table.Cell>
                     </Table.Row>
                   )
                 })}
@@ -49,13 +57,15 @@ class CompanyData extends Component {
 const mapStateToProps = state => {
   return {
     stats: state.companyDetailsTable.stats,
-    ticker: state.chart.ticker
+    ticker: state.chart.ticker,
+    news: state.financialDataTable.news
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPortfolioData: ticker => dispatch(getPortfolioData(ticker))
+    getPortfolioData: ticker => dispatch(getPortfolioData(ticker)),
+    getNews: ticker => dispatch(getNews(ticker))
   }
 }
 

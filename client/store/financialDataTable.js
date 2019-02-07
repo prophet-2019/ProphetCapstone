@@ -1,14 +1,21 @@
 import axios from 'axios'
 
 const GET_FINANCIALS = 'GET_FINANCIALS'
+const GET_NEWS = 'GET_NEWS'
 
 const initialState = {
-  financials: []
+  financials: [],
+  news: []
 }
 
 const gotFinancialData = financialData => ({
   type: GET_FINANCIALS,
   financialData
+})
+
+const gotNews = news => ({
+  type: GET_NEWS,
+  news
 })
 
 export const getFinancialData = ticker => {
@@ -28,12 +35,30 @@ export const getFinancialData = ticker => {
   }
 }
 
+export const getNews = ticker => {
+  return async dispatch => {
+    try {
+      const {data: newsArr} = await axios.get(
+        `https://api.iextrading.com/1.0/stock/${ticker}/news`
+      )
+      dispatch(gotNews(newsArr))
+    } catch (err) {
+      console.error('No news about this company', err.message)
+    }
+  }
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_FINANCIALS:
       return {
         ...state,
         financials: action.financialData
+      }
+    case GET_NEWS:
+      return {
+        ...state,
+        news: action.news
       }
     default:
       return state
