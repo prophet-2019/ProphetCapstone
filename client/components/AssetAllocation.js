@@ -4,6 +4,12 @@ import {getStockPriceForAssetAllocation} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import {RadialChart} from 'react-vis'
+import {
+  Button,
+  Modal,
+  Transition,
+  TransitionablePortal
+} from 'semantic-ui-react'
 
 const myPalette = [
   '#330066',
@@ -21,7 +27,8 @@ class AssetAllocation extends Component {
     this.state = {
       portfolio: [],
       intervalId: 0,
-      currentUser: 0
+      currentUser: 0,
+      open: false
     }
     this.intervalFunc = this.intervalFunc.bind(this)
   }
@@ -47,6 +54,10 @@ class AssetAllocation extends Component {
     await this.intervalFunc()
   }
 
+  show = size => () => this.setState({size, open: true})
+
+  close = () => this.setState({open: false})
+
   render() {
     let myData
     if (this.props.portfolio.length) {
@@ -57,9 +68,50 @@ class AssetAllocation extends Component {
     } else {
       myData = [{angle: 0}, {angle: 0}, {angle: 100}]
     }
+
+    const {open, size} = this.state
+
     return (
       <div>
-        <h4>Portfolio Allocation</h4>
+        <h4>
+          Portfolio Allocation{' '}
+          <Button
+            onClick={this.show('tiny')}
+            id="help-btn"
+            icon="question circle outline icon"
+          />{' '}
+        </h4>
+        <div>
+          <Transition.Group
+            open={open}
+            transition="horizontal-flip"
+            duration={1000}
+          >
+            {open && (
+              <Modal size={size} open={open} onClose={this.close}>
+                <Modal.Header>
+                  This section contains a graphical division of your portfolio
+                </Modal.Header>
+                <Modal.Content>
+                  <p>
+                    This pie chart graph will automatically calculate and
+                    display how your initial cash was divided between your
+                    bought stocks.
+                  </p>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button
+                    onClick={this.close}
+                    positive
+                    icon="checkmark"
+                    labelPosition="right"
+                    content="Got it!"
+                  />
+                </Modal.Actions>
+              </Modal>
+            )}
+          </Transition.Group>
+        </div>
         <RadialChart
           animation
           colorType="category"
