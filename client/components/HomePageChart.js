@@ -47,7 +47,7 @@ class HomePageChart extends Component {
     return (
       <div>
         {histPrices.length > 0 ? (
-          <div>
+          <div align="center">
             <h1>{this.props.ticker}</h1>
             <XYPlot
               width={700}
@@ -55,6 +55,7 @@ class HomePageChart extends Component {
               onMouseLeave={() => this.setState({crosshairValues: []})}
               getX={d => d[0]}
               getY={d => d[1]}
+              style={{backgroundColor: 'FFFFFF'}}
             >
               <XAxis />
               <YAxis />
