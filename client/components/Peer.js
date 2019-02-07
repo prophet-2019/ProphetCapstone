@@ -35,17 +35,20 @@ class Peer extends Component {
         return accum
       }, [])
     let arrToRender
+    let name
     if (slicedSixFromPeers.length < 6) {
       console.log('LENGTH', slicedSixFromPeers, slicedSixFromFocus)
       arrToRender = slicedSixFromFocus
+      name = 'Stocks in Focus'
     } else {
       arrToRender = slicedSixFromPeers
+      name = 'Peer Companies'
     }
     return (
       <Table striped>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Peers</Table.HeaderCell>
+            <Table.HeaderCell>{name}</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
