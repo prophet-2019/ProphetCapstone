@@ -4,12 +4,14 @@ const GOT_STOCK_PRICE = 'GOT_STOCK_PRICE'
 const GOT_COMPANY_FINANCIALS = 'GOT_COMPANY_FINANCIALS'
 const GOT_REAL_TIME_PRICE = 'GOT_REAL_TIME_PRICE'
 const GOT_PEERS = 'GOT_PEERS'
+const GOT_IN_FOCUS = 'GOT_IN_FOCUS'
 
 const initialState = {
   historicalPrices: [],
   financials: {},
   realTimePrice: 0,
-  peers: []
+  peers: [],
+  inFocusStocks: []
 }
 
 const gotStockPrice = (prices, ticker, ticker2 = '') => ({
@@ -32,6 +34,11 @@ const gotStockPriceForAssetAllocation = stock => ({
 const gotPeers = ticker => ({
   type: GOT_PEERS,
   ticker
+})
+
+const gotInFocus = focus => ({
+  type: GOT_IN_FOCUS,
+  focus
 })
 
 export const getStockPrice = (ticker, time) => async dispatch => {
@@ -79,6 +86,17 @@ export const getPeers = ticker => async dispatch => {
   }
 }
 
+export const getInFocus = () => async dispatch => {
+  try {
+    const {data: focusStocks} = await axios.get(
+      `https://api.iextrading.com/1.0/stock/market/list/infocus`
+    )
+    dispatch(gotInFocus(focusStocks))
+  } catch (err) {
+    console.error('No stocks in focus')
+  }
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_STOCK_PRICE:
@@ -102,6 +120,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         peers: action.ticker
+      }
+    case GOT_IN_FOCUS:
+      return {
+        ...state,
+        inFocusStocks: action.focus
       }
     default:
       return state
