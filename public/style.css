@@ -174,7 +174,6 @@ h2 {
   background-color: #564668;
   border-radius: 10px;
   max-width: 25%;
-  /* margin: 0.5%; */
   display: flex;
   flex-direction: column;
 }
@@ -184,11 +183,86 @@ h2 {
   padding: 1%;
 }
 
+.portfoliolist-container {
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
 table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
 }
+/* const myPalette = [
+  '#330066',
+  '#cc00ff',
+  '#330099',
+  '#cc66cc',
+  '#663399',
+  '#ff99ff',
+  '#660099'
+] */
+
+#portfolioData0 {
+  background-color: #660099;
+  color: #ffffff;
+}
+
+#portfolioData1 {
+  background-color: #cc00ff;
+  color: #ffffff;
+}
+
+#portfolioData2 {
+  background-color: #330099;
+  color: #ffffff;
+}
+
+#portfolioData3 {
+  background-color: #cc66cc;
+  color: #ffffff;
+}
+
+#portfolioData4 {
+  background-color: #663399;
+  color: #ffffff;
+}
+
+#portfolioData5 {
+  background-color: #ff99ff;
+  color: #ffffff;
+}
+
+#portfolioData6 {
+  background-color: #330066;
+  color: #ffffff;
+}
+
+#portfolioData7 {
+  background-color: #990061;
+  color: #ffffff;
+}
+
+#portfolioData8 {
+  background-color: #72054a;
+  color: #ffffff;
+}
+
+#portfolioData9 {
+  background-color: #782258;
+  color: #ffffff;
+}
+
+#portfolioData10 {
+  background-color: #78222b;
+  color: #ffffff;
+}
+
+#portfolioData11 {
+  background-color: #ae1865;
+  color: #ffffff;
+}
+
 .templateAssetAllocation {
   flex: 1;
   padding: 0.5%;

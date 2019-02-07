@@ -18,7 +18,7 @@ import {
 } from 'react-vis'
 import {Table} from 'semantic-ui-react'
 
-const myPalette = ['violet', 'purple', 'pink']
+const myPalette = ['purple', 'violet', 'pink', 'blue']
 let count = 0
 class PortfolioDataTable extends Component {
   constructor(props) {
@@ -69,7 +69,7 @@ class PortfolioDataTable extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="portfoliolist-container">
         <Table striped>
           <Table.Header>
             <Table.Row>
@@ -78,26 +78,21 @@ class PortfolioDataTable extends Component {
               <Table.HeaderCell>CurrentPrice</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-        </Table>
 
-        {this.props.portfolio.map((val, idx) => {
-          if (count === 2) {
-            count = 0
-          } else {
-            count++
-          }
-          return (
-            <Table inverted color={myPalette[count]} key={idx}>
-              <Table.Body>
-                <Table.Row>
+          {/* <div className="portfolio-list-items"> */}
+          {this.props.portfolio.map((val, idx) => {
+            return (
+              <Table.Body key={idx}>
+                <Table.Row id={`portfolioData${idx}`}>
                   <Table.Cell>{val[0]}</Table.Cell>
                   <Table.Cell textAlign="center">{val[2]}</Table.Cell>
                   <Table.Cell>${val[1].toFixed(3)}</Table.Cell>
                 </Table.Row>
               </Table.Body>
-            </Table>
-          )
-        })}
+            )
+          })}
+          {/* </div> */}
+        </Table>
       </div>
     )
   }

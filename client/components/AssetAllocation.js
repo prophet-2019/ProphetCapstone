@@ -6,13 +6,18 @@ import {withRouter} from 'react-router'
 import {RadialChart} from 'react-vis'
 
 const myPalette = [
-  '#330066',
   '#cc00ff',
   '#330099',
   '#cc66cc',
   '#663399',
   '#ff99ff',
-  '#660099'
+  '#660099',
+  '#330066',
+  '#990061',
+  '72054a',
+  '782258',
+  '78222b',
+  'ae1865'
 ]
 
 class AssetAllocation extends Component {
