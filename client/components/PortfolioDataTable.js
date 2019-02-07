@@ -27,6 +27,7 @@ class PortfolioDataTable extends Component {
       currentUser: 0
     }
     this.intervalFunc = this.intervalFunc.bind(this)
+    this.numberWithCommas = this.numberWithCommas.bind(this)
   }
 
   async intervalFunc() {
@@ -65,6 +66,9 @@ class PortfolioDataTable extends Component {
       this.props.getPortfolio(this.props.userId)
     }
   }
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
   render() {
     return (
       <Table striped>
@@ -72,7 +76,7 @@ class PortfolioDataTable extends Component {
           <Table.Row>
             <Table.HeaderCell>Ticker</Table.HeaderCell>
             <Table.HeaderCell>Quantity</Table.HeaderCell>
-            <Table.HeaderCell>CurrentPrice</Table.HeaderCell>
+            <Table.HeaderCell>Current Value</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -80,8 +84,12 @@ class PortfolioDataTable extends Component {
             return (
               <Table.Row key={val[0]}>
                 <Table.Cell>{val[0]}</Table.Cell>
-                <Table.Cell textAlign="center">{val[2]}</Table.Cell>
-                <Table.Cell>${val[1].toFixed(3)}</Table.Cell>
+                <Table.Cell textAlign="center">
+                  {this.numberWithCommas(val[2])}
+                </Table.Cell>
+                <Table.Cell>
+                  ${this.numberWithCommas(val[1].toFixed(0))}
+                </Table.Cell>
               </Table.Row>
             )
           })}
