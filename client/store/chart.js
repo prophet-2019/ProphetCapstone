@@ -71,9 +71,9 @@ export const getFinancials = () => async dispatch => {
 export const getPeers = ticker => async dispatch => {
   try {
     const {data: peers} = await axios.get(
-      `https://api.iextrading.com/1.0/stock/${ticker}/peers`
+      `https://api.iextrading.com/1.0/stock/${ticker}/relevant`
     )
-    dispatch(gotPeers(peers))
+    dispatch(gotPeers(peers.symbols))
   } catch (error) {
     console.error('Peers not loading')
   }
