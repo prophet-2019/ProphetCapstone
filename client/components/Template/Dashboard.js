@@ -5,6 +5,7 @@ import CompareChart from '../CompareChart'
 import CompanyFinancials from '../CompanyFinancials'
 import CompanyDetails from './CompanyDetails'
 import TickerArea from './TickerArea'
+import WithInstantSearch from '../WithInstantSearch'
 
 class Dashboard extends Component {
   constructor(props) {
