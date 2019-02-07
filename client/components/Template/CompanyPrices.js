@@ -10,7 +10,7 @@ class CompanyPrices extends Component {
 
   render() {
     return (
-      <div className="companyPrices">
+      <div className="selector-child-container">
         <h4> Buy and Sell Stocks Here </h4>
         <BuySellPage ticker={this.props.ticker} />
       </div>

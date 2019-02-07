@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {getPeers, getStockPrice, getInFocus} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {Button, Table} from 'semantic-ui-react'
+import {Button, Segment, Table} from 'semantic-ui-react'
 
 class Peer extends Component {
   constructor(props) {
@@ -45,24 +45,26 @@ class Peer extends Component {
       name = 'Peer Companies'
     }
     return (
-      <Table striped>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>{name}</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {arrToRender.map(val => {
-            return (
-              <Table.Row key={val}>
-                <Table.Cell>
-                  <Button onClick={() => this.handleSubmit(val)}>{val}</Button>
-                </Table.Cell>
-              </Table.Row>
-            )
-          })}
-        </Table.Body>
-      </Table>
+      <div>
+        <h4>{name}</h4>
+        <div className="peer-Btn">
+          <Segment inverted id="peer-Btn-segment">
+            {arrToRender.map((val, idx) => {
+              return (
+                <Button
+                  className="mini ui button"
+                  key={idx}
+                  inverted
+                  color="purple"
+                  onClick={() => this.handleSubmit(val)}
+                >
+                  {val}
+                </Button>
+              )
+            })}
+          </Segment>
+        </div>
+      </div>
     )
   }
 }

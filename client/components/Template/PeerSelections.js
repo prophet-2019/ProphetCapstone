@@ -33,7 +33,9 @@ class ChartSelections extends Component {
   render() {
     const {classes} = this.props
     return (
-      <Peer />
+      <div className="selector-child-container">
+        <Peer />
+      </div>
       // <div className="chartSelections">
       //   <Segment inverted id="chart-selections-buttons">
       //     <Button

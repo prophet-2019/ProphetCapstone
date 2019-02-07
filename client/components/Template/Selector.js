@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import Search from './Search'
 import CompanyPrices from './CompanyPrices'
-import ChartSelections from './ChartSelections'
+import PeerSelections from './PeerSelections'
 
 export default class Selector extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export default class Selector extends Component {
       <div className="selector-container">
         <Search />
         <CompanyPrices />
-        <ChartSelections />
+        <PeerSelections />
       </div>
     )
   }
