@@ -29,6 +29,7 @@ class PortfolioDataTable extends Component {
       currentUser: 0
     }
     this.intervalFunc = this.intervalFunc.bind(this)
+    this.numberWithCommas = this.numberWithCommas.bind(this)
   }
 
   async intervalFunc() {
@@ -67,6 +68,9 @@ class PortfolioDataTable extends Component {
       this.props.getPortfolio(this.props.userId)
     }
   }
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
   render() {
     return (
       <div className="portfoliolist-container">
@@ -79,7 +83,6 @@ class PortfolioDataTable extends Component {
             </Table.Row>
           </Table.Header>
 
-          {/* <div className="portfolio-list-items"> */}
           {this.props.portfolio.map((val, idx) => {
             return (
               <Table.Body key={idx}>

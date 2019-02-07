@@ -11,6 +11,11 @@ a {
   text-decoration: none;
 }
 
+#help-btn {
+  background-color: #564668;
+  color: #e03997;
+}
+
 /* background picture affects signup/login */
 .particles-js {
   width: 100%;
@@ -309,8 +314,6 @@ table {
   flex: 2.5;
   border-radius: 10px;
   display: flex;
-  /* padding: 0.5%; */
-  border: 0.5px solid lightgrey;
 }
 
 .companyFinancials-container {
@@ -407,12 +410,16 @@ table {
   background-color: #564668;
 }
 
-.companyPrices {
+.selector-child-container {
   background-color: #564668;
   border-radius: 10px;
   flex: 2;
   margin: 1%;
   padding: 0.5%;
+}
+
+#peer-Btn-segment {
+  background-color: #564668;
 }
 
 .chartSelections {
