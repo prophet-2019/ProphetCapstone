@@ -1,24 +1,10 @@
 import React, {Component} from 'react'
-import {getPortfolio} from '../store/assetallocation'
-import {getStockPriceForAssetAllocation} from '../store/chart'
+import {getPeers} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {
-  XYPlot,
-  VerticalGridLines,
-  HorizontalGridLines,
-  LineSeries,
-  FlexibleXYPlot,
-  BarSeries,
-  XAxis,
-  YAxis,
-  RectSeries,
-  VerticalBarSeries,
-  RadialChart
-} from 'react-vis'
 import {Table} from 'semantic-ui-react'
 
-class PortfolioDataTable extends Component {
+class Peer extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -26,43 +12,13 @@ class PortfolioDataTable extends Component {
       intervalId: 0,
       currentUser: 0
     }
-    this.intervalFunc = this.intervalFunc.bind(this)
   }
-
-  async intervalFunc() {
-    const callBack = (func, userId) => {
-      func(userId)
-    }
-    this.props.getPortfolio(this.state.currentUser)
-    const intervalId = setInterval(() => {
-      callBack(this.props.getPortfolio, this.props.userId)
-    }, 50000)
-    await this.setState({intervalId})
-  }
-  componentWillUnmount() {
-    clearInterval(this.state.intervalId)
-  }
-  async componentDidMount() {
-    this.setState({
-      portfolio: this.props.portfolio,
-      currentUser: this.props.userId
-    })
-    await this.intervalFunc()
-    this.props.getPortfolio(this.props.userId)
+  componentDidMount() {
+    this.props.getPeers(this.props.ticker)
   }
   componentDidUpdate(prevProps) {
-    //conditional to check prevProps against current Props
-    const quantOfPrev = prevProps.portfolio.reduce((accum, val) => {
-      accum += val[2]
-      return accum
-    }, 0)
-    const quantOfCurrent = this.props.portfolio.reduce((accum, val) => {
-      accum += val[2]
-      return accum
-    }, 0)
-    if (quantOfPrev !== quantOfCurrent) {
-      //dispatch getPortfolio
-      this.props.getPortfolio(this.props.userId)
+    if (this.props.ticker !== prevProps.ticker) {
+      this.props.getPeers(this.props.ticker)
     }
   }
   render() {
@@ -70,18 +26,14 @@ class PortfolioDataTable extends Component {
       <Table striped>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Ticker</Table.HeaderCell>
-            <Table.HeaderCell>Quantity</Table.HeaderCell>
-            <Table.HeaderCell>CurrentPrice</Table.HeaderCell>
+            <Table.HeaderCell>Peers</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {this.props.portfolio.map((val, idx) => {
+          {this.props.peers.map(val => {
             return (
-              <Table.Row key={val[0]}>
-                <Table.Cell>{val[0]}</Table.Cell>
-                <Table.Cell textAlign="center">{val[2]}</Table.Cell>
-                <Table.Cell>${val[1].toFixed(3)}</Table.Cell>
+              <Table.Row key={val}>
+                <Table.Cell>{val}</Table.Cell>
               </Table.Row>
             )
           })}
@@ -93,19 +45,15 @@ class PortfolioDataTable extends Component {
 
 const mapStateToProps = state => {
   return {
-    portfolio: state.assetallocation.portfolio,
-    userId: state.user.id
+    ticker: state.chart.ticker,
+    peers: state.chart.peers
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPortfolio: userId => dispatch(getPortfolio(userId)),
-    getStockPriceForAssetAllocation: ticker =>
-      dispatch(getStockPriceForAssetAllocation(ticker))
+    getPeers: ticker => dispatch(getPeers(ticker))
   }
 }
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PortfolioDataTable)
-)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Peer))

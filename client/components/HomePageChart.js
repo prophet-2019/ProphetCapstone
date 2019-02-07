@@ -19,7 +19,7 @@ class HomePageChart extends Component {
     super(props)
     this.state = {
       timeFrame: 'ytd',
-      currentEquity: 'BRK.A',
+      currentEquity: 'KO',
       crosshairValues: []
     }
     this.toggleChart = this.toggleChart.bind(this)
