@@ -24,24 +24,28 @@ class Peer extends Component {
 
   render() {
     return (
-      <Table striped>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Peers</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {this.props.peers.map(val => {
-            return (
-              <Table.Row key={val}>
-                <Table.Cell>
-                  <Button onClick={() => this.handleSubmit(val)}>{val}</Button>
-                </Table.Cell>
-              </Table.Row>
-            )
-          })}
-        </Table.Body>
-      </Table>
+      <div className="">
+        <Table striped>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Peers</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {this.props.peers.map(val => {
+              return (
+                <Table.Row key={val}>
+                  <Table.Cell>
+                    <Button onClick={() => this.handleSubmit(val)}>
+                      {val}
+                    </Button>
+                  </Table.Cell>
+                </Table.Row>
+              )
+            })}
+          </Table.Body>
+        </Table>
+      </div>
     )
   }
 }
