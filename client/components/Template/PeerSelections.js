@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 // import {withRouter} from 'react-router'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import {withStyles} from '@material-ui/core/styles'
 import {Button, Segment} from 'semantic-ui-react'
 import {revealCompare, singleCompany} from '../../store/companyDetailsTable'
 import Peer from '../Peer'
@@ -34,7 +33,9 @@ class ChartSelections extends Component {
   render() {
     const {classes} = this.props
     return (
-      <Peer />
+      <div className="selector-child-container">
+        <Peer />
+      </div>
       // <div className="chartSelections">
       //   <Segment inverted id="chart-selections-buttons">
       //     <Button
@@ -79,6 +80,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles)(ChartSelections)
-)
+export default connect(mapStateToProps, mapDispatchToProps)(ChartSelections)
