@@ -3,13 +3,20 @@ import {connect} from 'react-redux'
 // import {getPortfolioData} from '../store/companyDetailsTable'
 import {getStats} from '../../store/financialDataTable'
 import {withRouter} from 'react-router'
-import {Table, TableCell} from 'semantic-ui-react'
+import {Table, Button, Modal, Transition, TableCell} from 'semantic-ui-react'
 import axios from 'axios'
 
 class CompanyDetails extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      open: false
+    }
   }
+
+  show = size => () => this.setState({size, open: true})
+
+  close = () => this.setState({open: false})
 
   componentDidMount() {
     this.props.getStats('KO')
@@ -17,13 +24,13 @@ class CompanyDetails extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.ticker !== prevProps.ticker) {
-      this.props.getStats('KO')
+      this.props.getStats(this.props.ticker)
     }
   }
 
   render() {
     const {company} = this.props
-    console.log('compoany', company)
+    const {open, size} = this.state
     return (
       <div className="companyDetails-container">
         <h5>Prophet Scorecard for: {this.props.stats.companyName}</h5>
@@ -56,6 +63,90 @@ class CompanyDetails extends Component {
               </Table.Row>
             </Table.Body>
           </Table>
+        </div>
+        <h4>
+          {' '}
+          Wondering how we calculate our scorecard?{' '}
+          <Button
+            onClick={this.show('tiny')}
+            id="help-btn"
+            icon="question circle outline icon"
+          />{' '}
+        </h4>
+        <div>
+          <Transition.Group
+            open={open}
+            transition="horizontal-flip"
+            duration={1000}
+          >
+            {open && (
+              <Modal size={size} open={open} onClose={this.close}>
+                <Modal.Header>
+                  Wondering how we calculate our scorecard?
+                </Modal.Header>
+                <Modal.Content>
+                  <p>
+                    <b>Growth:</b> This is a measurement of Earnings per Share
+                    growth within the last year.
+                  </p>
+                  <p>
+                    Earnings per share (EPS) is the portion of a company's
+                    profit allocated to each share of stock. Many investors look
+                    to this of as an indicator of profitability and stock prices
+                    can swing a lot after companies report these every quarter.
+                  </p>
+
+                  <p>
+                    <b>Health:</b> This is a measurement of liquidity of a
+                    company.
+                  </p>
+                  <p>
+                    This is based on how much short-term liabilities they have
+                    versus short-term assets. So it's measuring if they have big
+                    payments to make versus how much they have in bank or stuff
+                    they can sell to make the payment. Usually, being over 1 is
+                    a good sign.
+                  </p>
+
+                  <p>
+                    <b>Valuation:</b> This is a measurement of Price-to-Sales.
+                  </p>
+                  <p>
+                    Price-to-Sales value of the dollar stock price a company is
+                    currently trading at versus dollar sales the company does.
+                    It can be calculated either by dividing the company’s market
+                    capitalization by its total sales over a designated period –
+                    usually twelve months, or on a per-share basis by dividing
+                    the stock price by sales per share. The P/S ratio is also
+                    known as a “sales multiple” or “revenue multiple.”
+                  </p>
+
+                  <p>
+                    <b>Profitability:</b> This is a measurement of Return of
+                    Assets.
+                  </p>
+                  <p>
+                    Return on assets (ROA) is an indicator of how profitable a
+                    company is relative to its total assets. ROA gives a
+                    manager, investor, or analyst an idea as to how efficient a
+                    company's management is at using its assets to generate
+                    earnings. Return on assets is displayed as a percentage and
+                    its calculated as: ROA = Net Income / Total Assets
+                  </p>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button
+                    onClick={this.close}
+                    positive
+                    icon="checkmark"
+                    color="purple"
+                    labelPosition="right"
+                    content="Got it!"
+                  />
+                </Modal.Actions>
+              </Modal>
+            )}
+          </Transition.Group>
         </div>
       </div>
     )

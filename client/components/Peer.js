@@ -37,7 +37,6 @@ class Peer extends Component {
     let arrToRender
     let name
     if (slicedSixFromPeers.length < 6) {
-      console.log('LENGTH', slicedSixFromPeers, slicedSixFromFocus)
       arrToRender = slicedSixFromFocus
       name = 'Stocks in Focus'
     } else {
