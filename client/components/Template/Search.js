@@ -136,7 +136,7 @@ class Search extends Component {
         ) : (
           <div>
             <label>
-              Pick an equity:
+              <h4>Pick a stock ticker: </h4>
               <input
                 type="text"
                 value={this.state.submitEquity}
