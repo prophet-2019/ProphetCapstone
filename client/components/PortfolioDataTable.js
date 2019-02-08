@@ -79,7 +79,7 @@ class PortfolioDataTable extends Component {
             <Table.Row>
               <Table.HeaderCell>Ticker</Table.HeaderCell>
               <Table.HeaderCell>Quantity</Table.HeaderCell>
-              <Table.HeaderCell>CurrentPrice</Table.HeaderCell>
+              <Table.HeaderCell>Current Value</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
