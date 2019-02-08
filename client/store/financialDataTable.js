@@ -1,14 +1,28 @@
 import axios from 'axios'
 
 const GET_FINANCIALS = 'GET_FINANCIALS'
+const GET_NEWS = 'GET_NEWS'
+const GET_STATS = 'GET_STATS'
 
 const initialState = {
-  financials: []
+  financials: [],
+  news: [],
+  company: []
 }
 
 const gotFinancialData = financialData => ({
   type: GET_FINANCIALS,
   financialData
+})
+
+const gotNews = news => ({
+  type: GET_NEWS,
+  news
+})
+
+const gotCompanyStats = stats => ({
+  type: GET_STATS,
+  stats
 })
 
 export const getFinancialData = ticker => {
@@ -28,12 +42,62 @@ export const getFinancialData = ticker => {
   }
 }
 
+export const getNews = ticker => {
+  return async dispatch => {
+    try {
+      const {data: newsArr} = await axios.get(
+        `https://api.iextrading.com/1.0/stock/${ticker}/news`
+      )
+      dispatch(gotNews(newsArr))
+    } catch (err) {
+      console.error('No news about this company', err.message)
+    }
+  }
+}
+
+export const getStats = ticker => {
+  return async dispatch => {
+    try {
+      const {data: stats} = await axios.get(
+        `https://api.iextrading.com/1.0/stock/${ticker}/stats`
+      )
+      const {data: earnings} = await axios.get(
+        `https://api.iextrading.com/1.0/stock/${ticker}/earnings`
+      )
+      const {data: health} = await axios.get(
+        `https://api.iextrading.com/1.0/stock/${ticker}/financials`
+      )
+      let currentRatio =
+        health.financials[0].currentCash / health.financials[0].currentDebt
+      let arrWithAggregateData = [
+        ['Growth', earnings.earnings[0].yearAgoChangePercent],
+        ['Health', currentRatio],
+        ['Valuation', stats.priceToSales],
+        ['Profitability', stats.returnOnAssets]
+      ]
+      dispatch(gotCompanyStats(arrWithAggregateData))
+    } catch (err) {
+      console.error('No information', err.message)
+    }
+  }
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_FINANCIALS:
       return {
         ...state,
         financials: action.financialData
+      }
+    case GET_NEWS:
+      return {
+        ...state,
+        news: action.news
+      }
+    case GET_STATS:
+      return {
+        ...state,
+        company: action.stats
       }
     default:
       return state
