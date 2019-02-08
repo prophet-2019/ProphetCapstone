@@ -37,11 +37,12 @@ class CompanyData extends Component {
             <Table striped>
               <Table.Body>
                 {news.map((val, idx) => {
-                  console.log('val', val)
                   return (
                     <Table.Row key={idx}>
                       <Table.Cell>{val.source}</Table.Cell>
-                      <Table.Cell>{val.headline}</Table.Cell>
+                      <Table.Cell>
+                        <a href={val.url}>{val.headline}</a>
+                      </Table.Cell>
                     </Table.Row>
                   )
                 })}
