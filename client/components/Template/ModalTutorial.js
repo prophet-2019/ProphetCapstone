@@ -38,10 +38,9 @@ const ModalTutorial = () => (
         Based on the real-time financial information that loads, decide whether
         to buy or sell stock of your selected company.
       </p>
+
+      <h1>Hit ESC to exit this screen</h1>
     </Modal.Content>
-    <Modal.Actions>
-      <Button icon="close" floated="left" circular={true} inverted />
-    </Modal.Actions>
   </Modal>
 )
 
