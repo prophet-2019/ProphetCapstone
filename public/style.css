@@ -387,9 +387,22 @@ table {
 }
 
 /* Buy / Sell buttons */
+.buy-sell-everything-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.buy-sell-quantity {
+  flex: 1;
+}
+.ui.vertical.buttons {
+  /* flex: 0.5; */
+}
+
 .buy-sell-ticker {
-  position: relative;
+  /* position: relative; */
   bottom: 10px;
+  color: pink;
 }
 
 #buy {

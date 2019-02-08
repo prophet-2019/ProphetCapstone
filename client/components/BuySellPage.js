@@ -33,13 +33,13 @@ class BuySellPage extends Component {
   render() {
     const initTick = this.props.ticker ? this.props.ticker : this.state.ticker
     return (
-      <div>
-        <h5>Stock Ticker</h5>
+      <div className="buy-sell-everything-container">
+        <h5>Selected stock ticker:</h5>
         <div className="buy-sell-ticker">
-          <h3>{this.props.ticker}</h3>
+          <h3>"{this.props.ticker}"</h3>
         </div>
-        <div>
-          <label>Quantity: </label>
+        <div className="buy-sell-quantity">
+          <label>Quantity to Buy or Sell: </label>
           <input
             required
             name="quantity"
@@ -47,9 +47,10 @@ class BuySellPage extends Component {
             onChange={evt => this.setState({quantity: evt.target.value})}
           />
         </div>
-        <div className="companyPrices-btns">
+        <div className="small ui vertical buttons">
           <Segment inverted id="buy">
             <Button
+              className="ui buttons"
               inverted
               color="purple"
               type="submit"
@@ -60,6 +61,7 @@ class BuySellPage extends Component {
           </Segment>
           <Segment inverted id="sell">
             <Button
+              className="ui buttons"
               inverted
               color="purple"
               type="submit"

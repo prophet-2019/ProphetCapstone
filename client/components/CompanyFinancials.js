@@ -31,7 +31,7 @@ class CompanyData extends Component {
     const {news} = this.props
     return (
       <div className="companyFinancials-container">
-        <h5>CompanyFinacials Component</h5>
+        <h5>News</h5>
         {this.props.ticker ? (
           <div className="financialList">
             <Table striped>
