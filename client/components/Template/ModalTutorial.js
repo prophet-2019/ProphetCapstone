@@ -24,10 +24,6 @@ const ModalTutorial = () => (
       </p>
 
       <p>
-        The financial information on your dashboard is pre-populated with our
-        favorite real estate company.
-      </p>
-      <p>
         On the right of the dashboard, enter in the search bar the stock ticker
         of any company of your choice. Don't know any company stock tickers? Try
         some of our favorites: GOOG (Google), TSLA (Tesla), AMZN (Amazon), WMT
