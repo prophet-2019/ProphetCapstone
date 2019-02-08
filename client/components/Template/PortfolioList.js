@@ -37,7 +37,7 @@ class PortfolioList extends Component {
         </h4>
         <div>
           <Transition.Group
-            open={open}
+            // open={open}
             transition="horizontal-flip"
             duration={1000}
           >

@@ -7,14 +7,14 @@ import {Button, Segment} from 'semantic-ui-react'
 import {revealCompare, singleCompany} from '../../store/companyDetailsTable'
 import Peer from '../Peer'
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit
-  },
-  input: {
-    display: 'none'
-  }
-})
+// const styles = theme => ({
+//   button: {
+//     margin: theme.spacing.unit
+//   },
+//   input: {
+//     display: 'none'
+//   }
+// })
 
 class ChartSelections extends Component {
   constructor(props) {
@@ -63,9 +63,9 @@ class ChartSelections extends Component {
   }
 }
 
-ChartSelections.propTypes = {
-  classes: PropTypes.object.isRequired
-}
+// ChartSelections.propTypes = {
+//   classes: PropTypes.object.isRequired
+// }
 
 const mapStateToProps = state => {
   return {
