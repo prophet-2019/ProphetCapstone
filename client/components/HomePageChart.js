@@ -19,8 +19,7 @@ class HomePageChart extends Component {
     super(props)
     this.state = {
       timeFrame: 'ytd',
-      currentEquity: 'KO',
-      crosshairValues: []
+      currentEquity: 'KO'
     }
     this.toggleChart = this.toggleChart.bind(this)
   }
@@ -50,9 +49,8 @@ class HomePageChart extends Component {
           <div align="center">
             <h1>{this.props.ticker}</h1>
             <XYPlot
-              width={700}
+              width={600}
               height={300}
-              onMouseLeave={() => this.setState({crosshairValues: []})}
               getX={d => d[0]}
               getY={d => d[1]}
               style={{backgroundColor: 'FFFFFF'}}
@@ -76,13 +74,7 @@ class HomePageChart extends Component {
                 data={histPrices}
                 curve={curveCatmullRom.alpha(0.5)}
                 dontCheckIfEmpty={true}
-                onNearestX={(value, {innerX}) =>
-                  this.setState({
-                    crosshairValues: histPrices.map(d => d[innerX])
-                  })
-                }
               />
-              <Crosshair values={this.state.crosshairValues} />
             </XYPlot>
             <Segment inverted id="toggle-chart-buttons">
               <Button
