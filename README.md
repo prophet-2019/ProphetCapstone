@@ -2,11 +2,11 @@
 
 Prophet is an educational, sandboxed web trading application designed for people who are new to investing to trade US stocks. The application is geared towards individuals who don't have experience who may not know how to read financial statements. User's can come to our app and see the main statistics they'll need to make decisions and learn by experience without putting any of their own money up.
 
-![Demo Animation](../assets/createfourm.gif?raw=true)
+![Demo Animation](./assets/createfourm.gif?raw=true)
 
 Inside the rooms, live stock market data is used to render and update the bar charts, candle charts, and ticker information in real time. Additionally, the platform provides news information and a sentiment analyzer which lets the students know if that article is neutral, positive or negative about that company. With all this information the students can make a informed buy or sell decision.
 
-![Demo Animation](../assets/screencast.gif?raw=true)
+![Demo Animation](./assets/screencast.gif?raw=true)
 
 Each users portfolio is updated in real time based on the current holdings.
 
@@ -14,9 +14,9 @@ Each users portfolio is updated in real time based on the current holdings.
 
 To run locally on your machine, simply clone the repository, download postgresQL and create a database named PAPR and NPM install.
 
-![image](../assets/createdb.png?raw=true)
+![image](./assets/createdb.png?raw=true)
 
-![image](../assets/npminstall.png?raw=true)
+![image](./assets/npminstall.png?raw=true)
 
 or simply visit https://prophet-app.herokuapp.com/
 
@@ -37,9 +37,9 @@ Technologies used to build this application include:
 
 ## Authors
 
-* Jay Bhagat <br/> <img src="../assets/jay.jpg" alt="jay" width="100"/>
-* Jonathan Ciccarella <br/> <img src="../assets/jon.png" alt="jonathan" width="100"/>
-* Ken Atienza <br/> <img src="../assets/ken.png" alt="ken" width="100"/>
+* Jay Bhagat <br/> <img src="./assets/jay.jpg" alt="jay" width="100"/>
+* Jonathan Ciccarella <br/> <img src="./assets/jon.png" alt="jonathan" width="100"/>
+* Ken Atienza <br/> <img src="./assets/ken.png" alt="ken" width="100"/>
 
 ## Acknowledgments
 
