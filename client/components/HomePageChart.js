@@ -6,7 +6,7 @@ import {
   YAxis,
   ChartLabel,
   HorizontalGridLines,
-  VerticalGridlines,
+  VerticalGridLines,
   Crosshair
 } from 'react-vis'
 import {getStockPrice} from '../store/chart'
@@ -57,8 +57,9 @@ class HomePageChart extends Component {
             >
               <XAxis />
               <YAxis />
+              <HorizontalGridLines />
+              <VerticalGridLines />
               <ChartLabel
-                text="Y Axis"
                 className="alt-y-label"
                 includeMargin={false}
                 xPercent={0.06}
