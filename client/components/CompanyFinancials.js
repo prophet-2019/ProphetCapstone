@@ -41,7 +41,13 @@ class CompanyData extends Component {
                     <Table.Row key={idx}>
                       <Table.Cell>{val.source}</Table.Cell>
                       <Table.Cell>
-                        <a href={val.url}>{val.headline}</a>
+                        <a
+                          href={val.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {val.headline}
+                        </a>
                       </Table.Cell>
                     </Table.Row>
                   )

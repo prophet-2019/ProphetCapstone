@@ -195,6 +195,7 @@ h2 {
 }
 
 .portfoliolist-container {
+  font-size: 10px;
   /* display: flex; */
   /* flex-direction: column; */
 }
@@ -350,6 +351,7 @@ table {
   max-height: 200px;
   margin: 1%;
   overflow-y: scroll;
+  font-size: 10px;
 }
 
 .details {
