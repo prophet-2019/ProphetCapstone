@@ -1,6 +1,6 @@
 # PROPHET
 
-Prophet is an educational web trading application designed for newbies to trade on the financial markets. The application is geared towards teachers and students, where teachers can create a room with a particular set of companies for students to trade virtual money. On creation of the room a unique URL is generated which then teachers can send out to students to join the room automatically.
+Prophet is an educational, sandboxed web trading application designed for people who are new to investing to trade US stocks. The application is geared towards individuals who don't have experience who may not know how to read financial statements. User's can come to our app and see the main statistics they'll need to make decisions and learn by experience without putting any of their own money up.
 
 ![Demo Animation](../assets/createfourm.gif?raw=true)
 
@@ -26,7 +26,6 @@ Technologies used to build this application include:
 
 * [React](https://reactjs.org/) - Front-end framework used to build components
 * [Redux](https://redux.js.org/) - Front-end framework used to manage state
-* [Socket.IO](https://socket.io/) - Library used to stream information in real-time
 * [IEX API](https://iextrading.com/developer/) - Stock market API with live up to date information on the market
 * [React-Vis](https://uber.github.io/react-vis/) - Uber’s D3 Library for charting
 * [Sentiment](https://www.npmjs.com/package/sentiment) - NPM library to analyze sentiment of news articles
@@ -38,9 +37,9 @@ Technologies used to build this application include:
 
 ## Authors
 
-* Jay Bhagat <br/> <img src="../assets/0-1.png" alt="jay" width="100"/>
-* Jonathan Ciccarella <br/> <img src="../assets/0-2.png" alt="jonathan" width="100"/>
-* Ken Atienza <br/> <img src="../assets/0.png" alt="ken" width="100"/>
+* Jay Bhagat <br/> <img src="../assets/jay.jpg" alt="jay" width="100"/>
+* Jonathan Ciccarella <br/> <img src="../assets/jon.png" alt="jonathan" width="100"/>
+* Ken Atienza <br/> <img src="../assets/ken.png" alt="ken" width="100"/>
 
 ## Acknowledgments
 
