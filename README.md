@@ -26,7 +26,6 @@ Technologies used to build this application include:
 * [Redux](https://redux.js.org/) - Front-end framework used to manage state
 * [IEX API](https://iextrading.com/developer/) - Stock market API with live up to date information on the market
 * [React-Vis](https://uber.github.io/react-vis/) - Uber’s D3 Library for charting
-* [Sentiment](https://www.npmjs.com/package/sentiment) - NPM library to analyze sentiment of news articles
 * [NodeJS](https://nodejs.org/en/) - Server side environment used to set up router
 * [ExpressJS](https://expressjs.com/) - Server used to communicate with client side and PostgresQL database
 * [Sequelize](http://docs.sequelizejs.com/) - Library used to create models and query database for relevant information
