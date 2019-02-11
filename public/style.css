@@ -3,8 +3,13 @@
   src: url('subway-ticker.ttf') format('truetype');
 }
 
+wrapper {
+  width: 100%;
+}
+
 body {
   font-family: sans-serif;
+  background-color: #1f0036;
 }
 
 a {
@@ -18,8 +23,8 @@ a {
 
 /* background picture affects signup/login */
 .particles-js {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   position: absolute;
   background-size: cover;
   z-index: -1;
@@ -120,6 +125,7 @@ h2 {
   color: #dfd3e2;
   font: avenir-next-condensed, sans-serif;
   text-align: center;
+  background-color: #1f0036;
 }
 
 .header-container {
@@ -189,6 +195,7 @@ h2 {
 }
 
 .portfoliolist-container {
+  font-size: 10px;
   /* display: flex; */
   /* flex-direction: column; */
 }
@@ -344,6 +351,7 @@ table {
   max-height: 200px;
   margin: 1%;
   overflow-y: scroll;
+  font-size: 10px;
 }
 
 .details {

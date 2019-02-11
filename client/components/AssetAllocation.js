@@ -124,8 +124,8 @@ class AssetAllocation extends Component {
           colorRange={myPalette}
           className="templateAssetAllocation"
           data={myData}
-          width={300}
-          height={300}
+          width={200}
+          height={200}
         />
       </div>
     )

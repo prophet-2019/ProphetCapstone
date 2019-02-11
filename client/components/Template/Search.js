@@ -39,7 +39,8 @@ class Search extends Component {
     })
   }
 
-  handleSubmit = async () => {
+  handleSubmit = async evt => {
+    evt.preventDefault()
     await this.props.getStockPrice(this.state.submitEquity, 'ytd')
     await this.setState({
       submitEquity: ''
@@ -105,55 +106,47 @@ class Search extends Component {
         </div>
         {this.props.compare ? (
           <div>
-            <label>
-              Pick an equity:
-              <input
-                type="text"
-                value={this.state.submitEquity}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Pick another equity:
-              <input
-                type="text"
-                value={this.state.submitEquity2}
-                onChange={this.handleChange2}
-              />
-            </label>
-            <Segment inverted id="search-button">
-              <Button
-                inverted
-                color="purple"
-                type="submit"
-                value="Submit"
-                onClick={this.handleSubmit2}
-              >
-                Submit
-              </Button>
-            </Segment>
+            <form onSubmit={this.handleSubmit2}>
+              <label>
+                Pick an equity:
+                <input
+                  type="text"
+                  value={this.state.submitEquity}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <label>
+                Pick another equity:
+                <input
+                  type="text"
+                  value={this.state.submitEquity2}
+                  onChange={this.handleChange2}
+                />
+              </label>
+              <Segment inverted id="search-button">
+                <Button inverted color="purple" type="submit" value="Submit">
+                  Submit
+                </Button>
+              </Segment>
+            </form>
           </div>
         ) : (
           <div>
-            <label>
-              <h4>Pick a stock ticker: </h4>
-              <input
-                type="text"
-                value={this.state.submitEquity}
-                onChange={this.handleChange}
-              />
-            </label>
-            <Segment inverted id="search-button">
-              <Button
-                inverted
-                color="purple"
-                type="submit"
-                value="Submit"
-                onClick={this.handleSubmit}
-              >
-                Submit
-              </Button>
-            </Segment>
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                <h4>Pick a stock ticker: </h4>
+                <input
+                  type="text"
+                  value={this.state.submitEquity}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <Segment inverted id="search-button">
+                <Button inverted color="purple" type="submit" value="Submit">
+                  Submit
+                </Button>
+              </Segment>
+            </form>
           </div>
         )}
       </div>

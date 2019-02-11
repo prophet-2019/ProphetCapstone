@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 // import {getPortfolioData} from '../store/companyDetailsTable'
 import {getStats} from '../../store/financialDataTable'
 import {withRouter} from 'react-router'
-import {Table, Button, Modal, Transition, TableCell} from 'semantic-ui-react'
-import axios from 'axios'
+import {Table, Button, Modal, Transition} from 'semantic-ui-react'
 
 class CompanyDetails extends Component {
   constructor(props) {

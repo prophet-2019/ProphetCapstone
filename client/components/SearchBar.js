@@ -42,7 +42,7 @@ const SearchBar = props => {
         fluid
         input={{style: {width: '90%'}}}
         size="small"
-        placeholder="Enter Company or Symbol"
+        placeholder="Enter Company Ticker or Symbol"
         value={val}
         onSearchChange={onChange}
         onResultSelect={onSelect}

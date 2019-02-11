@@ -13,9 +13,11 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <Particles
           className="particles-js"
+          width="100%"
+          height="100%"
           params={{
             particles: {
               number: {

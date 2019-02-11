@@ -3,6 +3,8 @@ import {getFinancialData, getNews} from '../store/financialDataTable'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 
+//CompanyFinancials is the page where this is actually running. This component is deprecated. Delete upon testing, refactoring session.
+
 class CompanyData extends Component {
   constructor(props) {
     super(props)
