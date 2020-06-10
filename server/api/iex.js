@@ -1,11 +1,12 @@
-const router = require('express').Router()
-module.exports = router
-const axios = require('axios')
+const router = require('express').Router();
+module.exports = router;
+const axios = require('axios');
+import IEX from '../helpers/iex-helpers';
 
 router.get('/stockprice/:ticker', async (req, res, next) => {
   try {
     const {data: iexRealtimePrice} = await axios.get(
-      `https://api.iextrading.com/1.0/stock/${req.params.ticker}/quote`
+      `${IEX.IEX_PREFIX}/stock/${req.params.ticker}/quote${IEX.IEX_SUFFIX}`
     )
     res.json(iexRealtimePrice.latestPrice)
   } catch (err) {

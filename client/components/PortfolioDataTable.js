@@ -3,23 +3,8 @@ import {getPortfolio} from '../store/assetallocation'
 import {getStockPriceForAssetAllocation} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {
-  XYPlot,
-  VerticalGridLines,
-  HorizontalGridLines,
-  LineSeries,
-  FlexibleXYPlot,
-  BarSeries,
-  XAxis,
-  YAxis,
-  RectSeries,
-  VerticalBarSeries,
-  RadialChart
-} from 'react-vis'
 import {Table} from 'semantic-ui-react'
 
-// const myPalette = ['purple', 'violet', 'pink', 'blue']
-// let count = 0
 class PortfolioDataTable extends Component {
   constructor(props) {
     super(props)
