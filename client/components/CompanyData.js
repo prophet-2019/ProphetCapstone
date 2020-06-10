@@ -25,8 +25,6 @@ class CompanyData extends Component {
   }
 
   render() {
-    const labelsOfFinancialReport = Object.keys(this.state.financials)
-    const valuesFromFinancialReport = Object.values(this.state.financials)
     const {news} = this.props
     return (
       <div>
@@ -38,7 +36,7 @@ class CompanyData extends Component {
             <tbody>
               {news.map((val, idx) => {
                 return (
-                  <tr key={idx}>
+                  <tr key={`${val.source} - ${idx}`}>
                     <td>{val.source}</td>
                     <td>{val.headline}</td>
                   </tr>

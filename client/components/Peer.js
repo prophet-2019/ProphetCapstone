@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {getPeers, getStockPrice, getInFocus} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {Button, Segment, Table} from 'semantic-ui-react'
+import {Button, Segment} from 'semantic-ui-react'
 
 class Peer extends Component {
   constructor(props) {
@@ -52,7 +52,7 @@ class Peer extends Component {
               return (
                 <Button
                   className="mini ui button"
-                  key={idx}
+                  key={`${val.symbol} - ${idx}`}
                   inverted
                   color="purple"
                   onClick={() => this.handleSubmit(val)}

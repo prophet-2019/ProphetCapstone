@@ -1,20 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// import {withRouter} from 'react-router'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
-import {Button, Segment} from 'semantic-ui-react'
 import {revealCompare, singleCompany} from '../../store/companyDetailsTable'
 import Peer from '../Peer'
-
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit
-  },
-  input: {
-    display: 'none'
-  }
-})
 
 class ChartSelections extends Component {
   constructor(props) {
@@ -31,7 +19,6 @@ class ChartSelections extends Component {
   }
 
   render() {
-    const {classes} = this.props
     return (
       <div className="selector-child-container">
         <Peer />

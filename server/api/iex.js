@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const {User, Transaction, Stock, Portfolio} = require('../db/models')
 module.exports = router
 const axios = require('axios')
 

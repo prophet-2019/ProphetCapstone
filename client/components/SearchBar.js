@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import _ from 'lodash'
 import {connectAutoComplete} from 'react-instantsearch-dom'
 import {withRouter} from 'react-router-dom'
-import {Search, Image} from 'semantic-ui-react'
+import {Search} from 'semantic-ui-react'
 
 const SearchWrap = styled.div`
   display: flex;

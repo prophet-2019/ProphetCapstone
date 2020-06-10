@@ -1,9 +1,8 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Button, Segment} from 'semantic-ui-react'
 import ModalTutorial from './ModalTutorial'
-import {Link} from 'react-router-dom'
 import {logout} from '../../store'
 
 const Header = ({handleClick}) => (

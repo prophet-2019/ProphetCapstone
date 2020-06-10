@@ -6,10 +6,6 @@ import {withRouter} from 'react-router'
 import {Table} from 'semantic-ui-react'
 
 class CompanyData extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
     this.props.getNews('KO')
   }
@@ -22,12 +18,6 @@ class CompanyData extends Component {
   }
 
   render() {
-    const labelsOfFinancialReport = Object.keys(this.props.stats)
-    const valuesFromFinancialReport = Object.values(this.props.stats)
-    const arrToMapThroughInComponent = [
-      [labelsOfFinancialReport],
-      [valuesFromFinancialReport]
-    ]
     const {news} = this.props
     return (
       <div className="companyFinancials-container">
@@ -38,7 +28,7 @@ class CompanyData extends Component {
               <Table.Body>
                 {news.map((val, idx) => {
                   return (
-                    <Table.Row key={idx}>
+                    <Table.Row key={`${val.source} - ${idx}`}>
                       <Table.Cell>{val.source}</Table.Cell>
                       <Table.Cell>
                         <a
