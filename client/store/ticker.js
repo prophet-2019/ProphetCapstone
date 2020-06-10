@@ -2,8 +2,6 @@ import axios from 'axios'
 
 //action variable
 const GET_PRICES = 'GET_PRICES'
-// const INCREASE_CASH = 'INCREASE_CASH'
-// const DECREASE_CASH = 'DECREASE_CASH'
 
 const initialState = {
   data: []

@@ -31,29 +31,6 @@ router.get('/:userId/portfolio', async (req, res, next) => {
   }
 })
 
-// router.get('/:userId/portfolio', async (req, res, next) => {
-//   try {
-//     const usersTransactions = await Transaction.findByUser(req.params.userId)
-//     const getPortfolio = usersTransactions.reduce((accum, val) => {
-//       let tickTick = val.dataValues.ticker
-//       let shares = val.dataValues.transQuantity
-//       let transType = val.dataValues.transactionType
-//       if (transType === 'sell') {
-//         shares *= -1
-//       }
-//       if (accum[tickTick] !== undefined) {
-//         accum[tickTick] += shares
-//       } else {
-//         accum[tickTick] = shares
-//       }
-//       return accum
-//     }, {})
-//     res.send(getPortfolio)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
 router.put('/:userId/buy', async (req, res, next) => {
   let stockTicker = req.body.iexRealTimeQuote.symbol
   let realTimeQuote = req.body.iexRealTimeQuote.latestPrice

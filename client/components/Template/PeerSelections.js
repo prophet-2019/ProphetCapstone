@@ -36,29 +36,6 @@ class ChartSelections extends Component {
       <div className="selector-child-container">
         <Peer />
       </div>
-      // <div className="chartSelections">
-      //   <Segment inverted id="chart-selections-buttons">
-      //     <Button
-      //       inverted
-      //       color="purple"
-      //       variant="contained"
-      //       className={classes.button}
-      //       onClick={this.toggleSingle}
-      //     >
-      //       Closing Prices
-      //     </Button>
-
-      //     <Button
-      //       inverted
-      //       color="purple"
-      //       variant="contained"
-      //       onClick={this.toggleCompare}
-      //       className={classes.button}
-      //     >
-      //       Compare Two Equities
-      //     </Button>
-      //   </Segment>
-      // </div>
     )
   }
 }
