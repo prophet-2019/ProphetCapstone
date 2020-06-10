@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {buildRoute} from '../helpers/iex-helpers'
 
 //action variable
 const GET_PRICES = 'GET_PRICES'
@@ -18,7 +19,7 @@ export const getPriceFromAPI = () => {
   return async dispatch => {
     try {
       const {data: iexRealTimePricesForAllStocks} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/market/previous`
+        buildRoute(`/stock/market/previous`)
       )
       // eventually we will pass the price and stock quantity with the axios call
       const stockSymbolsArray = Object.keys(iexRealTimePricesForAllStocks)

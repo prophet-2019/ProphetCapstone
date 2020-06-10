@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {buildRoute} from '../helpers/iex-helpers'
 
 const GET_PORTFOLIO = 'GET_PORTFOLIO'
 const BUY_STOCK = 'BUY_STOCK'
@@ -64,7 +65,7 @@ export const getStockPriceToBuy = (orderDetails, userId) => {
   return async dispatch => {
     try {
       const {data: iexRealTimeQuote} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/${orderDetails.ticker}/quote`
+        buildRoute(`/stock/${orderDetails.ticker}/quote`)
       )
       // eventually we will pass the price and stock quantity with the axios call
       const updatedPortfolio = await axios.put(`/api/users/${+userId}/buy`, {
@@ -106,7 +107,7 @@ export const getStockPriceToSell = (orderDetails, userId) => {
   return async dispatch => {
     try {
       const {data: iexRealTimeQuote} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/${orderDetails.ticker}/quote`
+        buildRoute(`/stock/${orderDetails.ticker}/quote`)
       )
       // eventually we will pass the price and stock quantity with the axios call
       const updatedPortfolio = await axios.put(`/api/users/${+userId}/sell`, {

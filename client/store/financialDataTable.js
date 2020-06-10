@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {buildRoute} from '../helpers/iex-helpers'
 
 const GET_FINANCIALS = 'GET_FINANCIALS'
 const GET_NEWS = 'GET_NEWS'
@@ -46,7 +47,7 @@ export const getNews = ticker => {
   return async dispatch => {
     try {
       const {data: newsArr} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/${ticker}/news`
+        buildRoute(`/stock/${ticker}/news`)
       )
       dispatch(gotNews(newsArr))
     } catch (err) {
@@ -59,13 +60,13 @@ export const getStats = ticker => {
   return async dispatch => {
     try {
       const {data: stats} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/${ticker}/stats`
+        buildRoute(`/stock/${ticker}/stats`)
       )
       const {data: earnings} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/${ticker}/earnings`
+        buildRoute(`/stock/${ticker}/earnings`)
       )
       const {data: health} = await axios.get(
-        `https://api.iextrading.com/1.0/stock/${ticker}/financials`
+        buildRoute(`/stock/${ticker}/financials`)
       )
       let currentRatio =
         health.financials[0].currentCash / health.financials[0].currentDebt

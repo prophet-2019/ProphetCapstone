@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {buildRoute} from '../helpers/iex-helpers'
 
 const GOT_STOCK_PRICE = 'GOT_STOCK_PRICE'
 const GOT_COMPANY_FINANCIALS = 'GOT_COMPANY_FINANCIALS'
@@ -56,7 +57,7 @@ export const getStockPrice = (ticker, time) => async dispatch => {
 export const getStockPriceForAssetAllocation = ticker => async dispatch => {
   try {
     const {data: realTimePrice} = await axios.get(
-      `https://api.iextrading.com/1.0/stock/${ticker}/price`
+      buildRoute(`/stock/${ticker}/price`)
     )
     dispatch(gotStockPriceForAssetAllocation(realTimePrice))
   } catch (err) {
@@ -64,21 +65,10 @@ export const getStockPriceForAssetAllocation = ticker => async dispatch => {
   }
 }
 
-export const getFinancials = () => async dispatch => {
-  try {
-    const {data: financials} = await axios.get(
-      `https://api.iextrading.com/1.0/stock/aapl/financials`
-    )
-    dispatch(gotFinancials(financials))
-  } catch (err) {
-    console.error('LIONS ONLY', err.message)
-  }
-}
-
 export const getPeers = ticker => async dispatch => {
   try {
     const {data: peers} = await axios.get(
-      `https://api.iextrading.com/1.0/stock/${ticker}/relevant`
+      buildRoute(`/stock/${ticker}/relevant`)
     )
     dispatch(gotPeers(peers.symbols))
   } catch (error) {
@@ -89,7 +79,7 @@ export const getPeers = ticker => async dispatch => {
 export const getInFocus = () => async dispatch => {
   try {
     const {data: focusStocks} = await axios.get(
-      `https://api.iextrading.com/1.0/stock/market/list/infocus`
+      buildRoute(`/stock/market/list/infocus`)
     )
     dispatch(gotInFocus(focusStocks))
   } catch (err) {
