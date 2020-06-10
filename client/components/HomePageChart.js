@@ -6,8 +6,7 @@ import {
   YAxis,
   ChartLabel,
   HorizontalGridLines,
-  VerticalGridLines,
-  Crosshair
+  VerticalGridLines
 } from 'react-vis'
 import {getStockPrice} from '../store/chart'
 import {connect} from 'react-redux'

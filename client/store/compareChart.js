@@ -21,8 +21,7 @@ export const getComparedStockPrice = (
       arr.concat(HistoricalPrices2[idx][1])
     )
   }
-  // const ticker = 'AAPL';
-  // const time = '5y'
+
   try {
     const {data: gotHistoricalPrices1} = await axios.get(
       `/api/iex/getChartData/${ticker1}/${time}`

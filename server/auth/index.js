@@ -1,7 +1,5 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
-const Transaction = require('../db/models/transaction')
-const Stock = require('../db/models/stock')
 
 module.exports = router
 

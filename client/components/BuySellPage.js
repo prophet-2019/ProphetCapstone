@@ -31,7 +31,6 @@ class BuySellPage extends Component {
     }
   }
   render() {
-    const initTick = this.props.ticker ? this.props.ticker : this.state.ticker
     return (
       <div className="buy-sell-everything-container">
         <h5>Selected stock ticker:</h5>

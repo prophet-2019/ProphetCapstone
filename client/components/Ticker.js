@@ -1,10 +1,6 @@
-import React, {Component} from 'react'
-import axios from 'axios'
-import {getPriceFromAPI} from '../store/ticker'
+import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import ReactTicker from 'react-ticker'
-
 import TickerItem from './TickerItem'
 
 const Ticker = ({data}) => {

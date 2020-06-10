@@ -4,12 +4,7 @@ import {getStockPriceForAssetAllocation} from '../store/chart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import {RadialChart} from 'react-vis'
-import {
-  Button,
-  Modal,
-  Transition,
-  TransitionablePortal
-} from 'semantic-ui-react'
+import {Button, Modal, Transition} from 'semantic-ui-react'
 
 const myPalette = [
   '#cc00ff',
@@ -53,6 +48,7 @@ class AssetAllocation extends Component {
   }
   async componentDidMount() {
     this.setState({
+      ...this.state,
       portfolio: this.props.portfolio,
       currentUser: this.props.userId
     })
